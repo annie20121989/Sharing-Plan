@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="分帳小幫手">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -414,6 +414,8 @@ section.card,#warns{scroll-margin-top:110px}
 }
 /* ---- PWA ---- */
 .topbar{padding-top:env(safe-area-inset-top,0px)}
+html{background:#3F363A}
+body{min-height:100vh}
 .logo-img{width:26px;height:26px;border-radius:7px;display:block}
 #shFixBox,#shDev{display:none!important}
 .menu .ver{font-size:11.5px;color:var(--mute);padding:6px 12px 2px;text-align:right}
@@ -463,6 +465,105 @@ section.card,#warns{scroll-margin-top:110px}
   .ev-list{max-height:none}
   .evc-form{grid-template-columns:1fr}
   .evc-main{padding:14px 12px}
+}
+/* ---- 計費基準收合 ---- */
+.basis-wrap{margin-bottom:14px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
+.basis-wrap > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 14px;font-size:calc(13.5px + var(--fs-bump))}
+.basis-wrap > summary::-webkit-details-marker{display:none}
+.bs-t{font-weight:800;color:var(--ink)}
+.bs{color:var(--mute);font-weight:600;flex:1;min-width:0}
+.bs b{color:var(--plum)}.bs i{font-style:normal;color:var(--haze-dark);font-weight:700}
+.bs-edit{font-weight:800;color:var(--rose-dark);white-space:nowrap}
+.basis-wrap[open] .bs-edit{color:var(--mute)}
+.basis-wrap .basis{margin:0;padding:0 12px 12px}
+/* ---- 總表懸浮視窗 ---- */
+.ovbtn{display:inline-flex;align-items:center;gap:5px;margin-left:4px;padding:5px 12px 5px 9px;border-radius:999px;font-size:calc(13px + var(--fs-bump));font-weight:800;border:1.5px solid var(--line);background:#fff}
+.ovbtn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ov-lodge{color:var(--haze-dark);border-color:var(--haze-border)}.ov-lodge:hover{background:var(--haze-tint);border-color:var(--haze)}
+.ov-food{color:var(--plum);border-color:var(--plum-border)}.ov-food:hover{background:var(--plum-tint);border-color:var(--plum)}
+.ovquick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.oq{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;text-align:left;border:1.5px solid var(--line);background:#fff}
+.oq svg{width:34px;height:34px;padding:7px;border-radius:10px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.oq span{flex:1;display:flex;flex-direction:column}.oq b{font-size:calc(15px + var(--fs-bump))}.oq small{color:var(--mute);font-size:calc(12px + var(--fs-bump));font-weight:600}
+.oq em{font-style:normal;font-size:22px;color:var(--mute)}
+.oq-lodge svg{background:#6C7D92}.oq-lodge:hover{border-color:var(--haze);background:var(--haze-tint)}
+.oq-food svg{background:var(--plum)}.oq-food:hover{border-color:var(--plum);background:var(--plum-tint)}
+body.noscroll{overflow:hidden}
+.ovl{position:fixed;inset:0;z-index:65;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(40,32,36,0);transition:background .22s}
+.ovl.on{display:flex}.ovl.in{background:rgba(40,32,36,.48)}
+.ovl-panel{width:min(1040px,100%);height:min(92vh,1000px);background:var(--bg);border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,.28);display:flex;flex-direction:column;overflow:hidden;transform:translateY(28px) scale(.985);opacity:0;transition:transform .26s cubic-bezier(.2,.8,.2,1),opacity .22s}
+.ovl.in .ovl-panel{transform:none;opacity:1}
+.ovl-h{display:flex;align-items:center;gap:12px;padding:16px 20px;background:#fff;border-bottom:1px solid var(--line)}
+.ovl-h .sp{flex:1}
+.ovl-ic{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;flex:none}
+.ovl-ic svg{width:26px;height:26px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ovl[data-kind="lodge"] .ovl-ic{background:#6C7D92}.ovl[data-kind="food"] .ovl-ic{background:var(--plum)}
+.ovl-tt{display:flex;flex-direction:column}.ovl-tt b{font-size:calc(20px + var(--fs-bump))}.ovl-tt small{color:var(--mute);font-weight:600;font-size:calc(13px + var(--fs-bump))}
+.ovl-x{width:40px;height:40px;border-radius:50%;border:none;background:var(--soft);font-size:18px;color:var(--mute);padding:0}
+.ovl-x:hover{background:var(--rose-tint);color:var(--rose-dark)}
+.ovl-tools{display:flex;align-items:center;gap:10px;padding:10px 20px;background:#fff;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.ovl-tools:empty{display:none}
+.fseg{display:inline-flex;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:3px}
+.fseg button{border:none;background:none;border-radius:999px;padding:6px 16px;font-size:calc(14px + var(--fs-bump));color:var(--mute)}
+.fseg button.on{background:var(--plum);color:#fff;box-shadow:0 2px 6px rgba(126,106,134,.35)}
+.ovl-copy{margin-left:auto;border-color:var(--plum-border);color:var(--plum)}
+.ovl-body{flex:1;overflow:auto;padding:18px 20px 28px;-webkit-overflow-scrolling:touch}
+.ostats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.ost{border-radius:14px;padding:12px 14px;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column}
+.ost span{font-size:calc(12.5px + var(--fs-bump));font-weight:700;color:var(--mute)}
+.ost b{font-size:calc(22px + var(--fs-bump));font-weight:800;font-variant-numeric:tabular-nums}
+.ost small{font-size:calc(12px + var(--fs-bump));color:var(--mute);font-weight:600}
+.ost.s-haze{background:var(--haze-tint);border-color:var(--haze-border)}.ost.s-haze span{color:var(--haze-dark)}
+.ost.s-plum{background:var(--plum-tint);border-color:var(--plum-border)}.ost.s-plum span{color:var(--plum)}
+.ost.s-sage{background:var(--sage-tint);border-color:var(--sage-border)}.ost.s-sage span,.ost.s-sage b{color:var(--sage-dark)}
+.ost.s-warn{background:var(--ochre-tint);border-color:var(--ochre-border)}.ost.s-warn span,.ost.s-warn b{color:var(--ochre-ink)}
+.ost.s-rose{background:var(--rose-tint);border-color:var(--rose-border)}.ost.s-rose span{color:var(--rose-dark)}
+.ocard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:14px}
+.ocard-h{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.ocard-h > b:first-child{font-size:calc(16.5px + var(--fs-bump))}
+.ocard-h .sp{flex:1}
+.oamt{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.oprog{height:6px;border-radius:999px;background:var(--line2);overflow:hidden;margin:-2px 0 10px}
+.oprog i{display:block;height:100%;background:linear-gradient(90deg,var(--sage),var(--sage-dark));border-radius:999px;transition:width .4s}
+.orooms{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.oroom{display:flex;flex-direction:column;gap:8px;text-align:left;padding:12px;border-radius:12px;border:1px solid var(--haze-border);background:var(--haze-tint);color:var(--ink)}
+.oroom:hover{border-color:var(--haze);background:#E7EDF4}
+.oroom-h{display:flex;justify-content:space-between;gap:8px}.oroom-h b{font-size:calc(15px + var(--fs-bump))}
+.oroom-p{display:flex;flex-wrap:wrap;gap:6px}
+.op{display:inline-flex;align-items:center;gap:5px;background:#fff;border-radius:999px;padding:2px 9px 2px 3px;font-size:calc(13px + var(--fs-bump));font-weight:700}
+.op em{font-style:normal;color:var(--haze-dark);font-weight:800;margin-left:2px}
+.oroom-f{font-size:calc(12px + var(--fs-bump));color:var(--haze-dark);font-weight:700}
+.owarn{color:var(--danger);font-weight:700}
+.olist{display:flex;flex-direction:column}
+.orow{display:flex;align-items:center;gap:10px;padding:10px 6px;border:none;border-top:1px solid var(--line2);border-radius:0;background:none;text-align:left;color:var(--ink);width:100%}
+.olist > .orow:first-child{border-top:none}
+button.orow:hover{background:var(--soft)}
+.orow .on{flex:1;min-width:0;display:flex;flex-direction:column;font-weight:700;font-size:calc(14.5px + var(--fs-bump))}
+.orow .on small,.owho small{font-size:calc(12px + var(--fs-bump));color:var(--mute);font-weight:500}
+.owho{display:flex;flex-direction:column;align-items:flex-end;font-size:calc(13px + var(--fs-bump));font-weight:700;color:var(--plum);white-space:nowrap}
+.orow .oamt{min-width:76px;text-align:right}
+.otag{font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:var(--haze-tint);color:var(--haze-dark)}
+.ock{width:24px;height:24px;border-radius:50%;border:2px solid #CFC4C7;display:grid;place-items:center;color:#fff;font-size:13px;font-weight:800;flex:none}
+.orow.item.ok .ock{background:var(--sage-dark);border-color:var(--sage-dark)}
+.orow.item.todo .on{color:var(--mute)}
+.orow.item.todo .ock{border-style:dashed}
+.oempty{padding:30px;text-align:center;color:var(--mute);border:1.5px dashed var(--line);border-radius:14px;background:#fff}
+@media (max-width:680px){
+  .ovquick{grid-template-columns:1fr}
+  .ovl{padding:0;align-items:flex-end}
+  .ovl-panel{width:100%;height:calc(100% - 18px - env(safe-area-inset-top,0px));border-radius:22px 22px 0 0;transform:translateY(60px)}
+  .ovl-h{padding:14px 14px 12px}
+  .ovl-panel{position:relative}
+  .ovl-panel::before{content:'';position:absolute;top:7px;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:2px;background:#D9CFD2;z-index:2}
+  .ovl-h{padding-top:20px!important}
+  .ovl-tools{padding:8px 14px}
+  .ovl-copy{margin-left:0}
+  .ovl-body{padding:14px 12px calc(28px + env(safe-area-inset-bottom,0px))}
+  .ostats{grid-template-columns:1fr 1fr;gap:8px}.ost b{font-size:19px}
+  .orooms{grid-template-columns:1fr}
+  .ocard{padding:12px}
+  .orow{gap:8px}.orow .oamt{min-width:60px}
+  .ovbtn{padding:4px 10px 4px 7px}
 }
 /* ---- v10: food split ---- */
 .fsplit{margin:2px 0 12px;padding:10px 12px;border-radius:12px;background:var(--plum-tint);border:1px solid var(--plum-border)}
@@ -603,6 +704,7 @@ details.tip > div{margin-top:8px}
 <div id="meCard" class="mecard" data-tab="ov" style="display:none"></div>
 <section class="card sec-ov" id="sec-ov" data-tab="ov">
   <h2><span class="n">★</span>成員總覽<span class="sp"></span><span class="lbl" id="ovStat"></span></h2>
+  <div class="ovquick"><button type="button" class="oq oq-lodge" data-ov="lodge"><svg viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.8"/></svg><span><b>住宿總表</b><small>房間、誰住哪、付款</small></span><em>›</em></button><button type="button" class="oq oq-food" data-ov="food"><svg viewBox="0 0 24 24"><path d="M6 3v8a2 2 0 0 0 4 0V3M8 11v10M17 21V3c-2 1-3 3.5-3 7h3"/></svg><span><b>餐費總表</b><small>採買清單、待買、代墊</small></span><em>›</em></button></div>
   <div class="ov-todo" id="ovTodo"></div>
   <div class="ovgrid" id="ovGrid"></div>
   <div class="lbl" style="margin-top:8px">點卡片可以看這個人的完整明細：住哪間、吃飯算幾人、先付了哪些、要轉給誰。</div>
@@ -611,13 +713,14 @@ details.tip > div{margin-top:8px}
 <section class="card" id="sec-mem" data-tab="mem">
   <h2><span class="n">1</span>成員<span class="sp"></span>
     <button class="pri noprint" id="addMem">＋ 新增成員</button></h2>
+  <details class="basis-wrap" id="basisBox"><summary><span class="bs-t">計費基準</span><span class="bs" id="basisSum"></span><span class="bs-edit">調整 ▾</span></summary>
   <div class="basis">
     <div class="bx food"><h4>吃飯的計費基準 <span class="lbl">（依年紀）</span></h4>
       <label>小孩（3–12 歲）× <input id="kidF" data-key="meta|kidF" class="num" inputmode="decimal"></label>
       <label>幼兒（未滿 3 歲）× <input id="babyF" data-key="meta|babyF" class="num" inputmode="decimal"></label></div>
     <div class="bx lodge"><h4>住宿的計費基準 <span class="lbl">（算人頭）</span></h4>
       <label>大人、小孩、幼兒每人都算 1 人<input id="kidL" type="hidden"></label></div>
-  </div>
+  </div></details>
   <div class="tbl mcw"><table class="mc">
     <thead><tr><th style="width:18%">名稱 / 家庭</th><th class="r">大人</th><th class="r">小孩<br><span class="lbl">3–12 歲</span></th><th class="r">幼兒<br><span class="lbl">未滿 3 歲</span></th><th class="r food">吃飯<br>計費人數</th><th class="r lodge">住宿<br>計費人數</th><th></th></tr></thead>
     <tbody id="memBody"></tbody>
@@ -627,7 +730,7 @@ details.tip > div{margin-top:8px}
 </section>
 
 <section class="card sec-lodge" id="sec-lodge" data-tab="lodge">
-  <h2><span class="n">2</span>住宿<span class="sp"></span>
+  <h2><span class="n">2</span>住宿<button type="button" class="ovbtn ov-lodge" data-ov="lodge" title="住宿總表"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>總表</button><span class="sp"></span>
     <button class="pri noprint" id="addNight">＋ 新增一晚</button></h2>
   <div id="nights"></div>
   <div id="pays" class="pays"></div>
@@ -635,7 +738,7 @@ details.tip > div{margin-top:8px}
 </section>
 
 <section class="card sec-items" id="sec-items" data-tab="food">
-  <h2><span class="n">3</span>餐費・採購<span class="sp"></span>
+  <h2><span class="n">3</span>餐費・採購<button type="button" class="ovbtn ov-food" data-ov="food" title="餐費總表"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>總表</button><span class="sp"></span>
     <button class="noprint" id="tgAll">全部收合／展開</button>
     <button class="pri noprint" id="addCat">＋ 共同採購</button>
     <button class="pri noprint" id="addMeal">＋ 餐廳／聚餐</button></h2>
@@ -723,6 +826,11 @@ details.tip > div{margin-top:8px}
   <div class="md-sec"><h5>Android（Chrome）</h5><div>右上角「<b>⋮</b>」→「<b>安裝應用程式</b>」或「<b>加到主畫面</b>」</div></div>
   <div class="md-sec"><h5>電腦（Chrome／Edge）</h5><div>網址列右邊的「<b>安裝</b>」圖示，或選單 →「<b>安裝分帳小幫手</b>」</div></div>
   <button class="pri" id="insGo" style="display:none">立即安裝</button>
+</div></div>
+<div class="ovl" id="ovl"><div class="ovl-panel" role="dialog" aria-modal="true">
+  <div class="ovl-h"><span class="ovl-ic" id="ovlIc"></span><div class="ovl-tt"><b id="ovlTitle"></b><small id="ovlSub"></small></div><span class="sp"></span><button type="button" class="ovl-x" id="ovlClose" aria-label="關閉">✕</button></div>
+  <div class="ovl-tools" id="ovlTools"></div>
+  <div class="ovl-body" id="ovlBody"></div>
 </div></div>
 <div class="toast" id="toast"></div>
 <div class="undo" id="undo"><span></span><button type="button">復原</button></div>
@@ -895,9 +1003,9 @@ function renderAll(keepFocus){
   const a=document.activeElement;
   if(keepFocus&&a&&a.dataset&&a.dataset.key&&a.tagName!=='BUTTON'){key=a.dataset.key;val=a.value;try{ss=a.selectionStart;se=a.selectionEnd}catch(e){}}
   if(a!==$('#title')) $('#title').value=S.title; renderEvBtn();
-  for(const k of ['kidF','babyF']) if(a!==$('#'+k)) $('#'+k).value=S[k];
+  for(const k of ['kidF','babyF']) if(a!==$('#'+k)) $('#'+k).value=S[k]; renderBasisSum();
   renderMembers(); renderNights(); renderPays(); renderCats(); renderSummary();
-  if(key){const el=document.querySelector(`[data-key="${CSS.escape(key)}"]:not(button)`); if(el){ el.value=val; el.focus({preventScroll:true}); try{if(ss!==null) el.setSelectionRange(ss,se)}catch(e){} }}
+  if(key){const el=document.querySelector(`[data-key="${CSS.escape(key)}"]:not(button)`); if(el){ el.value=val; if(val===''&&el.hasAttribute('data-dflt')) el.dataset.cleared='1'; RESTORING=true; el.focus({preventScroll:true}); RESTORING=false; try{if(ss!==null) el.setSelectionRange(ss,se)}catch(e){} }}
   paintPeers();
   if(MODE==='shared') $('#modeNote').textContent=(!S.members.length&&!S.cats.length&&!S.nights.length)?'目前還沒有資料：按上方「載入範本」帶入範本，或直接新增成員、住宿和餐費。':'所有人看到、改到的都是同一份資料，會自動同步。';
 }
@@ -905,14 +1013,105 @@ function wCell(m,f,val){
   const custom=!isAuto(m[f]);
   return `<div class="row" style="flex-wrap:nowrap"><input data-f="${f}" data-key="members/${m.id}|${f}" class="num" inputmode="decimal" value="${custom?esc(m[f]):''}" placeholder="${r2(val)}"><span class="auto ${custom?'on':''}" data-reset="${f}" title="${custom?'點擊還原為自動計算':'依人數自動計算'}">${custom?'自訂':'自動'}</span></div>`;
 }
+// ---------- 點進輸入框就全選，直接打字即可取代 ----------
+let RESTORING=false, selArmed=null;
+function selectableInput(t){ return t&&t.tagName==='INPUT'&&['text','search','tel','url','number',''].includes(t.type||'')&&!t.readOnly&&!t.disabled }
+let selPending=null;
+document.addEventListener('focusin',e=>{ const t=e.target; if(RESTORING||!selectableInput(t)||!t.value) return; selArmed=t; selPending=t;
+  const doSel=()=>{ if(document.activeElement!==t||selPending!==t) return; try{ t.setSelectionRange(0,t.value.length) }catch(_){ try{t.select()}catch(__){} } };
+  doSel(); setTimeout(doSel,0); requestAnimationFrame(doSel); });
+// 避免滑鼠／手指放開時把全選取消
+document.addEventListener('mouseup',e=>{ if(selArmed&&e.target===selArmed){ e.preventDefault(); selArmed=null } },true);
+document.addEventListener('touchend',e=>{ const t=selArmed; if(t&&e.target===t){ setTimeout(()=>{ if(document.activeElement===t&&selPending===t){ try{t.setSelectionRange(0,t.value.length)}catch(_){} } },30); selArmed=null } },true);
+document.addEventListener('keydown',()=>{ selArmed=null; selPending=null },true);
+document.addEventListener('beforeinput',()=>{ selArmed=null; selPending=null },true);
+document.addEventListener('compositionstart',()=>{ selArmed=null; selPending=null },true);
+// ---------- 預設值：點進去直接清空，沒輸入就恢復 ----------
+const DEF_CATS=['新分類','共同採購','餐廳','餐費','品項'];
+const isDefName=n=>/^成員\d+$/.test(String(n||''));
+const dfl=v=>v===null||v===undefined?'':` data-dflt="${esc(v)}"`;
+document.addEventListener('focusin',e=>{ const t=e.target; if(!t||t.tagName!=='INPUT'||!t.hasAttribute('data-dflt')||RESTORING) return;
+  if(t.value===t.getAttribute('data-dflt')){ if(!t.placeholder||/^0$/.test(t.placeholder)===false) t.dataset.ph=t.placeholder; t.placeholder=t.getAttribute('data-dflt'); t.value=''; t.dataset.cleared='1' } },true);
+document.addEventListener('focusout',e=>{ const t=e.target; if(!t||t.tagName!=='INPUT'||t.dataset.cleared!=='1') return; delete t.dataset.cleared;
+  if(t.value===''){ t.value=t.getAttribute('data-dflt') } },true);
+document.addEventListener('input',e=>{ const t=e.target; if(t&&t.dataset&&t.dataset.cleared==='1') delete t.dataset.cleared; },true);
+for(const id of ['kidF','babyF']){ try{ $('#'+id).setAttribute('data-dflt',id==='kidF'?'0.5':'0') }catch(e){} }
+
+// ---------- 住宿總表／餐費總表（整頁懸浮視窗） ----------
+let OVL='', FOV='all';
+function openOvl(kind){ OVL=kind; renderOvl(); const o=$('#ovl'); o.classList.add('on'); requestAnimationFrame(()=>o.classList.add('in')); document.body.classList.add('noscroll'); $('#ovlBody').scrollTop=0 }
+function closeOvl(){ const o=$('#ovl'); o.classList.remove('in'); document.body.classList.remove('noscroll'); setTimeout(()=>{ o.classList.remove('on'); OVL='' },220) }
+const stat=(lbl,val,cls,sub)=>`<div class="ost ${cls||''}"><span>${lbl}</span><b>${val}</b>${sub?`<small>${sub}</small>`:''}</div>`;
+const ICON_LODGE='<svg viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.8"/></svg>';
+const ICON_FOOD='<svg viewBox="0 0 24 24"><path d="M6 3v8a2 2 0 0 0 4 0V3M8 11v10M17 21V3c-2 1-3 3.5-3 7h3"/></svg>';
+function renderOvl(){
+  if(!OVL) return; const {C}=renderSummary();
+  $('#ovl').dataset.kind=OVL;
+  $('#ovlIc').innerHTML=OVL==='lodge'?ICON_LODGE:ICON_FOOD;
+  $('#ovlTitle').textContent=OVL==='lodge'?'住宿總表':'餐費總表';
+  $('#ovlSub').textContent=S.title||'';
+  $('#ovlBody').innerHTML=OVL==='lodge'?lodgeOvl(C):foodOvl(C);
+  $('#ovlTools').innerHTML=OVL==='food'?`<div class="fseg">${[['all','全部'],['todo','待買'],['done','已買']].map(([k,t])=>`<button type="button" class="${FOV===k?'on':''}" data-fov="${k}">${t}</button>`).join('')}</div><button type="button" class="ovl-copy" data-ovcopy>複製${FOV==='done'?'已買':'待買'}清單</button>`:'';
+}
+function lodgeOvl(C){
+  const ms=members(); const gs=nights(); const ld=C.lodgeTotal-C.lodgePaid; const nm=id=>mName(id)||'?';
+  const occN=new Set(S.rooms.flatMap(r=>r.m||[])).size, ppl=ms.filter(m=>S.rooms.some(r=>(r.m||[]).includes(m.id))).reduce((a,m)=>a+lodgeW(m),0);
+  let h=`<div class="ostats">${stat('總房費','$'+fmt(C.lodgeTotal),'s-haze')}${stat('已付款','$'+fmt(C.lodgePaid),'s-sage')}${!C.lodgeTotal?stat('付款狀態','尚未填房價',''):stat(Math.abs(ld)<0.5?'付款狀態':ld>0?'還沒付':'多付了',Math.abs(ld)<0.5?'已付清 ✓':'$'+fmt(Math.abs(ld)),Math.abs(ld)<0.5?'s-sage':'s-warn')}${stat('房間',S.rooms.length+' 間','s-rose',`${gs.length} 晚・住 ${occN} 組 ${r2(ppl)} 人`)}</div>`;
+  if(!gs.length) h+=`<div class="oempty">還沒有住宿資料。到「住宿」按「＋ 新增一晚」開始。</div>`;
+  gs.forEach(g=>{ const rs=roomsOf(g.id); const tot=C.nightTot[g.id]||0;
+    h+=`<section class="ocard"><div class="ocard-h"><b>${esc(g.name||'未命名')}</b><span class="lbl">${rs.length} 間</span><span class="sp"></span><b class="oamt">$${fmt(tot)}</b></div>
+    <div class="orooms">${rs.map(r=>{const i=C.roomInfo[r.id]||{occ:0,share:{},cost:0}; const occ=members().filter(m=>(r.m||[]).includes(m.id)); const mode=occ.length<=1?'':({head:'照人數分',group:'照家庭分',custom:'自己填金額'})[r.s||'head'];
+      return `<button type="button" class="oroom" data-jump="room" data-id="${r.id}"><div class="oroom-h"><b>${esc(r.n||'未命名房間')}</b><span class="oamt">${String(r.f||'').trim()?'$'+fmt(i.cost):'<span class="lbl">未填金額</span>'}</span></div>
+        <div class="oroom-p">${occ.length?occ.map(m=>`<span class="op"><span class="av sm" style="background:${colorOf(m.n||'?')}">${esc((m.n||'?').slice(0,1))}</span>${esc(m.n||'')}<em>${i.share&&i.share[m.id]?'$'+fmt(i.share[m.id]):''}</em></span>`).join(''):'<span class="owarn">還沒選住的人</span>'}</div>
+        ${mode?`<div class="oroom-f">${mode}${(r.s||'head')!=='custom'&&i.per?`・${(r.s||'head')==='group'?'每組':'每人'} $${fmt(i.per)}`:''}</div>`:''}</button>`}).join('')}</div></section>`; });
+  if(S.pays.length){ h+=`<section class="ocard"><div class="ocard-h"><b>付款紀錄</b><span class="sp"></span><b class="oamt">$${fmt(C.lodgePaid)}</b></div><div class="olist">${pays().map(x=>{const v=evalFee(x.f); return `<button type="button" class="orow" data-jump="pay" data-id="${x.id}"><span class="otag">${esc(x.t||'')}</span><span class="on">${x.p?esc(nm(x.p)):'<span class="owarn">未選付款人</span>'}${x.d?`<small>${esc(x.d)}</small>`:''}</span><span class="oamt">${v.v?'$'+fmt(v.v):'<span class="lbl">未填</span>'}</span></button>`}).join('')}</div></section>` }
+  h+=`<section class="ocard"><div class="ocard-h"><b>每人住宿費</b></div><div class="olist">${C.rows.map(r=>`<div class="orow"><span class="av sm" style="background:${colorOf(r.m.n||'?')}">${esc((r.m.n||'?').slice(0,1))}</span><span class="on">${esc(r.m.n||'(未命名)')}<small>${r.rooms.length?r.rooms.map(x=>esc(x.n.split('・').pop())).join('、'):'<span class="owarn">沒排房間</span>'}・${r2(r.lw)} 人</small></span><span class="oamt">$${fmt(r.lodge)}</span></div>`).join('')}</div></section>`;
+  return h;
+}
+function foodOvl(C){
+  const cs=cats(); let all=0,done=0,todoN=0; const paidBy={};
+  const st=i=>{ const v=evalFee(i.f); return v.ok&&v.v>0 };
+  S.items.forEach(i=>{ if(!S.cats.some(c=>c.id===i.c)) return; all++; if(st(i)){done++; if(i.p){ paidBy[i.p]=(paidBy[i.p]||0)+evalFee(i.f).v } } else todoN++ });
+  let h=`<div class="ostats">${stat('餐費總額','$'+fmt(C.foodPool),'s-plum')}${stat('已買',done+' 項','s-sage')}${stat('待買',todoN+' 項',todoN?'s-warn':'s-sage')}${stat('分類',cs.length+' 個','s-rose',`共 ${all} 項`)}</div>`;
+  if(!cs.length) h+=`<div class="oempty">還沒有餐費資料。到「餐費」新增分類和品項。</div>`;
+  cs.forEach(c=>{ const its=itemsOf(c.id).filter(i=>FOV==='all'||(FOV==='done'?st(i):!st(i))); const allIts=itemsOf(c.id); const dn=allIts.filter(st).length; const s=c.s||'all';
+    if(FOV!=='all'&&!its.length) return;
+    h+=`<section class="ocard"><div class="ocard-h"><b>${esc(c.name||'未命名')}</b><span class="mode-pill m-${s}">${s==='all'?'全員分攤':s==='own'?'各付各的':(c.m||[]).length+' 人分攤'}</span><span class="lbl">${dn}/${allIts.length} 已買</span><span class="sp"></span><b class="oamt">$${fmt(C.catTot[c.id]||0)}</b></div>
+    <div class="oprog"><i style="width:${allIts.length?Math.round(dn/allIts.length*100):0}%"></i></div>
+    <div class="olist">${its.length?its.map(i=>{const ok=st(i); const v=evalFee(i.f); const qty=[i.q,i.u].filter(Boolean).join(' ');
+      return `<button type="button" class="orow item ${ok?'ok':'todo'}" data-jump="item" data-id="${i.id}"><span class="ock">${ok?'✓':''}</span><span class="on">${esc(i.n||'(未命名品項)')}${qty||i.s||i.r?`<small>${[qty,i.s,i.r].filter(Boolean).map(esc).join('・')}</small>`:''}</span><span class="owho">${ok?(i.p?esc(mName(i.p))+' 付':'贊助'):'<span class="lbl">還沒人買</span>'}${s==='own'&&i.who?`<small>給 ${esc(mName(i.who))}</small>`:''}</span><span class="oamt">${ok?'$'+fmt(v.v):'—'}</span></button>`}).join(''):'<div class="lbl" style="padding:8px 4px">這個分類還沒有品項</div>'}</div></section>`; });
+  const pb=Object.entries(paidBy).sort((a,b)=>b[1]-a[1]);
+  if(pb.length) h+=`<section class="ocard"><div class="ocard-h"><b>誰代墊了多少</b></div><div class="olist">${pb.map(([id,v])=>`<div class="orow"><span class="av sm" style="background:${colorOf(mName(id))}">${esc(mName(id).slice(0,1))}</span><span class="on">${esc(mName(id))}</span><span class="oamt">$${fmt(v)}</span></div>`).join('')}</div></section>`;
+  h+=`<section class="ocard"><div class="ocard-h"><b>每人餐費</b></div><div class="olist">${C.rows.map(r=>`<div class="orow"><span class="av sm" style="background:${colorOf(r.m.n||'?')}">${esc((r.m.n||'?').slice(0,1))}</span><span class="on">${esc(r.m.n||'(未命名)')}<small>${r.foodDet.length?r.foodDet.map(x=>esc(x.n)+' '+fmt(x.amt)).join('、'):'—'}</small></span><span class="oamt">$${fmt(r.food)}</span></div>`).join('')}</div></section>`;
+  return h;
+}
+function ovlCopyText(){ const st=i=>{const v=evalFee(i.f); return v.ok&&v.v>0}; const want=FOV==='done'; let t=`【${S.title}】${want?'已買清單':'待買清單'}\n`; let n=0;
+  cats().forEach(c=>{ const its=itemsOf(c.id).filter(i=>want?st(i):!st(i)); if(!its.length) return; t+=`\n▍${c.name||'未命名'}\n`; its.forEach(i=>{ n++; const qty=[i.q,i.u].filter(Boolean).join(''); t+=`${want?'✅':'⬜'} ${i.n||'(未命名)'}${qty?' ×'+qty:''}${i.s?'（'+i.s+'）':''}${want&&i.p?' — '+mName(i.p)+' $'+fmt(evalFee(i.f).v):''}\n` }) });
+  return n?t.trim():(want?'目前還沒有已買的品項':'全部都買齊了 🎉') }
+function jumpTo(kind,id){
+  closeOvl();
+  setTimeout(()=>{
+    if(kind==='item'){ const it=S.items.find(x=>x.id===id); if(!it) return; setTab('food'); openMap[it.c]=true; saveOpen(); renderCats(); renderSummary(); const el=document.querySelector(`[data-key="items/${id}|n"]`); if(el){ el.scrollIntoView({block:'center',behavior:'smooth'}); FLASH[id]=Date.now(); paintPeers(); setTimeout(()=>el.focus({preventScroll:true}),350) } }
+    if(kind==='room'){ const r=S.rooms.find(x=>x.id===id); if(!r) return; setTab('lodge'); openMap[r.g]=true; saveOpen(); renderNights(); renderSummary(); const el=document.querySelector(`.room[data-rid="${id}"]`); if(el){ el.scrollIntoView({block:'center',behavior:'smooth'}); FLASH[id]=Date.now(); paintPeers() } }
+    if(kind==='pay'){ setTab('lodge'); const el=document.querySelector(`tr[data-pid="${id}"]`); if(el){ el.scrollIntoView({block:'center',behavior:'smooth'}); FLASH[id]=Date.now(); paintPeers() } }
+  },230);
+}
+document.addEventListener('click',e=>{ const b=e.target.closest('[data-ov]'); if(b){ e.preventDefault(); openOvl(b.dataset.ov) } });
+$('#ovlClose').onclick=closeOvl;
+$('#ovl').addEventListener('click',e=>{ if(e.target.id==='ovl'){ closeOvl(); return }
+  const f=e.target.closest('[data-fov]'); if(f){ FOV=f.dataset.fov; renderOvl(); return }
+  if(e.target.closest('[data-ovcopy]')){ copyText(ovlCopyText(),'已複製清單，可以貼到 LINE'); return }
+  const j=e.target.closest('[data-jump]'); if(j) jumpTo(j.dataset.jump,j.dataset.id) });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&OVL) closeOvl() });
+function renderBasisSum(){ const e=$('#basisSum'); if(!e) return; e.innerHTML=`吃飯：小孩 ×<b>${esc(S.kidF)}</b>、幼兒 ×<b>${esc(S.babyF)}</b>　住宿：<i>每人算 1</i>`; const ed=document.querySelector('.bs-edit'); if(ed) ed.textContent=$('#basisBox').open?'收起 ▴':'調整 ▾' }
 function renderMembers(){
   $('#memBody').innerHTML=members().map(m=>{
     const k=f=>`data-key="members/${m.id}|${f}"`;
     return `<tr data-id="${m.id}">
-    <td class="w6" data-l="名稱／家庭"><input data-f="n" ${k('n')} value="${esc(m.n)}" placeholder="名稱"></td>
-    <td data-l="大人"><input data-f="a" ${k('a')} class="num" inputmode="decimal" value="${esc(m.a)}"></td>
-    <td data-l="小孩 3–12歲"><input data-f="k" ${k('k')} class="num" inputmode="decimal" value="${esc(m.k)}"></td>
-    <td data-l="幼兒 未滿3歲"><input data-f="b" ${k('b')} class="num" inputmode="decimal" value="${esc(m.b)}"></td>
+    <td class="w6" data-l="名稱／家庭"><input data-f="n" ${k('n')} value="${esc(m.n)}" placeholder="名稱"${dfl(isDefName(m.n)?m.n:null)}></td>
+    <td data-l="大人"><input data-f="a" ${k('a')} class="num" inputmode="decimal" value="${esc(m.a)}" placeholder="0"${dfl((isDefName(m.n)&&String(m.a)==='1')||String(m.a)==='0'?String(m.a):null)}></td>
+    <td data-l="小孩 3–12歲"><input data-f="k" ${k('k')} class="num" inputmode="decimal" value="${esc(m.k)}" placeholder="0"${dfl(String(m.k)==='0'?'0':null)}></td>
+    <td data-l="幼兒 未滿3歲"><input data-f="b" ${k('b')} class="num" inputmode="decimal" value="${esc(m.b)}" placeholder="0"${dfl(String(m.b)==='0'?'0':null)}></td>
     <td class="wcol food w3" data-l="吃飯計費人數">${wCell(m,'w',foodW(m))}</td>
     <td class="wcol lodge w3" data-l="住宿計費人數">${wCell(m,'lw',lodgeW(m))}</td>
     <td class="xcell"><button class="x" data-del title="刪除成員">✕</button></td></tr>`}).join('')
@@ -967,7 +1166,7 @@ function renderNights(){
   $('#nights').innerHTML=nights().map(g=>{const rs=roomsOf(g.id); const op=isOpen(g.id); return `
   <div class="cat night ${op?'':'closed'}" data-gid="${g.id}">
     <div class="cathead"><span class="tg" data-gtg>${op?'▾':'▸'}</span>
-      <input data-gf="name" data-key="nights/${g.id}|name" value="${esc(g.name)}" placeholder="例如 10/24（六）">
+      <input data-gf="name" data-key="nights/${g.id}|name" value="${esc(g.name)}" placeholder="例如 10/24（六）"${dfl(/^第 \d+ 晚$/.test(g.name||'')?g.name:null)}>
       <span class="lbl">${rs.length} 間</span>
       <span class="tot" data-gtot></span>
       <button class="x noprint" data-gcopy title="複製這一晚的所有房間，建立新的一晚">⧉<span class="hm"> 複製</span></button>
@@ -1008,7 +1207,7 @@ function renderCats(){
     const mv=others.length?`<select class="mv" data-if="c" title="移到其他分類"><option value="">⇄</option>${others.map(x=>`<option value="${x.id}">移到「${esc(x.name||'未命名')}」</option>`).join('')}</select>`:''; return `
   <div class="cat food-cat ${op?'':'closed'}" data-cid="${c.id}">
     <div class="cathead"><span class="tg" data-tg>${op?'▾':'▸'}</span>
-      <input data-cf="name" data-key="cats/${c.id}|name" value="${esc(c.name)}" placeholder="分類名稱">
+      <input data-cf="name" data-key="cats/${c.id}|name" value="${esc(c.name)}" placeholder="分類名稱"${dfl(DEF_CATS.includes(c.name)?c.name:null)}>
       <span class="mode-pill m-${c.s||'all'}">${(c.s||'all')==='all'?'全員分攤':(c.s==='own'?'各付各的':`${(c.m||[]).length} 人分攤`)}</span>
       <span class="lbl">${its.length} 項</span>
       <span class="tot" data-ctot></span>
@@ -1142,6 +1341,7 @@ function renderSummary(){
   if(C.excluded>0) w.push(`另有 $${fmt(C.excluded)} 屬於「不計／贊助」品項，沒有列入分攤。`);
   $('#warns').innerHTML=w.map(t=>`<div class="warn">${t}</div>`).join('');
   renderNav(C,w.length); renderMe(C,X); renderOverview(C,X,w.length);
+  if(OVL&&!renderSummary._inOvl){ renderSummary._inOvl=true; try{ const sc=$('#ovlBody').scrollTop; $('#ovlBody').innerHTML=OVL==='lodge'?lodgeOvl(C):foodOvl(C); $('#ovlBody').scrollTop=sc }catch(e){} renderSummary._inOvl=false }
   return {C,X};
 }
 let UNDO=null, undoT=null;
@@ -1212,7 +1412,8 @@ function confirmInline(btn,msg){ if(btn.dataset.armed){return true} const old=bt
 
 // ---------- events: settings ----------
 $('#title').addEventListener('input',e=>{S.title=e.target.value; if(MODE!=='shared'){touchLocal();return} const ev=EVENTS.find(x=>x.id===EID); if(ev){ev.name=S.title; put('events/'+EID,{name:S.title}); renderEvBtn()} });
-['kidF','babyF'].forEach(k=>$('#'+k).addEventListener('input',e=>{S[k]=e.target.value; renderSummary(); put('meta/main',{[k]:S[k]}); if(k==='kidL'||k==='babyL') renderNightsKeep()}));
+$('#basisBox').addEventListener('toggle',renderBasisSum);
+['kidF','babyF'].forEach(k=>$('#'+k).addEventListener('input',e=>{S[k]=e.target.value; renderBasisSum(); renderSummary(); put('meta/main',{[k]:S[k]}); if(k==='kidL'||k==='babyL') renderNightsKeep()}));
 function renderNightsKeep(){ const a=document.activeElement; document.querySelectorAll('[data-cid]').forEach(el=>{const c=S.cats.find(x=>x.id===el.dataset.cid); const fsp=el.querySelector('.fsplit'); if(c&&fsp&&!fsp.contains(a)) fsp.outerHTML=foodSplitHtml(c)}); document.querySelectorAll('[data-rid]').forEach(el=>{const r=S.rooms.find(x=>x.id===el.dataset.rid); if(!r) return; el.querySelector('.chips').innerHTML=chipsHtml(r); const sp=el.querySelector('.split'); if(sp&&!sp.contains(a)) sp.outerHTML=splitHtml(r)}); renderSummary(); paintPeers(); }
 
 // ---------- events: members ----------
@@ -1235,7 +1436,7 @@ $('#memBody').addEventListener('click',e=>{
     renderAll(); }
   const rs=e.target.closest('[data-reset]'); if(rs){ const f=rs.dataset.reset; m[f]=null; put('members/'+m.id,{[f]:null}); renderAll(); }
 });
-$('#addMem').onclick=()=>{const m={id:nid(),n:'成員'+(S.members.length+1),a:1,k:0,b:0,w:null,lw:null,o:maxO(S.members)}; S.members.push(m); put('members/'+m.id,{},true); renderAll(); const el=document.querySelector(`[data-key="members/${m.id}|n"]`); el&&el.select();};
+$('#addMem').onclick=()=>{const m={id:nid(),n:'成員'+(S.members.length+1),a:1,k:0,b:0,w:null,lw:null,o:maxO(S.members)}; S.members.push(m); put('members/'+m.id,{},true); renderAll(); const el=document.querySelector(`[data-key="members/${m.id}|n"]`); el&&el.focus();};
 
 // ---------- events: lodging ----------
 $('#nights').addEventListener('input',e=>{
@@ -1567,7 +1768,7 @@ async function startShared(){
 window.__test={compute,transfers,convert,get S(){return S},get EID(){return EID},get EVENTS(){return EVENTS}};
 
 // ---------- PWA ----------
-const APP_VER='v10・2026.11.20';
+const APP_VER='v10.4・2026.11.20';
 try{ $('#verTxt').textContent='分帳小幫手 '+APP_VER }catch(e){}
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; $('#insGo').style.display='' });
