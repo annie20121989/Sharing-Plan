@@ -277,8 +277,8 @@ th.c-lodge{color:var(--haze-dark)}th.c-food{color:var(--plum)}
 details.logcard{padding:0;overflow:hidden}
 details.logcard summary{cursor:pointer;list-style:none;padding:14px 22px;font-weight:800;font-size:calc(15.5px + var(--fs-bump));display:flex;align-items:center;gap:10px;color:var(--mute)}
 details.logcard summary::-webkit-details-marker{display:none}
-details.logcard summary::before{content:'▸';color:var(--mute)}
-details.logcard[open] summary::before{content:'▾'}
+details.logcard summary::before{color:var(--mute)}
+
 details.logcard summary .lbl{font-weight:600}
 #logList{padding:0 22px 16px;max-height:420px;overflow:auto}
 .lg{display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--line2);font-size:calc(13.5px + var(--fs-bump))}
@@ -565,6 +565,186 @@ button.orow:hover{background:var(--soft)}
   .orow{gap:8px}.orow .oamt{min-width:60px}
   .ovbtn{padding:4px 10px 4px 7px}
 }
+/* ---- v10.5 ---- */
+#mdModal{z-index:68}
+tr.plan td{background:repeating-linear-gradient(135deg,transparent 0 10px,rgba(192,149,83,.05) 10px 20px)}
+tr.plan select[data-if="p"]{color:var(--ochre-ink);background:var(--ochre-tint);border-color:var(--ochre-border)}
+.est{color:var(--ochre-ink);font-weight:700;font-size:calc(12.5px + var(--fs-bump))}
+.memtot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px}
+.memtot .hc{color:var(--ink);font-weight:600}
+.ov-mem{color:var(--rose-dark);border-color:var(--rose-border)}.ov-mem:hover{background:var(--rose-tint);border-color:var(--rose)}
+.oq-mem svg{background:var(--rose)}.oq-mem:hover{border-color:var(--rose);background:var(--rose-tint)}
+.ovquick{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ovl[data-kind="mem"] .ovl-ic{background:var(--rose)}
+.mtbl{display:flex;flex-direction:column}
+.mt-h,.mt-r{display:grid;grid-template-columns:minmax(0,1.4fr) .9fr repeat(4,minmax(0,.8fr)) 1fr;gap:8px;align-items:center;padding:10px 8px;text-align:right}
+.mt-h{font-size:calc(12.5px + var(--fs-bump));font-weight:700;color:var(--mute);border-bottom:1px solid var(--line)}
+.mt-h span:first-child,.mt-n{text-align:left}
+.mt-r{border:none;border-bottom:1px solid var(--line2);border-radius:0;background:none;color:var(--ink);font-size:calc(14px + var(--fs-bump));font-variant-numeric:tabular-nums;width:100%}
+button.mt-r:hover{background:var(--soft)}
+.mt-n{display:flex;align-items:center;gap:8px;font-weight:800;min-width:0}
+.mt-c{color:var(--mute);font-size:calc(13px + var(--fs-bump))}
+.mt-b{font-weight:800;white-space:nowrap}.mt-b.pay{color:var(--pay)}.mt-b.get{color:var(--get)}.mt-b.zero{color:var(--sage-dark)}
+.mt-t{background:var(--soft);font-weight:800;border-bottom:none;border-radius:10px;margin-top:4px}
+@media (max-width:680px){
+  .ovquick{grid-template-columns:1fr}
+  .mt-h{display:none}
+  .mt-r{grid-template-columns:repeat(3,minmax(0,1fr));text-align:left;gap:6px 10px;padding:12px 6px}
+  .mt-r .mt-n{grid-column:1/-1;font-size:16px}
+  .mt-r span[data-l]::before{content:attr(data-l);display:block;font-size:11.5px;color:var(--mute);font-weight:700}
+  .mt-r .mt-c{grid-column:1/-1}
+  .mt-r .mt-c::before{display:inline!important;margin-right:6px}
+}
+/* ---- v10.6 新手體驗優化 ---- */
+.tb-btn.share{display:inline-flex;align-items:center;gap:6px}
+.tb-btn.share svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.howto{display:flex!important;flex-wrap:wrap;gap:6px!important;margin-bottom:4px!important}
+.howto .opt{flex-direction:row!important;align-items:center;padding:6px 14px!important;border-radius:999px!important;gap:0}
+.howto .opt small{display:none}
+.howto .opt b{font-size:calc(13.5px + var(--fs-bump))!important}
+.howto-desc{font-size:calc(12.5px + var(--fs-bump));color:var(--mute);margin:2px 0 10px;font-weight:600}
+.fhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.fq{font-weight:800;color:var(--plum);font-size:calc(13.5px + var(--fs-bump))}
+.fsplit{padding:10px 12px 6px!important}
+.fsplit .howto-desc{margin-bottom:4px}
+.fhow{margin-bottom:0!important}
+@media (max-width:680px){
+  .topbar-in{flex-wrap:nowrap!important;gap:8px}
+  .ev-btn{min-width:0;flex:1 1 auto;max-width:none}
+  .ev-btn .lbl2{display:none}
+  .tb-right{flex:none;flex-wrap:nowrap!important}
+  .tb-btn.share .sh-t{display:none}
+  .tb-btn.share{padding:6px 9px!important}
+  #nickBox{display:none!important}
+  .mc td.w4{grid-column:span 4}
+  .howto .opt{padding:6px 11px!important}
+}
+/* ---- v10.7 待買 ---- */
+td.nmcell{position:relative}
+.ist{display:inline-flex;align-items:center;gap:3px;font-size:calc(11.5px + var(--fs-bump));font-weight:800;padding:2px 9px;border-radius:999px;white-space:nowrap;position:absolute;right:6px;top:50%;transform:translateY(-50%);pointer-events:none}
+.ist-todo{background:var(--ochre-tint);color:var(--ochre-ink);border:1px solid var(--ochre-border)}
+.ist-done{background:#E4EDE6;color:#4C6B55;border:1px solid #C9DACD}
+.ist-free{background:#EEE9EB;color:var(--mute);border:1px solid var(--line)}
+td.nmcell input{padding-right:84px}
+tr.plan td{background:var(--ochre-tint)!important}
+tr.plan select[data-if="p"]{font-weight:800}
+.fstat{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 10px}
+.fstat span{font-weight:800;font-size:calc(13px + var(--fs-bump));padding:4px 12px;border-radius:999px}
+.st-done{background:#E4EDE6;color:#4C6B55}.st-todo{background:var(--ochre-tint);color:var(--ochre-ink)}.st-ok{background:#E4EDE6;color:#4C6B55}
+.todobar{display:flex!important;align-items:center;gap:12px;width:100%;text-align:left;background:var(--ochre-tint)!important;border:1px solid var(--ochre-border)!important;border-radius:14px!important;padding:12px 14px!important;margin:0 0 12px;color:var(--ochre-ink)!important;font-weight:600}
+.todobar .tb-ic{font-size:22px}
+.todobar .tb-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;font-size:calc(14px + var(--fs-bump))}
+.todobar .tb-tx small{font-size:calc(12px + var(--fs-bump));opacity:.85;font-weight:600}
+.todobar .tb-go{font-weight:800;white-space:nowrap}
+@media (max-width:680px){
+  .mc tr.plan{background:var(--ochre-tint);border-color:var(--ochre-border);box-shadow:inset 4px 0 0 #C09553}
+  .mc tr.bought{box-shadow:inset 4px 0 0 #8FAE98}
+  .mc td.nmcell .ist{top:-1px;transform:none;right:0}
+  .mc td.nmcell input{padding-right:10px}
+  .mc td.nmcell{order:0}
+  .mc td.paycell{order:1;grid-column:span 3}
+  .mc tr[data-iid] td[data-l="費用"]{order:2;grid-column:span 3}
+  .mc tr[data-iid] td.whocol{order:3;grid-column:1/-1}
+  .mc tr[data-iid] td[data-l="數量"],.mc tr[data-iid] td[data-l="單位"],.mc tr[data-iid] td[data-l="購買地點"]{order:4;grid-column:span 2}
+  .mc tr[data-iid] td[data-l="備註"]{order:5}
+}
+/* ---- v10.8b ---- */
+.calc:empty{display:none}
+select.mv{width:40px!important;height:36px;color:transparent!important;background:var(--plum-tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237A5C7A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8h15M15 4.5L19 8l-4 3.5M20 16H5M9 12.5L5 16l4 3.5'/%3E%3C/svg%3E") center/19px no-repeat!important;-webkit-appearance:none;appearance:none;padding:0!important}
+select.mv option{color:var(--ink)}
+tr.empty-row td{grid-column:1/-1!important}
+@media (max-width:680px){ .todobar .tb-tx small{font-size:12px} .mc tr.empty-row{padding:14px!important} }
+/* ---- v10.8 icons / buy ---- */
+.i{display:inline-block;width:1.15em;height:1.15em;vertical-align:-.2em;background-color:currentColor;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat;flex:none;font-style:normal}
+.i-check{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")}
+.i-x{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6.5 6.5l11 11M17.5 6.5l-11 11'/%3E%3C/svg%3E")}
+.i-up{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M6.5 10.5L12 5l5.5 5.5'/%3E%3C/svg%3E")}
+.i-chev-d{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9.5l6 6 6-6'/%3E%3C/svg%3E")}
+.i-chev-r{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9.5 6l6 6-6 6'/%3E%3C/svg%3E")}
+.i-plus{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E")}
+.i-edit{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 19.5h4L19 9a2.1 2.1 0 0 0-3-3L5.5 16.5z'/%3E%3Cpath d='M14 8l2.5 2.5'/%3E%3C/svg%3E")}
+.i-copy{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='8.5' y='8.5' width='11' height='11' rx='2'/%3E%3Cpath d='M15.5 8.5v-2a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2'/%3E%3C/svg%3E")}
+.i-cart{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4.5h2.2l2.1 10a1.5 1.5 0 0 0 1.5 1.2h8.4a1.5 1.5 0 0 0 1.5-1.1L20.5 8H6'/%3E%3Ccircle cx='9.5' cy='19.5' r='1.2'/%3E%3Ccircle cx='17' cy='19.5' r='1.2'/%3E%3C/svg%3E")}
+.i-gift{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='8' width='17' height='4' rx='1'/%3E%3Cpath d='M5 12v8h14v-8M12 8v12M12 8c-1-3-4.5-4-5-2s3 2 5 2zM12 8c1-3 4.5-4 5-2s-3 2-5 2z'/%3E%3C/svg%3E")}
+.i-warn{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4l9 16H3z'/%3E%3Cpath d='M12 10v4.5M12 17.5v.01'/%3E%3C/svg%3E")}
+.i-info{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5.5M12 7.5v.01'/%3E%3C/svg%3E")}
+.i-user{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8.5' r='3.8'/%3E%3Cpath d='M4.5 20.5c1.3-3.8 4.2-5.8 7.5-5.8s6.2 2 7.5 5.8'/%3E%3C/svg%3E")}
+.i-bed{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5'/%3E%3Ccircle cx='7' cy='11' r='1.8'/%3E%3C/svg%3E")}
+.i-install{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='6.5' y='2.5' width='11' height='19' rx='2.5'/%3E%3Cpath d='M12 7.5v7M9 11.5l3 3 3-3'/%3E%3C/svg%3E")}
+.i-more{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='5.5' cy='12' r='.9'/%3E%3Ccircle cx='12' cy='12' r='.9'/%3E%3Ccircle cx='18.5' cy='12' r='.9'/%3E%3C/svg%3E")}
+.i-sparkle{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4l1.8 5.2L19 11l-5.2 1.8L12 18l-1.8-5.2L5 11l5.2-1.8z'/%3E%3C/svg%3E")}
+.i-grid{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='4' width='7' height='7' rx='1.6'/%3E%3Crect x='13' y='4' width='7' height='7' rx='1.6'/%3E%3Crect x='4' y='13' width='7' height='7' rx='1.6'/%3E%3Crect x='13' y='13' width='7' height='7' rx='1.6'/%3E%3C/svg%3E")}
+.i-share{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 15V3M7 8l5-5 5 5'/%3E%3Cpath d='M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7'/%3E%3C/svg%3E")}
+.i-fold{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 4l4 4 4-4M8 20l4-4 4 4M4 12h16'/%3E%3C/svg%3E")}
+.i-swap{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8h15M15 4.5L19 8l-4 3.5M20 16H5M9 12.5L5 16l4 3.5'/%3E%3C/svg%3E")}
+.i-home{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1z'/%3E%3C/svg%3E")}
+.tg .i{transition:transform .18s}.closed>.cathead .tg .i{transform:rotate(-90deg)}
+.bs-edit .i,.ev-btn .i{width:1em;height:1em}
+details[open] .bs-edit .i{transform:rotate(180deg)}
+details.logcard summary::before{content:''!important;display:inline-block;width:1em;height:1em;background:currentColor;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat;--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9.5 6l6 6-6 6'/%3E%3C/svg%3E");transition:transform .18s}
+details.logcard[open] summary::before{transform:rotate(90deg)}
+.x .i{width:1.05em;height:1.05em}
+.tb-btn{display:inline-flex;align-items:center;gap:5px}
+.sec-ov h2 .n .i{width:17px;height:17px;vertical-align:-3px}
+.hint summary .i{margin-right:3px}
+/* 總表 button bigger */
+.ovbtn{padding:7px 16px 7px 12px!important;font-size:calc(14.5px + var(--fs-bump))!important;gap:7px!important;margin-left:8px!important;border-width:1.5px!important;box-shadow:0 1px 2px rgba(63,54,58,.06)}
+.ovbtn svg{width:21px!important;height:21px!important}
+/* food header actions */
+.h2acts{display:inline-flex;gap:8px;align-items:center}
+.h2acts button{display:inline-flex;align-items:center;gap:6px}
+.icbtn{width:40px;height:40px;padding:0!important;justify-content:center;border-radius:12px!important}
+.icbtn .i{width:20px;height:20px}
+/* buy status button */
+.buy{display:inline-flex!important;align-items:center;gap:6px;width:100%;min-height:42px;padding:7px 10px 7px 12px!important;border-radius:12px!important;font-weight:800;font-size:calc(14px + var(--fs-bump));text-align:left;cursor:pointer;transition:transform .08s,box-shadow .15s}
+.buy span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.buy .i{width:18px;height:18px}.buy .bc{width:15px;height:15px;opacity:.55}
+.buy:active{transform:scale(.97)}
+.b-todo{background:#fff!important;color:var(--ochre-ink)!important;border:1.5px dashed #C9A15F!important}
+.b-todo:hover{background:var(--ochre-tint)!important;box-shadow:0 0 0 3px rgba(192,149,83,.15)}
+.b-done{background:#E4EDE6!important;color:#3F5F49!important;border:1.5px solid #BFD3C4!important}
+.b-free{background:#EFEBED!important;color:var(--mute)!important;border:1.5px solid var(--line)!important}
+.b-bad{background:#F8E6E6!important;color:#9A3B3B!important;border-color:#E7BDBD!important}
+tr.plan td{background:#FDF8EF!important}
+tr.plan td.nmcell input{border-color:#EADBC0}
+.cprog b{margin-left:6px;font-size:.92em;padding:2px 9px;border-radius:999px}
+.cp-todo{background:var(--ochre-tint);color:var(--ochre-ink)}.cp-ok{background:#E4EDE6;color:#4C6B55}
+.fstat span{display:inline-flex;align-items:center;gap:5px}
+.todobar .tb-ic .i{width:26px;height:26px}
+.todobar .tb-go{display:inline-flex;align-items:center;gap:2px}
+/* picker */
+.buy-bg{position:fixed;inset:0;z-index:70;display:none}
+.buy-bg.on{display:block}.buy-bg.dim{background:rgba(40,32,36,.38)}
+.buy-pop{position:fixed;z-index:71;display:none;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 50px rgba(63,54,58,.22);padding:14px}
+.buy-pop.on{display:block;animation:bpIn .16s ease-out}
+@keyframes bpIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.buy-pop.sheet{left:0!important;right:0;bottom:0;top:auto!important;width:auto!important;border-radius:22px 22px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom));animation:bpUp .22s ease-out}
+@keyframes bpUp{from{transform:translateY(100%)}to{transform:none}}
+.bp-h{display:flex;align-items:flex-start;gap:10px}
+.bp-t{flex:1;min-width:0}.bp-t b{display:block;font-size:calc(16px + var(--fs-bump));overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bp-t small{color:var(--mute);font-weight:700}
+.bp-x{border:none!important;background:#F3EEF0!important;width:34px;height:34px;border-radius:50%!important;padding:0!important;display:grid;place-items:center}
+.bp-q{font-weight:800;color:var(--plum);margin:10px 0 8px;font-size:calc(13.5px + var(--fs-bump))}
+.bp-ms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.bp-ms button,.bp-alt button{display:flex;align-items:center;gap:7px;min-height:46px;padding:8px 12px!important;border-radius:12px!important;font-weight:800;font-size:calc(14.5px + var(--fs-bump));border:1.5px solid var(--line)!important;background:#fff!important;text-align:left}
+.bp-ms button span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bp-ms button .i{opacity:0;color:#4C6B55}
+.bp-ms button:hover{border-color:#BFD3C4!important;background:#F4F8F5!important}
+.bp-ms button.on{background:#E4EDE6!important;border-color:#8FAE98!important;color:#3F5F49}.bp-ms button.on .i{opacity:1}
+.bp-alt{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.bp-alt button{color:var(--mute);font-size:calc(13.5px + var(--fs-bump))}
+.bp-alt button.on{background:#F7F2F4!important;color:var(--ink);border-color:var(--rose)!important}
+@media (max-width:680px){
+  .ovbtn{padding:6px 13px 6px 10px!important;font-size:calc(14px + var(--fs-bump))!important}
+  .ovbtn svg{width:20px!important;height:20px!important}
+  .sec-items h2{flex-wrap:wrap}
+  .h2acts{flex-basis:100%;margin-top:10px}
+  .h2acts #addCat,.h2acts #addMeal{flex:1;justify-content:center;min-height:42px}
+  .mc tr.plan{background:#FDF8EF;border-color:#EADBC0;box-shadow:inset 4px 0 0 #C9A15F}
+  .mc tr.bought{box-shadow:inset 4px 0 0 #8FAE98}
+  .mc td.paycell::before,.mc tr[data-iid] td[data-l="費用"]::before{visibility:visible}
+  .mc td.paycell .buy{min-height:44px}
+  .bp-ms{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 /* ---- v10: food split ---- */
 .fsplit{margin:2px 0 12px;padding:10px 12px;border-radius:12px;background:var(--plum-tint);border:1px solid var(--plum-border)}
 .fhow{margin-bottom:6px}
@@ -669,15 +849,16 @@ details.tip > div{margin-top:8px}
 <body>
 <nav class="topbar noprint"><div class="topbar-in">
   <span class="brand"><img class="logo-img" src="icons/favicon-64.png" alt=""><span class="bt">分帳小幫手</span></span>
-  <button class="ev-btn" id="evBtn" style="display:none" title="切換或建立活動"><span class="lbl2">活動</span><b id="evName0">選擇活動</b><span>▾</span></button>
+  <button class="ev-btn" id="evBtn" style="display:none" title="切換或建立活動"><span class="lbl2">活動</span><b id="evName0">選擇活動</b><i class="i i-chev-d"></i></button>
   <div class="tb-right">
-    <button class="tb-btn share" id="bShare" style="display:none">分享連結</button>
-    <div class="more"><button class="tb-btn" id="bMore" aria-haspopup="true" title="更多功能">⋯ 更多</button>
+    <button class="tb-btn share" id="bShare" style="display:none"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span class="sh-t">分享連結</span></button>
+    <div class="more"><button class="tb-btn" id="bMore" aria-haspopup="true" title="更多功能"><i class="i i-more"></i>更多</button>
       <div class="menu" id="menu">
+        <button id="bNick"><i class="i i-user"></i>我是誰／修改我的名字</button>
         <button id="bExport">匯出／備份</button>
         <button id="bImport">匯入</button>
         <hr>
-        <button id="bInstall">📲 安裝到手機／電腦</button>
+        <button id="bInstall"><i class="i i-install"></i>安裝到手機／電腦</button>
         <hr>
         <button id="bSample">載入範本（會取代目前資料）</button>
         <button id="bClear" class="danger">全部清空</button>
@@ -703,17 +884,17 @@ details.tip > div{margin-top:8px}
 <div id="roNote"></div>
 <div id="meCard" class="mecard" data-tab="ov" style="display:none"></div>
 <section class="card sec-ov" id="sec-ov" data-tab="ov">
-  <h2><span class="n">★</span>成員總覽<span class="sp"></span><span class="lbl" id="ovStat"></span></h2>
-  <div class="ovquick"><button type="button" class="oq oq-lodge" data-ov="lodge"><svg viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.8"/></svg><span><b>住宿總表</b><small>房間、誰住哪、付款</small></span><em>›</em></button><button type="button" class="oq oq-food" data-ov="food"><svg viewBox="0 0 24 24"><path d="M6 3v8a2 2 0 0 0 4 0V3M8 11v10M17 21V3c-2 1-3 3.5-3 7h3"/></svg><span><b>餐費總表</b><small>採買清單、待買、代墊</small></span><em>›</em></button></div>
+  <h2><span class="n"><i class="i i-grid"></i></span>成員總覽<span class="sp"></span><span class="lbl" id="ovStat"></span></h2>
+  <div class="ovquick"><button type="button" class="oq oq-mem" data-ov="mem"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2c3 .2 5.5 2.4 5.5 5.8"/></svg><span><b>成員總表</b><small>人數總計、每人金額</small></span><em>›</em></button><button type="button" class="oq oq-lodge" data-ov="lodge"><svg viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.8"/></svg><span><b>住宿總表</b><small>房間、誰住哪、付款</small></span><em>›</em></button><button type="button" class="oq oq-food" data-ov="food"><svg viewBox="0 0 24 24"><path d="M6 3v8a2 2 0 0 0 4 0V3M8 11v10M17 21V3c-2 1-3 3.5-3 7h3"/></svg><span><b>餐費總表</b><small>採買清單、待買、代墊</small></span><em>›</em></button></div>
   <div class="ov-todo" id="ovTodo"></div>
   <div class="ovgrid" id="ovGrid"></div>
   <div class="lbl" style="margin-top:8px">點卡片可以看這個人的完整明細：住哪間、吃飯算幾人、先付了哪些、要轉給誰。</div>
 </section>
 
 <section class="card" id="sec-mem" data-tab="mem">
-  <h2><span class="n">1</span>成員<span class="sp"></span>
-    <button class="pri noprint" id="addMem">＋ 新增成員</button></h2>
-  <details class="basis-wrap" id="basisBox"><summary><span class="bs-t">計費基準</span><span class="bs" id="basisSum"></span><span class="bs-edit">調整 ▾</span></summary>
+  <h2><span class="n">1</span>成員<button type="button" class="ovbtn ov-mem" data-ov="mem" title="成員總表"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>總表</button><span class="sp"></span>
+    <button class="pri noprint" id="addMem"><i class="i i-plus"></i>新增成員</button></h2>
+  <details class="basis-wrap" id="basisBox"><summary><span class="bs-t">計費基準</span><span class="bs" id="basisSum"></span><span class="bs-edit">調整 <i class="i i-chev-d"></i></span></summary>
   <div class="basis">
     <div class="bx food"><h4>吃飯的計費基準 <span class="lbl">（依年紀）</span></h4>
       <label>小孩（3–12 歲）× <input id="kidF" data-key="meta|kidF" class="num" inputmode="decimal"></label>
@@ -726,34 +907,34 @@ details.tip > div{margin-top:8px}
     <tbody id="memBody"></tbody>
   </table></div>
   <div class="memtot" id="memTot"></div>
-  <details class="hint tip"><summary>ⓘ 說明</summary><div>計費人數會依上面的基準自動計算；遇到特殊情況可直接改成自訂數字（顯示「自訂」），點「自訂」可還原。單身朋友各自新增一位成員即可，住宿時再把他們選進同一間房。</div></details>
+  <details class="hint tip"><summary><i class="i i-info"></i>說明</summary><div>計費人數會依上面的基準自動計算；遇到特殊情況可直接改成自訂數字（顯示「自訂」），點「自訂」可還原。單身朋友各自新增一位成員即可，住宿時再把他們選進同一間房。</div></details>
 </section>
 
 <section class="card sec-lodge" id="sec-lodge" data-tab="lodge">
   <h2><span class="n">2</span>住宿<button type="button" class="ovbtn ov-lodge" data-ov="lodge" title="住宿總表"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>總表</button><span class="sp"></span>
-    <button class="pri noprint" id="addNight">＋ 新增一晚</button></h2>
+    <button class="pri noprint" id="addNight"><i class="i i-plus"></i>新增一晚</button></h2>
   <div id="nights"></div>
   <div id="pays" class="pays"></div>
-  <details class="hint tip"><summary>ⓘ 說明</summary><div>房費由誰先付（押金、尾款、全額）請記在「住宿付款紀錄」。一間房只住一個家庭（或一個人）＝整間由他們負擔；多組人合住時，再選「照人數分／照家庭分／自己填金額」。家庭請建成一位成員，單身朋友各自一位。整趟只算一次房費就建一個「晚」放全部房間；每晚不同就分晚建立，可用「⧉ 複製」。</div></details>
+  <details class="hint tip"><summary><i class="i i-info"></i>說明</summary><div>房費由誰先付（押金、尾款、全額）請記在「住宿付款紀錄」。一間房只住一個家庭（或一個人）＝整間由他們負擔；多組人合住時，再選「照人數分／照家庭分／自己填金額」。家庭請建成一位成員，單身朋友各自一位。整趟只算一次房費就建一個「晚」放全部房間；每晚不同就分晚建立，可用「⧉ 複製」。</div></details>
 </section>
 
 <section class="card sec-items" id="sec-items" data-tab="food">
   <h2><span class="n">3</span>餐費・採購<button type="button" class="ovbtn ov-food" data-ov="food" title="餐費總表"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>總表</button><span class="sp"></span>
-    <button class="noprint" id="tgAll">全部收合／展開</button>
-    <button class="pri noprint" id="addCat">＋ 共同採購</button>
-    <button class="pri noprint" id="addMeal">＋ 餐廳／聚餐</button></h2>
+    <span class="h2acts"><button class="pri noprint" id="addCat"><i class="i i-plus"></i>共同採購</button><button class="noprint" id="addMeal"><i class="i i-plus"></i>餐廳／聚餐</button><button class="noprint icbtn" id="tgAll" title="全部收合／展開" aria-label="全部收合／展開"><i class="i i-fold"></i></button></span></h2>
+  <div id="foodTodo"></div>
   <div id="cats"></div>
-  <details class="hint tip"><summary>ⓘ 說明</summary><div>每個分類可以選怎麼分：<b>全員分攤</b>（所有人依吃飯計費人數，適合一起買的東西）、<b>選人分攤</b>（只算有去的人，適合去餐廳；可再選依人數、每組平分或自己填金額）、<b>各付各的</b>（每個品項指定是誰的）。代墊人選「（不計／贊助）」的品項不列入分攤。</div></details>
+  <details class="hint tip"><summary><i class="i i-info"></i>說明</summary><div>每個分類可以選怎麼分：<b>全員分攤</b>（所有人依吃飯計費人數，適合一起買的東西）、<b>選人分攤</b>（只算有去的人，適合去餐廳；可再選依人數、每組平分或自己填金額）、<b>各付各的</b>（每個品項指定是誰的）。代墊人選「（不計／贊助）」的品項不列入分攤。</div></details>
 </section>
 
 <section class="card summary sec-sum" id="sec-sum" data-tab="sum">
   <h2><span class="n">4</span>結算<span class="sp"></span><button class="pri noprint" id="bCopy">複製結算文字</button></h2>
+  <div id="sumTodo"></div>
   <div class="kpis" id="kpis"></div>
   <div class="tbl mcw"><table class="mc sumtbl">
     <thead><tr><th class="sum-name" style="width:14%">成員</th><th class="r c-lodge" style="width:30%">住宿應攤</th><th class="r c-food">餐費應攤</th><th class="r">應分攤合計</th><th class="r">已代墊</th><th class="r">結餘</th></tr></thead>
     <tbody id="sumBody"></tbody>
   </table></div>
-  <details class="hint tip"><summary>ⓘ 說明</summary><div>結餘＝住宿應攤＋餐費應攤－已代墊（含住宿付款紀錄）。正數＝還要付錢；負數＝可以收錢回來。</div></details>
+  <details class="hint tip"><summary><i class="i i-info"></i>說明</summary><div>結餘＝住宿應攤＋餐費應攤－已代墊（含住宿付款紀錄）。正數＝還要付錢；負數＝可以收錢回來。</div></details>
   <h3>轉帳建議（最少筆數）<span class="lbl" style="font-weight:600">　轉完點一下打勾</span></h3>
   <div class="xfer" id="xfer"></div>
   <div id="warns"></div>
@@ -775,9 +956,9 @@ details.tip > div{margin-top:8px}
   </div>
 </div></div>
 <div class="modal" id="evModal"><div class="box ev-box">
-  <div class="ev-h"><b>我的活動</b><button class="x" id="evClose" title="關閉">✕</button></div>
+  <div class="ev-h"><b>我的活動</b><button class="x" id="evClose" title="關閉"><i class="i i-x"></i></button></div>
   <div class="warn" id="evNoneMsg" style="display:none;margin:0">還沒有任何活動，先建立第一個吧！</div>
-  <button type="button" class="ev-add" id="evAddBtn">＋ 建立新活動</button>
+  <button type="button" class="ev-add" id="evAddBtn"><i class="i i-plus"></i>建立新活動</button>
   <div class="ev-new" id="evNewBox" style="display:none">
     <div class="ev-new-t">建立新活動</div>
     <label class="evf"><span>活動名稱</span><input id="evNew" placeholder="例如：2027 墾丁三天兩夜" maxlength="40"></label>
@@ -789,17 +970,17 @@ details.tip > div{margin-top:8px}
   <div id="evList" class="ev-list"></div>
 </div></div>
 <div class="modal" id="shareModal"><div class="box share-box">
-  <div class="ev-h"><b>分享這個活動</b><button class="x" id="shClose" title="關閉">✕</button></div>
+  <div class="ev-h"><b>分享這個活動</b><button class="x" id="shClose" title="關閉"><i class="i i-x"></i></button></div>
   <div class="lbl">朋友點這個連結或掃 QR Code，就會直接打開「<b id="shName"></b>」。</div>
   <div class="sh-row"><input id="shUrl" readonly><button class="pri" id="shCopy">複製連結</button></div>
   <button id="shCopyMsg">複製 LINE 訊息（含連結和說明）</button>
-  <div class="warn" id="shDev" style="display:none;margin:0">⚠ 這是「測試用網址」（結尾 /dev），只有你自己打得開，別人會看到「無法開啟這個檔案」。請在下面貼上正式網址。</div>
+  <div class="warn" id="shDev" style="display:none;margin:0"><i class="i i-warn"></i> 這是「測試用網址」（結尾 /dev），只有你自己打得開，別人會看到「無法開啟這個檔案」。請在下面貼上正式網址。</div>
   <details class="sh-fix" id="shFixBox"><summary>網址不對／朋友打不開？設定正式網址</summary>
     <div class="lbl" style="margin:6px 0">到 Apps Script →「部署」→「管理部署作業」，複製「網頁應用程式」的網址（結尾是 <b>/exec</b>），貼到這裡：</div>
     <div class="sh-row"><input id="shFix" placeholder="https://script.google.com/macros/s/…/exec"><button id="shFixSave">儲存</button></div>
   </details>
   <div id="shQR" class="sh-qr"></div>
-  <div class="hint" style="margin:0">朋友打開後，可以在「⋯ 更多 → 安裝到手機／電腦」把它裝成 App。想要更短的網址：到 <b>reurl.cc</b> 或 <b>bit.ly</b> 貼上連結即可。</div>
+  <div class="hint" style="margin:0">朋友打開後，可以在「<i class="i i-more"></i>更多 → 安裝到手機／電腦」把它裝成 App。想要更短的網址：到 <b>reurl.cc</b> 或 <b>bit.ly</b> 貼上連結即可。</div>
 </div></div>
 <div class="modal" id="hiModal"><div class="box hi-box">
   <b>歡迎！你是哪一位？</b>
@@ -809,7 +990,7 @@ details.tip > div{margin-top:8px}
   <button class="me-change" id="hiSkip" style="align-self:flex-end">先略過</button>
 </div></div>
 <div class="modal" id="mdModal"><div class="box md-box">
-  <div class="ev-h"><b id="mdTitle"></b><button class="x" id="mdClose" title="關閉">✕</button></div>
+  <div class="ev-h"><b id="mdTitle"></b><button class="x" id="mdClose" title="關閉"><i class="i i-x"></i></button></div>
   <div id="mdBody" class="md-body"></div>
 </div></div>
 <nav class="tabbar noprint" id="tabbar">
@@ -820,15 +1001,15 @@ details.tip > div{margin-top:8px}
   <button data-t="sum"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg><span>結算</span><b class="tb-badge" id="tbTodo"></b></button>
 </nav>
 <div class="modal" id="insModal"><div class="box ins-box">
-  <div class="ev-h"><b>安裝「分帳小幫手」</b><button class="x" id="insClose" title="關閉">✕</button></div>
+  <div class="ev-h"><b>安裝「分帳小幫手」</b><button class="x" id="insClose" title="關閉"><i class="i i-x"></i></button></div>
   <div class="ins-row"><img src="icons/icon-192.png" alt=""><div><b>裝好後就像一般 App</b><div class="lbl">全螢幕開啟、主畫面有圖示。之後更新不用重裝，打開就是最新版。</div></div></div>
-  <div class="md-sec"><h5>iPhone／iPad（Safari）</h5><div>點下方的「分享」<b>⬆︎</b> → 往下找「<b>加入主畫面</b>」→「新增」</div></div>
+  <div class="md-sec"><h5>iPhone／iPad（Safari）</h5><div>點下方的「分享」<b><i class="i i-share"></i></b> → 往下找「<b>加入主畫面</b>」→「新增」</div></div>
   <div class="md-sec"><h5>Android（Chrome）</h5><div>右上角「<b>⋮</b>」→「<b>安裝應用程式</b>」或「<b>加到主畫面</b>」</div></div>
   <div class="md-sec"><h5>電腦（Chrome／Edge）</h5><div>網址列右邊的「<b>安裝</b>」圖示，或選單 →「<b>安裝分帳小幫手</b>」</div></div>
   <button class="pri" id="insGo" style="display:none">立即安裝</button>
 </div></div>
 <div class="ovl" id="ovl"><div class="ovl-panel" role="dialog" aria-modal="true">
-  <div class="ovl-h"><span class="ovl-ic" id="ovlIc"></span><div class="ovl-tt"><b id="ovlTitle"></b><small id="ovlSub"></small></div><span class="sp"></span><button type="button" class="ovl-x" id="ovlClose" aria-label="關閉">✕</button></div>
+  <div class="ovl-h"><span class="ovl-ic" id="ovlIc"></span><div class="ovl-tt"><b id="ovlTitle"></b><small id="ovlSub"></small></div><span class="sp"></span><button type="button" class="ovl-x" id="ovlClose" aria-label="關閉"><i class="i i-x"></i></button></div>
   <div class="ovl-tools" id="ovlTools"></div>
   <div class="ovl-body" id="ovlBody"></div>
 </div></div>
@@ -837,7 +1018,7 @@ details.tip > div{margin-top:8px}
 
 <script src="config.js"></script>
 <script>
-const TEMPLATE = {"title": "分帳", "members": [{"n": "聆聆", "a": 3, "k": 1, "w": null, "b": 0, "lw": null}, {"n": "欣潔", "a": 2, "k": 2, "w": null, "b": 0, "lw": null}, {"n": "DIDI", "a": 2, "k": 1, "w": null, "b": 0, "lw": null}, {"n": "安柏", "a": 2, "k": 2, "w": null, "b": 0, "lw": null}, {"n": "Leon", "a": 2, "k": 2, "w": null, "b": 0, "lw": null}, {"n": "B哥", "a": 2, "k": 2, "w": null, "b": 0, "lw": null}, {"n": "阿群", "a": 2, "k": 0, "w": null, "b": 0, "lw": null}, {"n": "BJ", "a": 1, "k": 0, "w": null, "b": 0, "lw": null}, {"n": "企鵝", "a": 1, "k": 0, "w": null, "b": 0, "lw": null}, {"n": "村哥", "a": 1, "k": 0, "w": null, "b": 0, "lw": null}, {"n": "東龍", "a": 1, "k": 0, "w": null, "b": 0, "lw": null}, {"n": "佑全", "a": 1, "k": 0, "w": null, "b": 0, "lw": null}], "cats": [{"name": "烤肉用品採購", "items": [{"n": "木炭", "q": "2", "u": "包", "p": "阿群", "f": "", "s": "賣場", "r": "阿群2小包"}, {"n": "烤網", "q": "6", "u": "個", "p": "聆聆", "f": "", "s": "頭份大全聯", "r": "阿群2小片"}, {"n": "烤肉醬", "q": "1", "u": "罐", "p": "聆聆", "f": "", "s": "金大鑫", "r": "跟11一起"}, {"n": "1.調味料-鹽、海鹽 2.胡椒鹽 3.奶油 4.檸檬5.台糖芥花油2L 6.糖1包", "q": "1", "u": "式", "p": "聆聆", "f": "", "s": "頭份大全聯/自家提供", "r": "奶油120、檸檬50、其他調味料約250"}, {"n": "食物剪(自家提供)、好奇寶寶濕巾3包、舒潔廚房韌易抽(1袋)", "q": "1", "u": "式", "p": "佑全", "f": "", "s": "全聯", "r": ""}, {"n": "廚房紙巾、鋁箔紙", "q": "1", "u": "式", "p": "BJ", "f": "", "s": "全聯", "r": ""}, {"n": "大垃圾袋", "q": "1", "u": "", "p": "", "f": "", "s": "", "r": ""}, {"n": "噴槍", "q": "1", "u": "", "p": "", "f": "", "s": "", "r": ""}, {"n": "抽取式衛生紙", "q": "3", "u": "包", "p": "BJ", "f": "", "s": "自家提供", "r": ""}, {"n": "夾子", "q": "10", "u": "支", "p": "聆聆", "f": "", "s": "", "r": ""}, {"n": "盤子、筷子、湯匙、竹籤、鋁箔盤、烤肉醬", "q": "1", "u": "式", "p": "聆聆", "f": "", "s": "", "r": "阿群贊助10人份"}, {"n": "免洗杯、免洗碗", "q": "1", "u": "式", "p": "DIDI", "f": "", "s": "", "r": "阿群贊助10人份"}, {"n": "木材(後續控窯用)", "q": "", "u": "", "p": "", "f": "", "s": "民宿", "r": ""}]}, {"name": "肉類", "items": [{"n": "豬里肌", "q": "3", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "牛五花火鍋片", "q": "1", "u": "斤", "p": "DIDI", "f": "", "s": "MOMO超商取貨", "r": ""}, {"n": "雞腿排", "q": "3", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "雞翅", "q": "2", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "雞心", "q": "0.5", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "豬梅花火鍋片", "q": "1", "u": "斤", "p": "DIDI", "f": "", "s": "MOMO超商取貨", "r": ""}, {"n": "牛小排燒烤片", "q": "1", "u": "盤", "p": "阿群", "f": "", "s": "好市多", "r": "預計2200-2500"}, {"n": "台畜香腸", "q": "2", "u": "袋", "p": "阿群", "f": "", "s": "好市多", "r": ""}, {"n": "牛肉麵食材、香魚、秋刀魚等", "q": "1", "u": "式", "p": "聆聆", "f": "", "s": "早市", "r": ""}]}, {"name": "蔬菜", "items": [{"n": "櫛瓜", "q": "4.X", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": "櫛瓜 150 75元/斤"}, {"n": "杏包菇", "q": "2", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "美生菜（萵苣）", "q": "2", "u": "顆", "p": "阿群", "f": "", "s": "好市多", "r": ""}, {"n": "玉米", "q": "6", "u": "包", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "玉米筍", "q": "2", "u": "包", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "茭白筍", "q": "2", "u": "包", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "金針菇", "q": "0", "u": "包", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "絲瓜", "q": "2", "u": "條", "p": "阿群", "f": "", "s": "贊助", "r": ""}, {"n": "韓國奶油櫛瓜", "q": "4", "u": "條", "p": "DIDI", "f": "", "s": "團購", "r": ""}, {"n": "蔥", "q": "1", "u": "把", "p": "阿群", "f": "", "s": "台中建國市場", "r": "捲蔥肉捲"}, {"n": "青椒", "q": "1", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}]}, {"name": "海鮮", "items": [{"n": "白蝦", "q": "4", "u": "盒", "p": "阿群", "f": "", "s": "台中建國市場", "r": "白蝦 22隻盒 250 220元/盒 "}, {"n": "蛤蜊", "q": "1", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "吳郭魚", "q": "2", "u": "條", "p": "聆聆", "f": "", "s": "頭份早市", "r": ""}, {"n": "虱目魚丸", "q": "2", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "海瑞貢丸", "q": "2", "u": "包", "p": "DIDI", "f": "", "s": "頭份大全聯", "r": "2包"}]}, {"name": "熟食", "items": [{"n": "米血", "q": "1", "u": "條", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "糯米腸", "q": "20", "u": "條", "p": "阿群", "f": "", "s": "台中建國市場", "r": "1、2、3、4 一起 365"}, {"n": "甜不辣", "q": "10", "u": "片", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "豆干", "q": "10", "u": "片", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "烤的棉花糖", "q": "1", "u": "包", "p": "聆聆", "f": "", "s": "自家", "r": ""}, {"n": "切達起司絲", "q": "1", "u": "包", "p": "B哥", "f": "", "s": "已購", "r": ""}, {"n": "脆皮燒肉", "q": "3.685", "u": "斤", "p": "DIDI", "f": "", "s": "", "r": ""}, {"n": "零食", "q": "1", "u": "式", "p": "聆聆", "f": "", "s": "", "r": ""}, {"n": "薯條2KG、雞塊1KG、雞皮1斤、豬耳朵1斤", "q": "1", "u": "式", "p": "DIDI", "f": "", "s": "MOMO超商取貨", "r": ""}, {"n": "布丁", "q": "0", "u": "個", "p": "阿群", "f": "", "s": "好事多", "r": ""}]}, {"name": "飲料、雜支", "items": [{"n": "冰塊", "q": "", "u": "", "p": "DIDI", "f": "", "s": "飲料店", "r": ""}, {"n": "飲料", "q": "30", "u": "杯", "p": "DIDI", "f": "", "s": "飲料店", "r": ""}, {"n": "白酒", "q": "3", "u": "瓶", "p": "聆聆", "f": "", "s": "", "r": ""}, {"n": "美日C：柳橙*2，葡萄*2", "q": "1", "u": "式", "p": "安柏", "f": "", "s": "", "r": ""}, {"n": "冰結", "q": "1", "u": "箱", "p": "安柏", "f": "", "s": "", "r": "佑全贊助兔子酒龐尼維爾檸檬酒一瓶(可用來調酒)"}, {"n": "18天", "q": "12", "u": "罐", "p": "安柏", "f": "", "s": "", "r": ""}, {"n": "可樂", "q": "2", "u": "罐", "p": "安柏", "f": "", "s": "", "r": ""}, {"n": "布丁", "q": "38", "u": "個", "p": "BJ", "f": "", "s": "頭份大全聯", "r": ""}]}, {"name": "第二天鍋碗瓢盆", "items": [{"n": "卡式爐", "q": "2", "u": "", "p": "B哥", "f": "", "s": "自家", "r": ""}, {"n": "鐵盤", "q": "1", "u": "", "p": "B哥", "f": "", "s": "自家", "r": ""}, {"n": "瓦斯罐", "q": "3", "u": "罐", "p": "DIDI", "f": "", "s": "上次剩的", "r": ""}]}], "nights": [{"name": "民宿（10/24–10/25 兩晚）", "rooms": [{"n": "聆聆 家庭房", "f": "", "m": ["聆聆"], "r": ""}, {"n": "欣潔 家庭房", "f": "", "m": ["欣潔"], "r": ""}, {"n": "DIDI 家庭房", "f": "", "m": ["DIDI"], "r": ""}, {"n": "安柏 家庭房", "f": "", "m": ["安柏"], "r": ""}, {"n": "Leon 家庭房", "f": "", "m": ["Leon"], "r": ""}, {"n": "B哥 家庭房", "f": "", "m": ["B哥"], "r": ""}, {"n": "阿群 家庭房", "f": "", "m": ["阿群"], "r": ""}, {"n": "多人房", "f": "", "m": ["BJ", "企鵝", "村哥", "東龍", "佑全"], "r": ""}]}], "kidF": 0.5, "babyF": 0, "kidL": 0.5, "babyL": 0.5, "pays": [{"t": "全額", "f": "", "p": "佑全", "d": "", "r": "民宿房費"}]};
+const TEMPLATE = {"title": "分帳", "members": [{"n": "聆聆", "a": 3, "k": 1, "w": null, "b": 0, "lw": null}, {"n": "欣潔", "a": 2, "k": 2, "w": null, "b": 0, "lw": null}, {"n": "DIDI", "a": 2, "k": 1, "w": null, "b": 0, "lw": null}, {"n": "安柏", "a": 2, "k": 2, "w": null, "b": 0, "lw": null}, {"n": "Leon", "a": 2, "k": 2, "w": null, "b": 0, "lw": null}, {"n": "B哥", "a": 2, "k": 2, "w": null, "b": 0, "lw": null}, {"n": "阿群", "a": 2, "k": 0, "w": null, "b": 0, "lw": null}, {"n": "BJ", "a": 1, "k": 0, "w": null, "b": 0, "lw": null}, {"n": "企鵝", "a": 1, "k": 0, "w": null, "b": 0, "lw": null}, {"n": "村哥", "a": 1, "k": 0, "w": null, "b": 0, "lw": null}, {"n": "東龍", "a": 1, "k": 0, "w": null, "b": 0, "lw": null}, {"n": "佑全", "a": 1, "k": 0, "w": null, "b": 0, "lw": null}], "cats": [{"name": "烤肉用品採購", "items": [{"n": "木炭", "q": "2", "u": "包", "p": "阿群", "f": "", "s": "賣場", "r": "阿群2小包"}, {"n": "烤網", "q": "6", "u": "個", "p": "聆聆", "f": "", "s": "頭份大全聯", "r": "阿群2小片"}, {"n": "烤肉醬", "q": "1", "u": "罐", "p": "聆聆", "f": "", "s": "金大鑫", "r": "跟11一起"}, {"n": "1.調味料-鹽、海鹽 2.胡椒鹽 3.奶油 4.檸檬5.台糖芥花油2L 6.糖1包", "q": "1", "u": "式", "p": "聆聆", "f": "", "s": "頭份大全聯/自家提供", "r": "奶油120、檸檬50、其他調味料約250"}, {"n": "食物剪(自家提供)、好奇寶寶濕巾3包、舒潔廚房韌易抽(1袋)", "q": "1", "u": "式", "p": "佑全", "f": "", "s": "全聯", "r": ""}, {"n": "廚房紙巾、鋁箔紙", "q": "1", "u": "式", "p": "BJ", "f": "", "s": "全聯", "r": ""}, {"n": "大垃圾袋", "q": "1", "u": "", "p": "__free", "f": "", "s": "", "r": ""}, {"n": "噴槍", "q": "1", "u": "", "p": "__free", "f": "", "s": "", "r": ""}, {"n": "抽取式衛生紙", "q": "3", "u": "包", "p": "BJ", "f": "", "s": "自家提供", "r": ""}, {"n": "夾子", "q": "10", "u": "支", "p": "聆聆", "f": "", "s": "", "r": ""}, {"n": "盤子、筷子、湯匙、竹籤、鋁箔盤、烤肉醬", "q": "1", "u": "式", "p": "聆聆", "f": "", "s": "", "r": "阿群贊助10人份"}, {"n": "免洗杯、免洗碗", "q": "1", "u": "式", "p": "DIDI", "f": "", "s": "", "r": "阿群贊助10人份"}, {"n": "木材(後續控窯用)", "q": "", "u": "", "p": "__free", "f": "", "s": "民宿", "r": ""}]}, {"name": "肉類", "items": [{"n": "豬里肌", "q": "3", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "牛五花火鍋片", "q": "1", "u": "斤", "p": "DIDI", "f": "", "s": "MOMO超商取貨", "r": ""}, {"n": "雞腿排", "q": "3", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "雞翅", "q": "2", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "雞心", "q": "0.5", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "豬梅花火鍋片", "q": "1", "u": "斤", "p": "DIDI", "f": "", "s": "MOMO超商取貨", "r": ""}, {"n": "牛小排燒烤片", "q": "1", "u": "盤", "p": "阿群", "f": "", "s": "好市多", "r": "預計2200-2500"}, {"n": "台畜香腸", "q": "2", "u": "袋", "p": "阿群", "f": "", "s": "好市多", "r": ""}, {"n": "牛肉麵食材、香魚、秋刀魚等", "q": "1", "u": "式", "p": "聆聆", "f": "", "s": "早市", "r": ""}]}, {"name": "蔬菜", "items": [{"n": "櫛瓜", "q": "4.X", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": "櫛瓜 150 75元/斤"}, {"n": "杏包菇", "q": "2", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "美生菜（萵苣）", "q": "2", "u": "顆", "p": "阿群", "f": "", "s": "好市多", "r": ""}, {"n": "玉米", "q": "6", "u": "包", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "玉米筍", "q": "2", "u": "包", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "茭白筍", "q": "2", "u": "包", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "金針菇", "q": "0", "u": "包", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "絲瓜", "q": "2", "u": "條", "p": "阿群", "f": "", "s": "贊助", "r": ""}, {"n": "韓國奶油櫛瓜", "q": "4", "u": "條", "p": "DIDI", "f": "", "s": "團購", "r": ""}, {"n": "蔥", "q": "1", "u": "把", "p": "阿群", "f": "", "s": "台中建國市場", "r": "捲蔥肉捲"}, {"n": "青椒", "q": "1", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}]}, {"name": "海鮮", "items": [{"n": "白蝦", "q": "4", "u": "盒", "p": "阿群", "f": "", "s": "台中建國市場", "r": "白蝦 22隻盒 250 220元/盒 "}, {"n": "蛤蜊", "q": "1", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "吳郭魚", "q": "2", "u": "條", "p": "聆聆", "f": "", "s": "頭份早市", "r": ""}, {"n": "虱目魚丸", "q": "2", "u": "斤", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "海瑞貢丸", "q": "2", "u": "包", "p": "DIDI", "f": "", "s": "頭份大全聯", "r": "2包"}]}, {"name": "熟食", "items": [{"n": "米血", "q": "1", "u": "條", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "糯米腸", "q": "20", "u": "條", "p": "阿群", "f": "", "s": "台中建國市場", "r": "1、2、3、4 一起 365"}, {"n": "甜不辣", "q": "10", "u": "片", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "豆干", "q": "10", "u": "片", "p": "阿群", "f": "", "s": "台中建國市場", "r": ""}, {"n": "烤的棉花糖", "q": "1", "u": "包", "p": "聆聆", "f": "", "s": "自家", "r": ""}, {"n": "切達起司絲", "q": "1", "u": "包", "p": "B哥", "f": "", "s": "已購", "r": ""}, {"n": "脆皮燒肉", "q": "3.685", "u": "斤", "p": "DIDI", "f": "", "s": "", "r": ""}, {"n": "零食", "q": "1", "u": "式", "p": "聆聆", "f": "", "s": "", "r": ""}, {"n": "薯條2KG、雞塊1KG、雞皮1斤、豬耳朵1斤", "q": "1", "u": "式", "p": "DIDI", "f": "", "s": "MOMO超商取貨", "r": ""}, {"n": "布丁", "q": "0", "u": "個", "p": "阿群", "f": "", "s": "好事多", "r": ""}]}, {"name": "飲料、雜支", "items": [{"n": "冰塊", "q": "", "u": "", "p": "DIDI", "f": "", "s": "飲料店", "r": ""}, {"n": "飲料", "q": "30", "u": "杯", "p": "DIDI", "f": "", "s": "飲料店", "r": ""}, {"n": "白酒", "q": "3", "u": "瓶", "p": "聆聆", "f": "", "s": "", "r": ""}, {"n": "美日C：柳橙*2，葡萄*2", "q": "1", "u": "式", "p": "安柏", "f": "", "s": "", "r": ""}, {"n": "冰結", "q": "1", "u": "箱", "p": "安柏", "f": "", "s": "", "r": "佑全贊助兔子酒龐尼維爾檸檬酒一瓶(可用來調酒)"}, {"n": "18天", "q": "12", "u": "罐", "p": "安柏", "f": "", "s": "", "r": ""}, {"n": "可樂", "q": "2", "u": "罐", "p": "安柏", "f": "", "s": "", "r": ""}, {"n": "布丁", "q": "38", "u": "個", "p": "BJ", "f": "", "s": "頭份大全聯", "r": ""}]}, {"name": "第二天鍋碗瓢盆", "items": [{"n": "卡式爐", "q": "2", "u": "", "p": "B哥", "f": "", "s": "自家", "r": ""}, {"n": "鐵盤", "q": "1", "u": "", "p": "B哥", "f": "", "s": "自家", "r": ""}, {"n": "瓦斯罐", "q": "3", "u": "罐", "p": "DIDI", "f": "", "s": "上次剩的", "r": ""}]}], "nights": [{"name": "民宿（10/24–10/25 兩晚）", "rooms": [{"n": "聆聆 家庭房", "f": "", "m": ["聆聆"], "r": ""}, {"n": "欣潔 家庭房", "f": "", "m": ["欣潔"], "r": ""}, {"n": "DIDI 家庭房", "f": "", "m": ["DIDI"], "r": ""}, {"n": "安柏 家庭房", "f": "", "m": ["安柏"], "r": ""}, {"n": "Leon 家庭房", "f": "", "m": ["Leon"], "r": ""}, {"n": "B哥 家庭房", "f": "", "m": ["B哥"], "r": ""}, {"n": "阿群 家庭房", "f": "", "m": ["阿群"], "r": ""}, {"n": "多人房", "f": "", "m": ["BJ", "企鵝", "村哥", "東龍", "佑全"], "r": ""}]}], "kidF": 0.5, "babyF": 0, "kidL": 0.5, "babyL": 0.5, "pays": [{"t": "全額", "f": "", "p": "佑全", "d": "", "r": "民宿房費"}]};
 const KEY='split-gas-v3';
 let EID='', EVENTS=[], APPURL='';
 const gp=p=>p.startsWith('events/')?p:`E${EID}/${p}`;
@@ -872,7 +1053,7 @@ function convert(d){
   const byName={};
   (d.members||[]).forEach((m,i)=>{const id=m.id||nid(); byName[m.n]=id; out.members.push({id,n:m.n??'',a:m.a??'',k:m.k??'',b:m.b??0,w:(m.w===''||m.w===undefined)?null:m.w,lw:(m.lw===''||m.lw===undefined)?null:m.lw,o:m.o??i})});
   const mids=new Set(out.members.map(m=>m.id));
-  const pid=p=>!p?'':mids.has(p)?p:(byName[p]||'');
+  const pid=p=>!p?'':p==='__free'?'__free':mids.has(p)?p:(byName[p]||'');
   const remapX=o=>{const x={}; Object.entries(o||{}).forEach(([k,v])=>{const id=pid(k); if(id) x[id]=v}); return x};
   (d.cats||[]).forEach((c,ci)=>{const cid=c.id||nid(); out.cats.push({id:cid,name:c.name??'',s:c.s||'all',sm:c.sm||'head',m:(c.m||[]).map(pid).filter(Boolean),xa:remapX(c.xa),o:c.o??ci});
     (c.items||[]).forEach((i,ii)=>out.items.push({id:nid(),c:cid,n:i.n??'',q:i.q??'',u:i.u??'',p:pid(i.p),who:pid(i.who),f:i.f??'',s:i.s??'',r:i.r??'',o:ii}))});
@@ -1043,20 +1224,22 @@ function openOvl(kind){ OVL=kind; renderOvl(); const o=$('#ovl'); o.classList.ad
 function closeOvl(){ const o=$('#ovl'); o.classList.remove('in'); document.body.classList.remove('noscroll'); setTimeout(()=>{ o.classList.remove('on'); OVL='' },220) }
 const stat=(lbl,val,cls,sub)=>`<div class="ost ${cls||''}"><span>${lbl}</span><b>${val}</b>${sub?`<small>${sub}</small>`:''}</div>`;
 const ICON_LODGE='<svg viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.8"/></svg>';
+const ICON_MEM='<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2c3 .2 5.5 2.4 5.5 5.8"/></svg>';
+const ovlHtml=C=>OVL==='lodge'?lodgeOvl(C):OVL==='mem'?memberOvl(C):foodOvl(C);
 const ICON_FOOD='<svg viewBox="0 0 24 24"><path d="M6 3v8a2 2 0 0 0 4 0V3M8 11v10M17 21V3c-2 1-3 3.5-3 7h3"/></svg>';
 function renderOvl(){
   if(!OVL) return; const {C}=renderSummary();
   $('#ovl').dataset.kind=OVL;
-  $('#ovlIc').innerHTML=OVL==='lodge'?ICON_LODGE:ICON_FOOD;
-  $('#ovlTitle').textContent=OVL==='lodge'?'住宿總表':'餐費總表';
+  $('#ovlIc').innerHTML=OVL==='lodge'?ICON_LODGE:OVL==='mem'?ICON_MEM:ICON_FOOD;
+  $('#ovlTitle').textContent=OVL==='lodge'?'住宿總表':OVL==='mem'?'成員總表':'餐費總表';
   $('#ovlSub').textContent=S.title||'';
-  $('#ovlBody').innerHTML=OVL==='lodge'?lodgeOvl(C):foodOvl(C);
+  $('#ovlBody').innerHTML=ovlHtml(C);
   $('#ovlTools').innerHTML=OVL==='food'?`<div class="fseg">${[['all','全部'],['todo','待買'],['done','已買']].map(([k,t])=>`<button type="button" class="${FOV===k?'on':''}" data-fov="${k}">${t}</button>`).join('')}</div><button type="button" class="ovl-copy" data-ovcopy>複製${FOV==='done'?'已買':'待買'}清單</button>`:'';
 }
 function lodgeOvl(C){
   const ms=members(); const gs=nights(); const ld=C.lodgeTotal-C.lodgePaid; const nm=id=>mName(id)||'?';
   const occN=new Set(S.rooms.flatMap(r=>r.m||[])).size, ppl=ms.filter(m=>S.rooms.some(r=>(r.m||[]).includes(m.id))).reduce((a,m)=>a+lodgeW(m),0);
-  let h=`<div class="ostats">${stat('總房費','$'+fmt(C.lodgeTotal),'s-haze')}${stat('已付款','$'+fmt(C.lodgePaid),'s-sage')}${!C.lodgeTotal?stat('付款狀態','尚未填房價',''):stat(Math.abs(ld)<0.5?'付款狀態':ld>0?'還沒付':'多付了',Math.abs(ld)<0.5?'已付清 ✓':'$'+fmt(Math.abs(ld)),Math.abs(ld)<0.5?'s-sage':'s-warn')}${stat('房間',S.rooms.length+' 間','s-rose',`${gs.length} 晚・住 ${occN} 組 ${r2(ppl)} 人`)}</div>`;
+  let h=`<div class="ostats">${stat('總房費','$'+fmt(C.lodgeTotal),'s-haze')}${stat('已付款','$'+fmt(C.lodgePaid),'s-sage')}${!C.lodgeTotal?stat('付款狀態','尚未填房價',''):stat(Math.abs(ld)<0.5?'付款狀態':ld>0?'還沒付':'多付了',Math.abs(ld)<0.5?'已付清 <i class="i i-check"></i>':'$'+fmt(Math.abs(ld)),Math.abs(ld)<0.5?'s-sage':'s-warn')}${stat('房間',S.rooms.length+' 間','s-rose',`${gs.length} 晚・住 ${occN} 組 ${r2(ppl)} 人`)}</div>`;
   if(!gs.length) h+=`<div class="oempty">還沒有住宿資料。到「住宿」按「＋ 新增一晚」開始。</div>`;
   gs.forEach(g=>{ const rs=roomsOf(g.id); const tot=C.nightTot[g.id]||0;
     h+=`<section class="ocard"><div class="ocard-h"><b>${esc(g.name||'未命名')}</b><span class="lbl">${rs.length} 間</span><span class="sp"></span><b class="oamt">$${fmt(tot)}</b></div>
@@ -1070,23 +1253,23 @@ function lodgeOvl(C){
 }
 function foodOvl(C){
   const cs=cats(); let all=0,done=0,todoN=0; const paidBy={};
-  const st=i=>{ const v=evalFee(i.f); return v.ok&&v.v>0 };
-  S.items.forEach(i=>{ if(!S.cats.some(c=>c.id===i.c)) return; all++; if(st(i)){done++; if(i.p){ paidBy[i.p]=(paidBy[i.p]||0)+evalFee(i.f).v } } else todoN++ });
-  let h=`<div class="ostats">${stat('餐費總額','$'+fmt(C.foodPool),'s-plum')}${stat('已買',done+' 項','s-sage')}${stat('待買',todoN+' 項',todoN?'s-warn':'s-sage')}${stat('分類',cs.length+' 個','s-rose',`共 ${all} 項`)}</div>`;
+  const st=isBought; let est=0;
+  S.items.forEach(i=>{ if(!S.cats.some(c=>c.id===i.c)) return; all++; if(st(i)){done++; if(i.p&&i.p!=='__free'){ paidBy[i.p]=(paidBy[i.p]||0)+evalFee(i.f).v } } else { todoN++; est+=evalFee(i.f).v||0 } });
+  let h=`<div class="ostats">${stat('餐費總額','$'+fmt(C.foodPool),'s-plum')}${stat('已買',done+' 項','s-sage')}${stat('待買',todoN+' 項',todoN?'s-warn':'s-sage',est?'預估 $'+fmt(est):'')}${stat('分類',cs.length+' 個','s-rose',`共 ${all} 項`)}</div>`;
   if(!cs.length) h+=`<div class="oempty">還沒有餐費資料。到「餐費」新增分類和品項。</div>`;
   cs.forEach(c=>{ const its=itemsOf(c.id).filter(i=>FOV==='all'||(FOV==='done'?st(i):!st(i))); const allIts=itemsOf(c.id); const dn=allIts.filter(st).length; const s=c.s||'all';
     if(FOV!=='all'&&!its.length) return;
     h+=`<section class="ocard"><div class="ocard-h"><b>${esc(c.name||'未命名')}</b><span class="mode-pill m-${s}">${s==='all'?'全員分攤':s==='own'?'各付各的':(c.m||[]).length+' 人分攤'}</span><span class="lbl">${dn}/${allIts.length} 已買</span><span class="sp"></span><b class="oamt">$${fmt(C.catTot[c.id]||0)}</b></div>
     <div class="oprog"><i style="width:${allIts.length?Math.round(dn/allIts.length*100):0}%"></i></div>
     <div class="olist">${its.length?its.map(i=>{const ok=st(i); const v=evalFee(i.f); const qty=[i.q,i.u].filter(Boolean).join(' ');
-      return `<button type="button" class="orow item ${ok?'ok':'todo'}" data-jump="item" data-id="${i.id}"><span class="ock">${ok?'✓':''}</span><span class="on">${esc(i.n||'(未命名品項)')}${qty||i.s||i.r?`<small>${[qty,i.s,i.r].filter(Boolean).map(esc).join('・')}</small>`:''}</span><span class="owho">${ok?(i.p?esc(mName(i.p))+' 付':'贊助'):'<span class="lbl">還沒人買</span>'}${s==='own'&&i.who?`<small>給 ${esc(mName(i.who))}</small>`:''}</span><span class="oamt">${ok?'$'+fmt(v.v):'—'}</span></button>`}).join(''):'<div class="lbl" style="padding:8px 4px">這個分類還沒有品項</div>'}</div></section>`; });
+      return `<button type="button" class="orow item ${ok?'ok':'todo'}" data-jump="item" data-id="${i.id}"><span class="ock">${ok?'<i class="i i-check"></i>':''}</span><span class="on">${esc(i.n||'(未命名品項)')}${qty||i.s||i.r?`<small>${[qty,i.s,i.r].filter(Boolean).map(esc).join('・')}</small>`:''}</span><span class="owho">${ok?(i.p!=='__free'?esc(mName(i.p))+' 買':'贊助'):'<span class="lbl">還沒買</span>'}${s==='own'&&i.who?`<small>給 ${esc(mName(i.who))}</small>`:''}</span><span class="oamt">${ok?'$'+fmt(v.v):(v.v?'<span class="est">預估 $'+fmt(v.v)+'</span>':'—')}</span></button>`}).join(''):'<div class="lbl" style="padding:8px 4px">這個分類還沒有品項</div>'}</div></section>`; });
   const pb=Object.entries(paidBy).sort((a,b)=>b[1]-a[1]);
   if(pb.length) h+=`<section class="ocard"><div class="ocard-h"><b>誰代墊了多少</b></div><div class="olist">${pb.map(([id,v])=>`<div class="orow"><span class="av sm" style="background:${colorOf(mName(id))}">${esc(mName(id).slice(0,1))}</span><span class="on">${esc(mName(id))}</span><span class="oamt">$${fmt(v)}</span></div>`).join('')}</div></section>`;
   h+=`<section class="ocard"><div class="ocard-h"><b>每人餐費</b></div><div class="olist">${C.rows.map(r=>`<div class="orow"><span class="av sm" style="background:${colorOf(r.m.n||'?')}">${esc((r.m.n||'?').slice(0,1))}</span><span class="on">${esc(r.m.n||'(未命名)')}<small>${r.foodDet.length?r.foodDet.map(x=>esc(x.n)+' '+fmt(x.amt)).join('、'):'—'}</small></span><span class="oamt">$${fmt(r.food)}</span></div>`).join('')}</div></section>`;
   return h;
 }
-function ovlCopyText(){ const st=i=>{const v=evalFee(i.f); return v.ok&&v.v>0}; const want=FOV==='done'; let t=`【${S.title}】${want?'已買清單':'待買清單'}\n`; let n=0;
-  cats().forEach(c=>{ const its=itemsOf(c.id).filter(i=>want?st(i):!st(i)); if(!its.length) return; t+=`\n▍${c.name||'未命名'}\n`; its.forEach(i=>{ n++; const qty=[i.q,i.u].filter(Boolean).join(''); t+=`${want?'✅':'⬜'} ${i.n||'(未命名)'}${qty?' ×'+qty:''}${i.s?'（'+i.s+'）':''}${want&&i.p?' — '+mName(i.p)+' $'+fmt(evalFee(i.f).v):''}\n` }) });
+function ovlCopyText(){ const st=isBought; const want=FOV==='done'; let t=`【${S.title}】${want?'已買清單':'待買清單'}\n`; let n=0;
+  cats().forEach(c=>{ const its=itemsOf(c.id).filter(i=>want?st(i):!st(i)); if(!its.length) return; t+=`\n▍${c.name||'未命名'}\n`; its.forEach(i=>{ n++; const qty=[i.q,i.u].filter(Boolean).join(''); t+=`${want?'✅':'⬜'} ${i.n||'(未命名)'}${qty?' ×'+qty:''}${i.s?'（'+i.s+'）':''}${want?(i.p&&i.p!=='__free'?' — '+mName(i.p)+' $'+fmt(evalFee(i.f).v):' — 贊助'):(evalFee(i.f).v?' 預估 $'+fmt(evalFee(i.f).v):'')}\n` }) });
   return n?t.trim():(want?'目前還沒有已買的品項':'全部都買齊了 🎉') }
 function jumpTo(kind,id){
   closeOvl();
@@ -1101,9 +1284,55 @@ $('#ovlClose').onclick=closeOvl;
 $('#ovl').addEventListener('click',e=>{ if(e.target.id==='ovl'){ closeOvl(); return }
   const f=e.target.closest('[data-fov]'); if(f){ FOV=f.dataset.fov; renderOvl(); return }
   if(e.target.closest('[data-ovcopy]')){ copyText(ovlCopyText(),'已複製清單，可以貼到 LINE'); return }
-  const j=e.target.closest('[data-jump]'); if(j) jumpTo(j.dataset.jump,j.dataset.id) });
+  const j=e.target.closest('[data-jump]'); if(j){ jumpTo(j.dataset.jump,j.dataset.id); return }
+  const md=e.target.closest('[data-mdid]'); if(md){ openMember(md.dataset.mdid); return }
+  const xb=e.target.closest('[data-xk]'); if(xb){ const k=xb.dataset.xk, v=+xb.dataset.xv; const D={...(S.done||{})}; if(D[k]===v) delete D[k]; else D[k]=v; S.done=D; put('meta/main',{done:D}); renderSummary(); } });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&OVL) closeOvl() });
-function renderBasisSum(){ const e=$('#basisSum'); if(!e) return; e.innerHTML=`吃飯：小孩 ×<b>${esc(S.kidF)}</b>、幼兒 ×<b>${esc(S.babyF)}</b>　住宿：<i>每人算 1</i>`; const ed=document.querySelector('.bs-edit'); if(ed) ed.textContent=$('#basisBox').open?'收起 ▴':'調整 ▾' }
+// ---------- 品項：誰買的（還沒買／贊助／成員） ----------
+const isBought=i=>!!i.p&&(i.p==='__free'||S.members.some(m=>m.id===i.p));
+function buyBtn(i){ const ch='<i class="i i-chev-d bc"></i>';
+  if(!i.p) return `<button type="button" class="buy b-todo" data-buy="${i.id}" title="點一下標記已買"><i class="i i-cart"></i><span>還沒買</span>${ch}</button>`;
+  if(i.p==='__free') return `<button type="button" class="buy b-free" data-buy="${i.id}"><i class="i i-gift"></i><span>贊助・不計</span>${ch}</button>`;
+  const m=members().find(x=>x.id===i.p); return `<button type="button" class="buy b-done ${m?'':'b-bad'}" data-buy="${i.id}"><i class="i i-check"></i><span>${m?esc(m.n||'(未命名)')+' 付':'已刪除的成員'}</span>${ch}</button>`; }
+let BUYP=null;
+function buyClose(){ const p=$('#buyPop'); if(p) p.classList.remove('on'); const g=$('#buyBg'); if(g) g.classList.remove('on'); BUYP=null }
+function buyOpen(btn){ const it=S.items.find(x=>x.id===btn.dataset.buy); if(!it) return;
+  let pop=$('#buyPop'); if(!pop){ pop=document.createElement('div'); pop.id='buyPop'; pop.className='buy-pop'; const bg=document.createElement('div'); bg.id='buyBg'; bg.className='buy-bg'; bg.onclick=buyClose; document.body.appendChild(bg); document.body.appendChild(pop) }
+  BUYP=it.id; const ms=members(), f=num(it.f);
+  pop.innerHTML=`<div class="bp-h"><div class="bp-t"><b>${esc(it.n||'這個品項')}</b><small>${f?'$'+fmt(f):'還沒填金額'}</small></div><button type="button" class="bp-x" data-bpx aria-label="關閉"><i class="i i-x"></i></button></div>
+    <div class="bp-q">買好了嗎？點選誰付的錢</div>
+    <div class="bp-ms">${ms.length?ms.map(m=>`<button type="button" data-bpv="${m.id}" class="${it.p===m.id?'on':''}"><i class="i i-check"></i><span>${esc(m.n||'(未命名)')}</span></button>`).join(''):'<div class="lbl">還沒有成員，先到「成員」新增</div>'}</div>
+    <div class="bp-alt"><button type="button" data-bpv="" class="${!it.p?'on':''}"><i class="i i-cart"></i>還沒買</button><button type="button" data-bpv="__free" class="${it.p==='__free'?'on':''}"><i class="i i-gift"></i>贊助・不計</button></div>`;
+  const mob=matchMedia('(max-width:680px)').matches; pop.classList.toggle('sheet',mob); $('#buyBg').classList.toggle('dim',mob);
+  pop.style.left=pop.style.top=pop.style.width='';
+  pop.classList.add('on'); $('#buyBg').classList.add('on');
+  if(!mob){ const r=btn.getBoundingClientRect(), w=320; pop.style.width=w+'px'; pop.style.left=Math.max(12,Math.min(r.left,innerWidth-w-16))+'px'; const ph=pop.offsetHeight; pop.style.top=(r.bottom+ph+12>innerHeight?Math.max(12,r.top-ph-6):r.bottom+6)+'px' } }
+document.addEventListener('click',e=>{ const b=e.target.closest('[data-buy]'); if(b){ e.preventDefault(); e.stopPropagation(); buyOpen(b); return }
+  if(e.target.closest('[data-bpx]')){ buyClose(); return }
+  const v=e.target.closest('[data-bpv]'); if(v&&BUYP){ const it=S.items.find(x=>x.id===BUYP); buyClose(); if(!it) return; it.p=v.dataset.bpv; put('items/'+it.id,{p:it.p});
+    const tr=document.querySelector(`tr[data-iid="${it.id}"]`); if(tr){ tr.className=itemCls(it); const bb=tr.querySelector('[data-buy]'); if(bb) bb.outerHTML=buyBtn(it) }
+    renderSummary(); toast(!it.p?'已改回「還沒買」':it.p==='__free'?'已設為贊助・不計（不分攤）':'已標記為已買'); } },true);
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&BUYP) buyClose() });
+window.addEventListener('scroll',()=>{ const p=$('#buyPop'); if(BUYP&&p&&!p.classList.contains('sheet')) buyClose() },{passive:true});
+const itemCls=i=>!i.p?'plan':(i.p==='__free'?'excl':'bought');
+const istHtml_old=i=>!i.p?'<span class="ist ist-todo" data-ist><i class="i i-cart"></i>待買</span>':i.p==='__free'?'<span class="ist ist-free" data-ist><i class="i i-gift"></i>不計</span>':'<span class="ist ist-done" data-ist><i class="i i-check"></i> 已買</span>';
+document.addEventListener('click',e=>{ if(e.target.closest('[data-ovtodo]')){ e.preventDefault(); FOV='todo'; openOvl('food') } });
+function itemPayerOpts(sel){ const ms=members();
+  let h=`<option value="" ${!sel?'selected':''}><i class="i i-cart"></i>還沒買</option><option value="__free" ${sel==='__free'?'selected':''}><i class="i i-gift"></i>贊助／不計</option>`+ms.map(m=>`<option value="${m.id}" ${m.id===sel?'selected':''}>${esc(m.n||'(未命名)')}</option>`).join('');
+  if(sel&&sel!=='__free'&&!ms.some(m=>m.id===sel)) h+=`<option selected value="${esc(sel)}">（已刪除的成員）</option>`; return h }
+function headCount(){ const ms=S.members; return {g:ms.length,a:ms.reduce((s,m)=>s+num(m.a),0),k:ms.reduce((s,m)=>s+num(m.k),0),b:ms.reduce((s,m)=>s+num(m.b),0),get t(){return this.a+this.k+this.b}} }
+function memberOvl(C){
+  const hc=headCount(); const tot=C.rows.reduce((a,r)=>a+r.lodge+r.food,0); const D=S.done||{}; const X=transfers(C.rows);
+  const xdone=X.filter(x=>D[x.from+'>'+x.to]===x.v).length;
+  let h=`<div class="ostats">${stat('人數總計',hc.t+' 人','s-rose',`${hc.g} 組・大人 ${hc.a}・小孩 ${hc.k}・幼兒 ${hc.b}`)}${stat('計費人數',r2(C.totFW)+' 人','s-plum',`吃飯 ${r2(C.totFW)}・住宿 ${r2(C.rows.reduce((a,r)=>a+r.lw,0))}`)}${stat('全部花費','$'+fmt(tot),'s-haze',`住宿 $${fmt(C.lodgeTotal)}・餐費 $${fmt(C.foodPool)}`)}${stat('轉帳進度',X.length?xdone+'/'+X.length+' 筆':'—',!X.length?'':xdone===X.length?'s-sage':'s-warn',X.length?(xdone===X.length?'全部完成 <i class="i i-check"></i>':'還有 '+(X.length-xdone)+' 筆沒轉'):'不需要轉帳')}</div>`;
+  if(!C.rows.length) return h+`<div class="oempty">還沒有成員。到「成員」新增大家吧！</div>`;
+  h+=`<section class="ocard"><div class="ocard-h"><b>每人明細</b><span class="lbl">點一下看完整明細</span></div><div class="mtbl"><div class="mt-h"><span>成員</span><span>人數</span><span>住宿</span><span>餐費</span><span>合計</span><span>已付</span><span>結餘</span></div>
+  ${C.rows.map(r=>{const b=Math.round(r.bal); return `<button type="button" class="mt-r" data-mdid="${r.m.id}"><span class="mt-n"><span class="av sm" style="background:${colorOf(r.m.n||'?')}">${esc((r.m.n||'?').slice(0,1))}</span>${esc(r.m.n||'(未命名)')}</span><span class="mt-c" data-l="人數">${pplText(r.m)}</span><span data-l="住宿">${fmt(r.lodge)}</span><span data-l="餐費">${fmt(r.food)}</span><span data-l="合計"><b>${fmt(r.lodge+r.food)}</b></span><span data-l="已付">${fmt(r.pd)}</span><span data-l="結餘" class="mt-b ${b>0?'pay':b<0?'get':'zero'}">${b>0?'應付 '+fmt(b):b<0?'應收 '+fmt(-b):'已結清'}</span></button>`}).join('')}
+  <div class="mt-r mt-t"><span class="mt-n">總計</span><span class="mt-c" data-l="人數">${hc.t} 人</span><span data-l="住宿">${fmt(C.rows.reduce((a,r)=>a+r.lodge,0))}</span><span data-l="餐費">${fmt(C.rows.reduce((a,r)=>a+r.food,0))}</span><span data-l="合計"><b>${fmt(tot)}</b></span><span data-l="已付">${fmt(C.rows.reduce((a,r)=>a+r.pd,0))}</span><span data-l="結餘">${fmt(C.rows.reduce((a,r)=>a+r.bal,0))}</span></div></div></section>`;
+  if(X.length) h+=`<section class="ocard"><div class="ocard-h"><b>轉帳清單</b><span class="lbl">點一下打勾</span></div><div class="xfer">${X.map(x=>{const k=x.from+'>'+x.to, ok=D[k]===x.v; return `<button type="button" class="xf ${ok?'done':''}" data-xk="${esc(k)}" data-xv="${x.v}"><span class="ck">${ok?'<i class="i i-check"></i>':''}</span>${esc(x.from)} → ${esc(x.to)}　<b>$${fmt(x.v)}</b>${ok?'<small>已轉</small>':''}</button>`}).join('')}</div></section>`;
+  return h;
+}
+function renderBasisSum(){ const e=$('#basisSum'); if(!e) return; e.innerHTML=`吃飯：小孩 ×<b>${esc(S.kidF)}</b>、幼兒 ×<b>${esc(S.babyF)}</b>　住宿：<i>每人算 1</i>`; const ed=document.querySelector('.bs-edit'); if(ed) ed.innerHTML=($('#basisBox').open?'收起':'調整')+' <i class="i i-chev-d"></i>' }
 function renderMembers(){
   $('#memBody').innerHTML=members().map(m=>{
     const k=f=>`data-key="members/${m.id}|${f}"`;
@@ -1114,88 +1343,88 @@ function renderMembers(){
     <td data-l="幼兒 未滿3歲"><input data-f="b" ${k('b')} class="num" inputmode="decimal" value="${esc(m.b)}" placeholder="0"${dfl(String(m.b)==='0'?'0':null)}></td>
     <td class="wcol food w3" data-l="吃飯計費人數">${wCell(m,'w',foodW(m))}</td>
     <td class="wcol lodge w3" data-l="住宿計費人數">${wCell(m,'lw',lodgeW(m))}</td>
-    <td class="xcell"><button class="x" data-del title="刪除成員">✕</button></td></tr>`}).join('')
-    || `<tr><td colspan="7" class="lbl" style="padding:14px">還沒有成員，按「＋ 新增成員」開始。</td></tr>`;
+    <td class="xcell"><button class="x" data-del title="刪除成員"><i class="i i-x"></i></button></td></tr>`}).join('')
+    || `<tr class="empty-row"><td colspan="7" class="lbl" style="padding:14px">還沒有成員，按「＋ 新增成員」開始。</td></tr>`;
 }
 function payerOpts(sel,none){
   const ms=members();
   let h=`<option value="">${none||'（不計／贊助）'}</option>`+ms.map(m=>`<option value="${m.id}" ${m.id===sel?'selected':''}>${esc(m.n||'(未命名)')}</option>`).join('');
-  if(sel&&!ms.some(m=>m.id===sel)) h+=`<option selected value="${esc(sel)}">⚠ 已刪除的成員</option>`;
+  if(sel&&!ms.some(m=>m.id===sel)) h+=`<option selected value="${esc(sel)}">（已刪除的成員）</option>`;
   return h;
 }
 function feeHint(f){const r=evalFee(f); if(!r.ok) return `<div class="calc bad">算式看不懂</div>`; return `<div class="calc">${r.expr?'= '+fmt(r.v):''}</div>`}
 function chipsHtml(r){
   const ms=members(); if(!ms.length) return '<span class="lbl">先在「成員」新增人員</span>';
   const sel=ms.filter(m=>(r.m||[]).includes(m.id));
-  return ms.map(m=>{const on=(r.m||[]).includes(m.id); return `<button type="button" class="chip ${on?'on':''}" data-mid="${m.id}" data-key="rooms/${r.id}|m" aria-pressed="${on}"><span class="box">${on?'✓':''}</span><span class="cn">${esc(m.n||'(未命名)')}</span><small>${r2(lodgeW(m))} 人</small></button>`}).join('')
+  return ms.map(m=>{const on=(r.m||[]).includes(m.id); return `<button type="button" class="chip ${on?'on':''}" data-mid="${m.id}" data-key="rooms/${r.id}|m" aria-pressed="${on}"><span class="box">${on?'<i class="i i-check"></i>':''}</span><span class="cn">${esc(m.n||'(未命名)')}</span><small>${r2(lodgeW(m))} 人</small></button>`}).join('')
     +`<div class="picked">${sel.length?`已選 <b>${sel.map(m=>esc(m.n||'(未命名)')).join('、')}</b>（共 ${sel.length} 組・${r2(sel.reduce((a,m)=>a+lodgeW(m),0))} 人）`:'<span class="lbl">還沒選任何人</span>'}</div>`;
 }
 const MODES=[['head','照人數分','每人一樣多（小孩也算 1 人）'],['group','照家庭分','每家／每位一樣多，不管幾個人'],['custom','自己填金額','直接填每人要付多少']];
 const PEDIT=new Set();
 function splitHtml(r){
   const occ=members().filter(m=>(r.m||[]).includes(m.id));
-  if(!occ.length) return `<div class="split empty-split">👆 點上面的名字，選住這間的人</div>`;
+  if(!occ.length) return `<div class="split empty-split"><i class="i i-up"></i>點上面的名字，選住這間的人</div>`;
   const mode=r.s||'head', X=r.x||{}, XA=r.xa||{};
   if(occ.length===1){ const m=occ[0]; return `<div class="split one"><span>整間由 <b>${esc(m.n||'(未命名)')}</b> 負擔</span><span class="big" data-oamt="${m.id}"></span></div>`; }
-  const seg=`<div class="howto">${MODES.map(([k,t,s])=>`<button type="button" class="opt ${mode===k?'on':''}" data-smode="${k}" data-key="rooms/${r.id}|s"><b>${mode===k?'● ':'○ '}${t}</b><small>${s}</small></button>`).join('')}</div>`;
+  const seg=`<div class="howto">${MODES.map(([k,t,s])=>`<button type="button" class="opt ${mode===k?'on':''}" data-smode="${k}" data-key="rooms/${r.id}|s"><b>${t}</b><small>${s}</small></button>`).join('')}</div>`;
   const lines=occ.map(m=>{
     let mid='';
     if(mode==='head'){ const v=X[m.id]; const custom=!(v===undefined||v===null||v===''); const k=`${r.id}:${m.id}`;
       mid=(custom||PEDIT.has(k))?`<span class="ppl">住 <input class="num sm-in" data-ox="${m.id}" data-key="rooms/${r.id}|x:${m.id}" inputmode="decimal" value="${esc(v??'')}" placeholder="${r2(lodgeW(m))}"> 人</span>`
-        :`<button type="button" class="pp" data-pedit="${m.id}" title="這間實際住的人數不一樣時再改">${r2(lodgeW(m))} 人 ✎</button>`; }
+        :`<button type="button" class="pp" data-pedit="${m.id}" title="這間實際住的人數不一樣時再改">${r2(lodgeW(m))} 人 <i class="i i-edit"></i></button>`; }
     else if(mode==='group') mid=`<span class="ppl lbl">1 份</span>`;
     const amt=mode==='custom'?`<span class="amt-in">$ <input class="num sm-in w" data-ox="${m.id}" data-key="rooms/${r.id}|xa:${m.id}" inputmode="decimal" value="${esc(XA[m.id]??'')}" placeholder="0"></span>`:`<span class="amt" data-oamt="${m.id}"></span>`;
     return `<div class="rl"><span class="nm">${esc(m.n||'(未命名)')}</span>${mid}<span class="dots"></span>${amt}</div>`}).join('');
-  return `<div class="split"><div class="split-q">怎麼分？</div>${seg}<div class="receipt">${lines}</div><div class="split-sum" data-rsum></div></div>`;
+  return `<div class="split"><div class="split-q">怎麼分？</div>${seg}<div class="howto-desc">${(MODES.find(x=>x[0]===mode)||[])[2]||''}</div><div class="receipt">${lines}</div><div class="split-sum" data-rsum></div></div>`;
 }
 function renderPays(){
   const ps=pays();
-  $('#pays').innerHTML=`<div class="pay-h"><span class="pay-t">住宿付款紀錄</span><span class="lbl">押金、尾款或全額，誰付了多少</span><span class="sp"></span><button class="noprint" id="addPay">＋ 新增一筆付款</button></div>
+  $('#pays').innerHTML=`<div class="pay-h"><span class="pay-t">住宿付款紀錄</span><span class="lbl">押金、尾款或全額，誰付了多少</span><span class="sp"></span><button class="noprint" id="addPay"><i class="i i-plus"></i>新增一筆付款</button></div>
   ${ps.length?`<div class="tbl mcw"><table class="paytbl mc"><thead><tr><th style="width:120px">類型</th><th class="r" style="width:150px">金額</th><th style="width:170px">誰付的</th><th style="width:150px">日期</th><th>備註</th><th></th></tr></thead><tbody>
   ${ps.map(x=>{const k=f=>`data-key="pays/${x.id}|${f}"`; return `<tr data-pid="${x.id}">
     <td data-l="類型"><select data-pf="t" ${k('t')}>${PAYT.map(t=>`<option ${t===x.t?'selected':''}>${t}</option>`).join('')}</select></td>
-    <td data-l="金額"><input data-pf="f" ${k('f')} class="num" value="${esc(x.f)}" placeholder="0">${feeHint(x.f)}</td>
-    <td data-l="誰付的"><select data-pf="p" ${k('p')}>${payerOpts(x.p,'（選擇付款人）')}</select></td>
+    <td class="w4" data-l="金額"><input data-pf="f" ${k('f')} class="num" value="${esc(x.f)}" placeholder="0">${feeHint(x.f)}</td>
+    <td class="w3" data-l="誰付的"><select data-pf="p" ${k('p')}>${payerOpts(x.p,'（選擇付款人）')}</select></td>
     <td class="w3" data-l="日期"><input data-pf="d" ${k('d')} value="${esc(x.d)}" placeholder="例：10/1"></td>
     <td class="w3" data-l="備註"><input data-pf="r" ${k('r')} value="${esc(x.r)}" placeholder="例：轉帳給民宿"></td>
-    <td class="xcell"><button class="x" data-pdel title="刪除">✕</button></td></tr>`}).join('')}</tbody></table></div>`
+    <td class="xcell"><button class="x" data-pdel title="刪除"><i class="i i-x"></i></button></td></tr>`}).join('')}</tbody></table></div>`
   :`<div class="empty" style="margin:0">還沒有付款紀錄。誰付了押金、尾款或全額，按「＋ 新增一筆付款」記下來。</div>`}
   <div class="pay-sum" id="paySum"></div>`;
 }
 function renderNights(){
   $('#nights').innerHTML=nights().map(g=>{const rs=roomsOf(g.id); const op=isOpen(g.id); return `
   <div class="cat night ${op?'':'closed'}" data-gid="${g.id}">
-    <div class="cathead"><span class="tg" data-gtg>${op?'▾':'▸'}</span>
+    <div class="cathead"><span class="tg" data-gtg><i class="i i-chev-d"></i></span>
       <input data-gf="name" data-key="nights/${g.id}|name" value="${esc(g.name)}" placeholder="例如 10/24（六）"${dfl(/^第 \d+ 晚$/.test(g.name||'')?g.name:null)}>
       <span class="lbl">${rs.length} 間</span>
       <span class="tot" data-gtot></span>
-      <button class="x noprint" data-gcopy title="複製這一晚的所有房間，建立新的一晚">⧉<span class="hm"> 複製</span></button>
-      <button class="x noprint" data-gup title="上移">↑</button>
-      <button class="x noprint" data-gdel title="刪除這一晚">✕</button></div>
+      <button class="x noprint" data-gcopy title="複製這一晚的所有房間，建立新的一晚"><i class="i i-copy"></i><span class="hm"> 複製</span></button>
+      <button class="x noprint" data-gup title="上移"><i class="i i-up"></i></button>
+      <button class="x noprint" data-gdel title="刪除這一晚"><i class="i i-x"></i></button></div>
     <div class="catbody">
       ${rs.map(r=>`<div class="room" data-rid="${r.id}">
         <div class="room-top">
           <label class="fld grow"><span>房間／房型</span><input data-rf="n" data-key="rooms/${r.id}|n" value="${esc(r.n)}" placeholder="例：四人房 A"></label>
           <label class="fld fee"><span>這間多少錢</span><input data-rf="f" data-key="rooms/${r.id}|f" class="num" value="${esc(r.f)}" placeholder="0">${feeHint(r.f)}</label>
-          <button class="x" data-rdel title="刪除房間">✕</button>
+          <button class="x" data-rdel title="刪除房間"><i class="i i-x"></i></button>
         </div>
         <div class="chips-lbl">誰住這間？<span class="lbl">（點選打勾，可多選）</span></div>
         <div class="chips">${chipsHtml(r)}</div>
         ${splitHtml(r)}
       </div>`).join('')}
-      <button class="noprint" data-radd>＋ 新增房間</button>
+      <button class="noprint" data-radd><i class="i i-plus"></i>新增房間</button>
     </div>
-  </div>`}).join('') || `<div class="empty">還沒有住宿資料。按「＋ 新增一晚」，再在裡面新增房間、勾選住的人。<br>不同晚的房間或入住人員不一樣時，可以用「⧉ 複製」複製前一晚再修改。</div>`;
+  </div>`}).join('') || `<div class="empty">還沒有住宿資料。按「＋ 新增一晚」，再在裡面新增房間、勾選住的人。<br>不同晚的房間或入住人員不一樣時，可以用「<i class="i i-copy"></i> 複製」複製前一晚再修改。</div>`;
 }
 const FMODES=[['all','全員分攤','所有人依吃飯計費人數（共同採購）'],['some','選人分攤','只算有去的人（例：去餐廳）'],['own','各付各的','每個品項指定是誰的']];
 const FSUB=[['head','依吃飯計費人數'],['group','每組平分'],['custom','自己填金額']];
 function foodSplitHtml(c){
   const s=c.s||'all';
-  const opts=`<div class="howto fhow">${FMODES.map(([k,t,d])=>`<button type="button" class="opt ${s===k?'on':''}" data-fmode="${k}" data-key="cats/${c.id}|s"><b>${s===k?'● ':'○ '}${t}</b><small>${d}</small></button>`).join('')}</div>`;
+  const opts=`<div class="fhead"><span class="fq">怎麼分</span><div class="howto fhow">${FMODES.map(([k,t,d])=>`<button type="button" class="opt ${s===k?'on':''}" data-fmode="${k}" data-key="cats/${c.id}|s"><b>${t}</b><small>${d}</small></button>`).join('')}</div></div><div class="howto-desc">${(FMODES.find(x=>x[0]===s)||[])[2]||''}</div>`;
   if(s==='all') return `<div class="fsplit">${opts}</div>`;
-  if(s==='own') return `<div class="fsplit">${opts}<div class="lbl" style="margin-top:2px">👉 在下面每個品項選「誰的」，那個人就負擔這一項的全額。</div></div>`;
+  if(s==='own') return `<div class="fsplit">${opts}<div class="lbl" style="margin-top:2px">在下面每個品項選「誰的」</div></div>`;
   const ms=members(), sel=ms.filter(m=>(c.m||[]).includes(m.id)), sm=c.sm||'head', XA=c.xa||{};
-  const chips=ms.map(m=>{const on=(c.m||[]).includes(m.id); return `<button type="button" class="chip fchip ${on?'on':''}" data-fmid="${m.id}" data-key="cats/${c.id}|m"><span class="box">${on?'✓':''}</span><span class="cn">${esc(m.n||'(未命名)')}</span><small>${r2(foodW(m))} 人</small></button>`}).join('')
+  const chips=ms.map(m=>{const on=(c.m||[]).includes(m.id); return `<button type="button" class="chip fchip ${on?'on':''}" data-fmid="${m.id}" data-key="cats/${c.id}|m"><span class="box">${on?'<i class="i i-check"></i>':''}</span><span class="cn">${esc(m.n||'(未命名)')}</span><small>${r2(foodW(m))} 人</small></button>`}).join('')
     +`<div class="picked">${sel.length?`已選 <b>${sel.map(m=>esc(m.n||'')).join('、')}</b>（共 ${sel.length} 組）`:'<span class="lbl">還沒選有去的人</span>'}</div>`;
   const sub=sel.length>1?`<div class="fsub"><span class="lbl">怎麼分：</span>${FSUB.map(([k,t])=>`<button type="button" class="${sm===k?'on':''}" data-fsub="${k}" data-key="cats/${c.id}|sm">${t}</button>`).join('')}</div>`:'';
   const lines=sel.length?`<div class="receipt">${sel.map(m=>`<div class="rl"><span class="nm">${esc(m.n||'')}</span>${sm==='head'&&sel.length>1?`<span class="ppl lbl">${r2(foodW(m))} 人</span>`:''}<span class="dots"></span>${sm==='custom'&&sel.length>1?`<span class="amt-in">$ <input class="num sm-in w" data-fx="${m.id}" data-key="cats/${c.id}|xa:${m.id}" inputmode="decimal" value="${esc(XA[m.id]??'')}" placeholder="0"></span>`:`<span class="amt" data-famt="${m.id}"></span>`}</div>`).join('')}</div><div class="split-sum" data-fsum></div>`:'';
@@ -1204,30 +1433,30 @@ function foodSplitHtml(c){
 function renderCats(){
   $('#cats').innerHTML=cats().map(c=>{const its=itemsOf(c.id); const op=isOpen(c.id); const others=cats().filter(x=>x.id!==c.id);
     const own=(c.s||'all')==='own';
-    const mv=others.length?`<select class="mv" data-if="c" title="移到其他分類"><option value="">⇄</option>${others.map(x=>`<option value="${x.id}">移到「${esc(x.name||'未命名')}」</option>`).join('')}</select>`:''; return `
+    const mv=others.length?`<select class="mv" data-if="c" title="移到其他分類"><option value="">移動</option>${others.map(x=>`<option value="${x.id}">移到「${esc(x.name||'未命名')}」</option>`).join('')}</select>`:''; return `
   <div class="cat food-cat ${op?'':'closed'}" data-cid="${c.id}">
-    <div class="cathead"><span class="tg" data-tg>${op?'▾':'▸'}</span>
+    <div class="cathead"><span class="tg" data-tg><i class="i i-chev-d"></i></span>
       <input data-cf="name" data-key="cats/${c.id}|name" value="${esc(c.name)}" placeholder="分類名稱"${dfl(DEF_CATS.includes(c.name)?c.name:null)}>
       <span class="mode-pill m-${c.s||'all'}">${(c.s||'all')==='all'?'全員分攤':(c.s==='own'?'各付各的':`${(c.m||[]).length} 人分攤`)}</span>
-      <span class="lbl">${its.length} 項</span>
+      <span class="lbl cprog" data-cprog></span>
       <span class="tot" data-ctot></span>
-      <button class="x noprint" data-up title="上移">↑</button>
-      <button class="x noprint" data-cdel title="刪除分類">✕</button></div>
+      <button class="x noprint" data-up title="上移"><i class="i i-up"></i></button>
+      <button class="x noprint" data-cdel title="刪除分類"><i class="i i-x"></i></button></div>
     <div class="catbody">${foodSplitHtml(c)}<div class="tbl mcw"><table class="mc">
-      <thead><tr><th style="width:22%">品名</th><th style="width:7%">數量</th><th style="width:6%">單位</th><th style="width:12%">代墊人</th>${own?'<th style="width:12%">誰的</th>':''}<th class="r" style="width:11%">費用</th><th style="width:13%">購買地點</th><th>備註</th><th></th></tr></thead>
-      <tbody>${its.map(i=>{const k=f=>`data-key="items/${i.id}|${f}"`; return `<tr data-iid="${i.id}" class="${i.p?'':'excl'}">
-        <td class="w6" data-l="品名"><input data-if="n" ${k('n')} value="${esc(i.n)}" placeholder="品名"></td>
+      <thead><tr><th style="width:150px">買了嗎</th><th style="width:22%">品名</th><th style="width:7%">數量</th><th style="width:6%">單位</th>${own?'<th style="width:12%">誰的</th>':''}<th class="r" style="width:11%">費用</th><th style="width:13%">購買地點</th><th>備註</th><th></th></tr></thead>
+      <tbody>${its.map(i=>{const k=f=>`data-key="items/${i.id}|${f}"`; return `<tr data-iid="${i.id}" class="${itemCls(i)}">
+        <td class="paycell" data-l="買了嗎">${buyBtn(i)}</td>
+        <td class="w6 nmcell" data-l="品名"><input data-if="n" ${k('n')} value="${esc(i.n)}" placeholder="品名"></td>
         <td data-l="數量"><input data-if="q" ${k('q')} value="${esc(i.q)}"></td>
         <td data-l="單位"><input data-if="u" ${k('u')} value="${esc(i.u)}"></td>
-        <td data-l="代墊人"><select data-if="p" ${k('p')}>${payerOpts(i.p)}</select></td>
         ${own?`<td class="w3 whocol" data-l="誰的"><select data-if="who" ${k('who')}>${payerOpts(i.who,'（選誰的）')}</select></td>`:''}
         <td class="w3" data-l="費用"><input data-if="f" ${k('f')} class="num" value="${esc(i.f)}" placeholder="0">${feeHint(i.f)}</td>
         <td class="w3" data-l="購買地點"><input data-if="s" ${k('s')} value="${esc(i.s)}"></td>
         <td class="w6" data-l="備註"><input data-if="r" ${k('r')} value="${esc(i.r)}"></td>
-        <td class="xcell">${mv}<button class="x" data-idel title="刪除品項">✕</button></td></tr>`}).join('')}</tbody>
+        <td class="xcell">${mv}<button class="x" data-idel title="刪除品項"><i class="i i-x"></i></button></td></tr>`}).join('')}</tbody>
     </table></div>
-    <button class="noprint" data-iadd style="margin-top:8px">＋ 新增品項</button></div>
-  </div>`}).join('') || `<div class="empty">還沒有分類，按「＋ 新增分類」開始。</div>`;
+    <button class="noprint" data-iadd style="margin-top:8px"><i class="i i-plus"></i>新增品項</button></div>
+  </div>`}).join('') || `<div class="empty">還沒有餐費。<br>一起買食材、零食 → 按「＋ 共同採購」<br>一起去餐廳吃 → 按「＋ 餐廳／聚餐」</div>`;
 }
 
 function compute(){
@@ -1236,12 +1465,12 @@ function compute(){
   const totFW=ms.reduce((a,m)=>a+FW[m.id],0);
   // food
   const catById={}; S.cats.forEach(c=>catById[c.id]=c);
-  let foodPool=0, excluded=0, bad=0, orphan=0, allPool=0, foodUn=0, ownUnN=0; const catTot={}, catInfo={}, foodDet={}; ms.forEach(m=>foodDet[m.id]=[]);
+  let planned=0, plannedN=0, foodPool=0, excluded=0, bad=0, orphan=0, allPool=0, foodUn=0, ownUnN=0; const catTot={}, catInfo={}, foodDet={}; ms.forEach(m=>foodDet[m.id]=[]);
   const addF=(id,amt,label)=>{ if(!(id in food)) return; food[id]+=amt; const d=foodDet[id].find(x=>x.n===label); if(d) d.amt+=amt; else foodDet[id].push({n:label,amt}) };
   S.items.forEach(i=>{ const c=catById[i.c]; if(!c) return; const r=evalFee(i.f); if(!r.ok){bad++;return}
     if(i.p&&ids.has(i.p)){ paid[i.p]+=r.v; paidF[i.p]+=r.v; foodPool+=r.v; catTot[i.c]=(catTot[i.c]||0)+r.v;
       if((c.s||'all')==='own'){ if(i.who&&ids.has(i.who)) addF(i.who,r.v,c.name||'餐費'); else if(r.v){ foodUn+=r.v; ownUnN++ } } }
-    else { if(i.p) orphan++; excluded+=r.v; } });
+    else { if(i.p==='__free') excluded+=r.v; else if(!i.p){ planned+=r.v; plannedN++ } else orphan++; } });
   S.cats.forEach(c=>{ const tot=catTot[c.id]||0, s=c.s||'all', label=c.name||'餐費';
     if(s==='own'){ catInfo[c.id]={s,tot}; return }
     const occ=s==='all'?ms.map(m=>m.id):(c.m||[]).filter(id=>ids.has(id));
@@ -1280,7 +1509,7 @@ function compute(){
   const rows=ms.map(m=>({m,foodDet:foodDet[m.id],fw:FW[m.id],lw:LW[m.id],food:food[m.id],lodge:lodge[m.id],rooms:rooms[m.id],pd:paid[m.id],pdF:paidF[m.id],pdL:paidL[m.id],bal:food[m.id]+lodge[m.id]-paid[m.id]}));
   const notInRoom=S.rooms.length?ms.filter(m=>LW[m.id]>0&&!inRoom.has(m.id)).map(m=>m.n||'(未命名)'):[];
   const cnt={}; ms.forEach(m=>{if(m.n) cnt[m.n]=(cnt[m.n]||0)+1}); const dupes=Object.keys(cnt).filter(n=>cnt[n]>1);
-  return {rows,foodPool,allPool,foodUn,ownUnN,catInfo,totFW,lodgeTotal,excluded,bad,orphan,catTot,nightTot,roomInfo,unassigned,payBy,lodgePaid,payNoPayer,notInRoom,dupes};
+  return {rows,planned,plannedN,foodPool,allPool,foodUn,ownUnN,catInfo,totFW,lodgeTotal,excluded,bad,orphan,catTot,nightTot,roomInfo,unassigned,payBy,lodgePaid,payNoPayer,notInRoom,dupes};
 }
 function transfers(rows){
   const d=rows.map(r=>({n:r.m.n||'(未命名)',v:Math.round(r.bal)})).filter(x=>x.v!==0);
@@ -1291,26 +1520,31 @@ function transfers(rows){
 }
 function renderSummary(){
   const C=compute();
+  document.querySelectorAll('[data-cid]').forEach(el=>{const its=itemsOf(el.dataset.cid), t=its.filter(i=>!i.p).length, p=el.querySelector('[data-cprog]'); if(p) p.innerHTML=`${its.length} 項${t?`<b class="cp-todo">${t} 待買</b>`:its.length?'<b class="cp-ok">全買齊</b>':''}`});
+  { const todo=S.items.filter(i=>!i.p), est=todo.reduce((a,i)=>a+(num(i.f)||0),0), done=S.items.filter(i=>i.p&&i.p!=='__free');
+    const tip=todo.length?`<button type="button" class="todobar" data-ovtodo><span class="tb-ic"><i class="i i-cart"></i></span><span class="tb-tx"><span><b>待買 ${todo.length} 項</b>${est?`・預估 $${fmt(est)}`:''}</span><small>買好了：點品項的「還沒買」→ 選誰付的錢（還沒買的不算進分攤）</small></span><span class="tb-go">待買清單<i class="i i-chev-r"></i></span></button>`:'';
+    const fb=$('#foodTodo'); if(fb) fb.innerHTML=S.items.length?`<div class="fstat">${done.length?`<span class="st-done"><i class="i i-check"></i>已買 ${done.length} 項・$${fmt(C.foodPool)}</span>`:''}${todo.length?'':'<span class="st-ok"><i class="i i-sparkle"></i>全部買齊了</span>'}</div>${tip}`:'';
+    const sb=$('#sumTodo'); if(sb) sb.innerHTML=tip; }
   document.querySelectorAll('[data-cid]').forEach(el=>{el.querySelector('[data-ctot]').textContent='$'+fmt(C.catTot[el.dataset.cid]||0);
     const i=C.catInfo[el.dataset.cid]; if(!i||i.s==='all'||i.s==='own') return;
     el.querySelectorAll('[data-famt]').forEach(s=>{s.textContent='$'+fmt(i.share[s.dataset.famt]||0)});
     const sum=el.querySelector('[data-fsum]'); if(!sum) return;
-    sum.innerHTML=!i.tot?'<span class="lbl">在下面新增品項、填入費用後，會自動算出每人多少</span>':i.occ===1?`由 1 組全額負擔 <b>$${fmt(i.tot)}</b>`:i.sm==='custom'?(Math.abs(i.diff)<0.5?`<span class="ok">✓ 合計 $${fmt(i.assigned)}，剛好等於這筆餐費</span>`:`<span class="bad">⚠ 合計 $${fmt(i.assigned)}，${i.diff>0?'還差':'多了'} $${fmt(Math.abs(i.diff))}（餐費共 $${fmt(i.tot)}）</span>`):i.sm==='group'?`$${fmt(i.tot)} ÷ ${i.occ} 組 ＝ <b>每組 $${fmt(i.per)}</b>`:`$${fmt(i.tot)} ÷ ${r2(i.sw)} 人 ＝ <b>每人 $${fmt(i.per)}</b>`; });
+    sum.innerHTML=!i.tot?'<span class="lbl">在下面新增品項、填入費用後，會自動算出每人多少</span>':i.occ===1?`由 1 組全額負擔 <b>$${fmt(i.tot)}</b>`:i.sm==='custom'?(Math.abs(i.diff)<0.5?`<span class="ok"><i class="i i-check"></i> 合計 $${fmt(i.assigned)}，剛好等於這筆餐費</span>`:`<span class="bad"><i class="i i-warn"></i>合計 $${fmt(i.assigned)}，${i.diff>0?'還差':'多了'} $${fmt(Math.abs(i.diff))}（餐費共 $${fmt(i.tot)}）</span>`):i.sm==='group'?`$${fmt(i.tot)} ÷ ${i.occ} 組 ＝ <b>每組 $${fmt(i.per)}</b>`:`$${fmt(i.tot)} ÷ ${r2(i.sw)} 人 ＝ <b>每人 $${fmt(i.per)}</b>`; });
   document.querySelectorAll('[data-gid]').forEach(el=>{el.querySelector('[data-gtot]').textContent='$'+fmt(C.nightTot[el.dataset.gid]||0)});
   document.querySelectorAll('[data-rid]').forEach(el=>{const i=C.roomInfo[el.dataset.rid]; if(!i) return;
     el.querySelectorAll('[data-oamt]').forEach(s=>{s.textContent=i.hasFee?'$'+fmt(i.share[s.dataset.oamt]||0):'—'});
     const sum=el.querySelector('[data-rsum]'); if(!sum) return;
     if(!i.hasFee){ sum.innerHTML='<span class="lbl">填入「這間多少錢」後，會自動算出每人要付多少</span>'; return }
-    sum.innerHTML=i.mode==='custom'?(Math.abs(i.diff)<0.5?`<span class="ok">✓ 合計 $${fmt(i.assigned)}，剛好等於房費</span>`:`<span class="bad">⚠ 合計 $${fmt(i.assigned)}，${i.diff>0?'還差':'多了'} $${fmt(Math.abs(i.diff))} 才等於房費 $${fmt(i.cost)}</span>`)
+    sum.innerHTML=i.mode==='custom'?(Math.abs(i.diff)<0.5?`<span class="ok"><i class="i i-check"></i> 合計 $${fmt(i.assigned)}，剛好等於房費</span>`:`<span class="bad"><i class="i i-warn"></i>合計 $${fmt(i.assigned)}，${i.diff>0?'還差':'多了'} $${fmt(Math.abs(i.diff))} 才等於房費 $${fmt(i.cost)}</span>`)
       :i.mode==='group'?`$${fmt(i.cost)} ÷ ${i.occ} 組 ＝ <b>每組 $${fmt(i.per)}</b>`
       :`$${fmt(i.cost)} ÷ ${r2(i.sw)} 人 ＝ <b>每人 $${fmt(i.per)}</b>`;
   });
   // member weight placeholders
   document.querySelectorAll('#memBody tr[data-id]').forEach(tr=>{const m=S.members.find(x=>x.id===tr.dataset.id); if(!m) return; tr.querySelector('[data-f="w"]').placeholder=r2(foodW(m)); tr.querySelector('[data-f="lw"]').placeholder=r2(lodgeW(m))});
-  $('#memTot').innerHTML=`吃飯共 <b>${r2(C.totFW)}</b> 計費人・住宿共 <b>${r2(C.rows.reduce((a,r)=>a+r.lw,0))}</b> 計費人`;
+  { const hc=headCount(); $('#memTot').innerHTML=`<span class="hc">共 <b>${hc.g}</b> 組・大人 <b>${hc.a}</b>・小孩 <b>${hc.k}</b>・幼兒 <b>${hc.b}</b>・合計 <b>${hc.t}</b> 人</span><span>吃飯 <b>${r2(C.totFW)}</b> 計費人・住宿 <b>${r2(C.rows.reduce((a,r)=>a+r.lw,0))}</b> 計費人</span>`; }
   const ps=$('#paySum'); if(ps){ const ld=C.lodgeTotal-C.lodgePaid;
     ps.innerHTML=`<div class="pchips">${PAYT.filter(t=>t!=='其他'||C.payBy[t]).map(t=>`<span class="pc"><span>${t}</span><b>$${fmt(C.payBy[t])}</b></span>`).join('')}<span class="pc tot"><span>合計已付</span><b>$${fmt(C.lodgePaid)}</b></span><span class="pc tot"><span>住宿總額</span><b>$${fmt(C.lodgeTotal)}</b></span></div>
-    <div class="pstat ${!C.lodgeTotal?'':Math.abs(ld)<0.5?'ok':ld>0?'due':'over'}">${!C.lodgeTotal?'填入房價後會自動比對':Math.abs(ld)<0.5?'✓ 住宿費已全部付清':ld>0?`還有 $${fmt(ld)} 沒付（或還沒記錄）`:`付款比住宿總額多了 $${fmt(-ld)}`}</div>`; }
+    <div class="pstat ${!C.lodgeTotal?'':Math.abs(ld)<0.5?'ok':ld>0?'due':'over'}">${!C.lodgeTotal?'填入房價後會自動比對':Math.abs(ld)<0.5?'<i class="i i-check"></i> 住宿費已全部付清':ld>0?`還有 $${fmt(ld)} 沒付（或還沒記錄）`:`付款比住宿總額多了 $${fmt(-ld)}`}</div>`; }
   const total=C.foodPool+C.lodgeTotal;
   $('#kpis').innerHTML=`
     <div class="kpi k-lodge"><span>住宿總額</span><b>$${fmt(C.lodgeTotal)}</b></div>
@@ -1326,8 +1560,8 @@ function renderSummary(){
     + `<tr class="total"><td class="w6 sname" data-l="">總計</td><td class="r w3" data-l="住宿">${fmt(C.rows.reduce((a,r)=>a+r.lodge,0))}</td><td class="r w3" data-l="餐費">${fmt(C.rows.reduce((a,r)=>a+r.food,0))}</td><td class="r" data-l="合計">${fmt(C.rows.reduce((a,r)=>a+r.lodge+r.food,0))}</td><td class="r" data-l="已代墊">${fmt(C.rows.reduce((a,r)=>a+r.pd,0))}</td><td class="r" data-l="結餘">${fmt(C.rows.reduce((a,r)=>a+r.bal,0))}</td></tr>`;
   const X=transfers(C.rows);
   const D=S.done||{}; const nDone=X.filter(x=>D[x.from+'>'+x.to]===x.v).length;
-  $('#xfer').innerHTML=X.length?X.map(x=>{const k=x.from+'>'+x.to; const ok=D[k]===x.v; return `<button type="button" class="xf ${ok?'done':''}" data-xk="${esc(k)}" data-xv="${x.v}" title="${ok?'點一下取消':'轉完帳後點一下標記'}"><span class="ck">${ok?'✓':''}</span>${esc(x.from)} → ${esc(x.to)}　<b>$${fmt(x.v)}</b>${ok?'<small>已轉</small>':''}</button>`}).join('')
-    +`<div class="xf-note">${nDone===X.length?'<span class="ok">✓ 全部都轉完了！</span>':`已完成 ${nDone}／${X.length} 筆，轉完帳點一下打勾（金額變動後勾選會自動取消）`}</div>`:'<span class="lbl">目前沒有需要轉帳的款項。</span>';
+  $('#xfer').innerHTML=X.length?X.map(x=>{const k=x.from+'>'+x.to; const ok=D[k]===x.v; return `<button type="button" class="xf ${ok?'done':''}" data-xk="${esc(k)}" data-xv="${x.v}" title="${ok?'點一下取消':'轉完帳後點一下標記'}"><span class="ck">${ok?'<i class="i i-check"></i>':''}</span>${esc(x.from)} → ${esc(x.to)}　<b>$${fmt(x.v)}</b>${ok?'<small>已轉</small>':''}</button>`}).join('')
+    +`<div class="xf-note">${nDone===X.length?'<span class="ok"><i class="i i-check"></i> 全部都轉完了！</span>':`已完成 ${nDone}／${X.length} 筆，轉完帳點一下打勾（金額變動後勾選會自動取消）`}</div>`:'<span class="lbl">目前沒有需要轉帳的款項。</span>';
   const w=[];
   const ld=C.lodgeTotal-C.lodgePaid;
   if(C.lodgeTotal&&Math.abs(ld)>=0.5) w.push(ld>0?`住宿總額 $${fmt(C.lodgeTotal)}，付款紀錄目前只記了 $${fmt(C.lodgePaid)}，還差 $${fmt(ld)}（還沒付或還沒記），所以大家的結餘加起來不會是 0。`:`住宿付款紀錄 $${fmt(C.lodgePaid)} 比住宿總額 $${fmt(C.lodgeTotal)} 多了 $${fmt(-ld)}，請確認房價或付款金額。`);
@@ -1338,10 +1572,10 @@ function renderSummary(){
   if(C.bad) w.push(`有 ${C.bad} 筆金額算式看不懂，未計入（紅字標示）。`);
   if(C.orphan) w.push(`有 ${C.orphan} 筆品項的代墊人已被刪除，未計入。`);
   if(C.dupes.length) w.push(`成員名稱重複：${C.dupes.map(esc).join('、')}，選單會分不清楚。`);
-  if(C.excluded>0) w.push(`另有 $${fmt(C.excluded)} 屬於「不計／贊助」品項，沒有列入分攤。`);
+  if(C.excluded>0) w.push(`另有 $${fmt(C.excluded)} 屬於「贊助／不計」品項，沒有列入分攤。`);
   $('#warns').innerHTML=w.map(t=>`<div class="warn">${t}</div>`).join('');
   renderNav(C,w.length); renderMe(C,X); renderOverview(C,X,w.length);
-  if(OVL&&!renderSummary._inOvl){ renderSummary._inOvl=true; try{ const sc=$('#ovlBody').scrollTop; $('#ovlBody').innerHTML=OVL==='lodge'?lodgeOvl(C):foodOvl(C); $('#ovlBody').scrollTop=sc }catch(e){} renderSummary._inOvl=false }
+  if(OVL&&!renderSummary._inOvl){ renderSummary._inOvl=true; try{ const sc=$('#ovlBody').scrollTop; $('#ovlBody').innerHTML=ovlHtml(C); $('#ovlBody').scrollTop=sc }catch(e){} renderSummary._inOvl=false }
   return {C,X};
 }
 let UNDO=null, undoT=null;
@@ -1366,23 +1600,23 @@ function renderMe(C,X){
   const mine=X.filter(x=>x.from===nm||x.to===nm); const D=S.done||{};
   const cls=b>0?'pay':b<0?'get':'zero';
   box.innerHTML=`<div class="me-top"><span class="me-hi">嗨，${esc(nm)}</span><span class="sp"></span><span class="lbl">我是</span><select id="meSel">${opts}</select></div>
-  <div class="me-main"><div class="me-big ${cls}"><span class="lbl">${b>0?'你還要付':b<0?'你可以收回':'目前'}</span><span class="v">${b===0?'已結清 ✓':'$'+fmt(Math.abs(b))}</span>
+  <div class="me-main"><div class="me-big ${cls}"><span class="lbl">${b>0?'你還要付':b<0?'你可以收回':'目前'}</span><span class="v">${b===0?'已結清 <i class="i i-check"></i>':'$'+fmt(Math.abs(b))}</span>
     <div class="me-eq">住宿 <b>${fmt(r.lodge)}</b> ＋ 餐費 <b>${fmt(r.food)}</b> － 你已先付 <b>${fmt(r.pd)}</b>${r.rooms.length?`<br>住：${r.rooms.map(x=>esc(x.n)).join('、')}`:''}</div></div>
-    <div class="me-x">${mine.length?`<span class="t">${b>0?'請轉帳給':'會收到'}</span>`+mine.map(x=>{const k=x.from+'>'+x.to; const ok=D[k]===x.v; return `<button type="button" class="xf ${ok?'done':''}" data-xk="${esc(k)}" data-xv="${x.v}"><span class="ck">${ok?'✓':''}</span>${x.from===nm?'轉給 '+esc(x.to):esc(x.from)+' 轉給你'}　<b>$${fmt(x.v)}</b>${ok?'<small>已轉</small>':''}</button>`}).join('')+'<span class="lbl">轉完點一下打勾，大家都看得到</span>':'<span class="lbl">目前沒有需要轉帳的款項。</span>'}</div></div>`;
+    <div class="me-x">${mine.length?`<span class="t">${b>0?'請轉帳給':'會收到'}</span>`+mine.map(x=>{const k=x.from+'>'+x.to; const ok=D[k]===x.v; return `<button type="button" class="xf ${ok?'done':''}" data-xk="${esc(k)}" data-xv="${x.v}"><span class="ck">${ok?'<i class="i i-check"></i>':''}</span>${x.from===nm?'轉給 '+esc(x.to):esc(x.from)+' 轉給你'}　<b>$${fmt(x.v)}</b>${ok?'<small>已轉</small>':''}</button>`}).join('')+'<span class="lbl">轉完點一下打勾，大家都看得到</span>':'<span class="lbl">目前沒有需要轉帳的款項。</span>'}</div></div>`;
 }
 const pplText=m=>{const a=num(m.a),k=num(m.k),b=num(m.b); return [a?a+' 大':'',k?k+' 小':'',b?b+' 幼':''].filter(Boolean).join(' ')||'0 人'};
 function renderOverview(C,X,todo){
   const g=$('#ovGrid'); if(!g) return;
   const me=getMe(), D=S.done||{};
   $('#ovStat').textContent=S.members.length?`${S.members.length} 組・共 $${fmt(C.lodgeTotal+C.foodPool)}`:'';
-  $('#ovTodo').innerHTML=todo?`⚠ 有 ${todo} 項待處理（例如住宿還沒付清、房間沒選人）<button type="button" data-gotab="sum">查看</button>`:'';
+  $('#ovTodo').innerHTML=todo?`<i class="i i-warn"></i>有 ${todo} 項待處理（例如住宿還沒付清、房間沒選人）<button type="button" data-gotab="sum">查看</button>`:'';
   if(!C.rows.length){ g.innerHTML='<div class="empty" style="grid-column:1/-1">還沒有成員。到「成員」新增大家吧！</div>'; return }
   g.innerHTML=C.rows.map(r=>{const m=r.m, b=Math.round(r.bal), nm=m.n||'(未命名)';
     const xs=X.filter(x=>x.from===nm||x.to===nm); const done=xs.filter(x=>D[x.from+'>'+x.to]===x.v).length;
-    const xb=!xs.length?(b===0?'<span class="ovc-x ok">已結清</span>':''):done===xs.length?'<span class="ovc-x ok">✓ 轉帳完成</span>':`<span class="ovc-x wait">${b>0?'待轉帳':'待收款'} ${done}/${xs.length}</span>`;
+    const xb=!xs.length?(b===0?'<span class="ovc-x ok">已結清</span>':''):done===xs.length?'<span class="ovc-x ok"><i class="i i-check"></i> 轉帳完成</span>':`<span class="ovc-x wait">${b>0?'待轉帳':'待收款'} ${done}/${xs.length}</span>`;
     return `<button type="button" class="ovc ${m.id===me?'me':''}" data-mdid="${m.id}">${m.id===me?'<span class="ovc-me">你</span>':''}
       <div class="ovc-h"><span class="av" style="background:${colorOf(nm)}">${esc(nm.slice(0,1))}</span><div><div class="ovc-n">${esc(nm)}</div><div class="ovc-ppl">${pplText(m)}</div></div></div>
-      <div class="ovc-room ${r.rooms.length?'':'none'}">${r.rooms.length?'🛏 '+r.rooms.map(x=>esc(x.n.split('・').pop())).join('、'):'還沒排房間'}</div>
+      <div class="ovc-room ${r.rooms.length?'':'none'}">${r.rooms.length?'<i class="i i-bed"></i>'+r.rooms.map(x=>esc(x.n.split('・').pop())).join('、'):'還沒排房間'}</div>
       <div class="ovc-nums"><div><span>應攤</span> <b>${fmt(r.lodge+r.food)}</b></div><div><span>已付</span> <b>${fmt(r.pd)}</b></div></div>
       <div class="ovc-bal"><span class="v ${b>0?'pay':b<0?'get':'zero'}">${b>0?'應付 $'+fmt(b):b<0?'應收 $'+fmt(-b):'已結清'}</span>${xb}</div></button>`}).join('');
 }
@@ -1394,11 +1628,11 @@ function openMember(id){
   const xs=X.filter(x=>x.from===nm||x.to===nm);
   $('#mdTitle').textContent=nm+'　'+pplText(m);
   $('#mdBody').innerHTML=`
-   <div class="md-tot"><span>${b>0?'還要付':b<0?'可以收回':'目前'}</span><span class="${b>0?'pay':b<0?'get':''}">${b===0?'已結清 ✓':'$'+fmt(Math.abs(b))}</span></div>
+   <div class="md-tot"><span>${b>0?'還要付':b<0?'可以收回':'目前'}</span><span class="${b>0?'pay':b<0?'get':''}">${b===0?'已結清 <i class="i i-check"></i>':'$'+fmt(Math.abs(b))}</span></div>
    <div class="md-sec"><h5>住宿 $${fmt(r.lodge)}</h5>${r.rooms.length?r.rooms.map(x=>`<div class="md-row"><span>${esc(x.n)}</span><b>$${fmt(x.amt)}</b></div>`).join(''):'<div class="lbl">沒有排到房間</div>'}<div class="lbl">住宿算 ${r2(r.lw)} 人</div></div>
    <div class="md-sec"><h5>餐費・採購 $${fmt(r.food)}</h5>${r.foodDet.length?r.foodDet.map(x=>`<div class="md-row"><span>${esc(x.n)}</span><b>$${fmt(x.amt)}</b></div>`).join(''):'<div class="lbl">沒有分攤到餐費</div>'}<div class="lbl">吃飯算 ${r2(r.fw)} 人</div></div>
    <div class="md-sec"><h5>已先付 $${fmt(r.pd)}</h5>${[...ps,...its].length?[...ps,...its].map(x=>`<div class="md-row"><span>${esc(x.n)}</span><b>$${fmt(x.v)}</b></div>`).join(''):'<div class="lbl">還沒有代墊任何費用</div>'}</div>
-   <div class="md-sec"><h5>轉帳</h5>${xs.length?xs.map(x=>{const k=x.from+'>'+x.to, ok=D[k]===x.v; return `<button type="button" class="xf ${ok?'done':''}" data-xk="${esc(k)}" data-xv="${x.v}" style="margin:3px 0"><span class="ck">${ok?'✓':''}</span>${x.from===nm?'轉給 '+esc(x.to):esc(x.from)+' 轉給 '+esc(nm)}　<b>$${fmt(x.v)}</b>${ok?'<small>已轉</small>':''}</button>`}).join(''):'<div class="lbl">不需要轉帳</div>'}</div>
+   <div class="md-sec"><h5>轉帳</h5>${xs.length?xs.map(x=>{const k=x.from+'>'+x.to, ok=D[k]===x.v; return `<button type="button" class="xf ${ok?'done':''}" data-xk="${esc(k)}" data-xv="${x.v}" style="margin:3px 0"><span class="ck">${ok?'<i class="i i-check"></i>':''}</span>${x.from===nm?'轉給 '+esc(x.to):esc(x.from)+' 轉給 '+esc(nm)}　<b>$${fmt(x.v)}</b>${ok?'<small>已轉</small>':''}</button>`}).join(''):'<div class="lbl">不需要轉帳</div>'}</div>
    ${id!==getMe()?`<button type="button" id="mdIsMe">這是我（設為「你是哪一位」）</button>`:''}`;
   $('#mdModal').dataset.mid=id; $('#mdModal').classList.add('on');
 }
@@ -1421,7 +1655,8 @@ $('#memBody').addEventListener('input',e=>{
   const tr=e.target.closest('tr[data-id]'); if(!tr) return; const m=S.members.find(x=>x.id===tr.dataset.id); if(!m) return; const f=e.target.dataset.f;
   let v=e.target.value; if((f==='w'||f==='lw')&&v==='') v=null; m[f]=v;
   if(f==='w'||f==='lw'){ const t=tr.querySelector(`[data-reset="${f}"]`); const c=v!==null; t.textContent=c?'自訂':'自動'; t.classList.toggle('on',c); }
-  if(f==='n') document.querySelectorAll('select[data-if="p"],select[data-if="who"],select[data-pf="p"]').forEach(sel=>{const it=S.items.find(i=>i.id===sel.closest('tr')?.dataset.iid)||S.pays.find(x=>x.id===sel.closest('tr')?.dataset.pid); if(it) sel.innerHTML=sel.dataset.if==='who'?payerOpts(it.who,'（選誰的）'):payerOpts(it.p,sel.dataset.pf?'（選擇付款人）':'')});
+  if(f==='n') document.querySelectorAll('select[data-if="p"],select[data-if="who"],select[data-pf="p"]').forEach(sel=>{const it=S.items.find(i=>i.id===sel.closest('tr')?.dataset.iid)||S.pays.find(x=>x.id===sel.closest('tr')?.dataset.pid); if(it) sel.innerHTML=sel.dataset.if==='who'?payerOpts(it.who,'（選誰的）'):sel.dataset.pf?payerOpts(it.p,'（選擇付款人）'):itemPayerOpts(it.p)});
+  if(f==='n') document.querySelectorAll('[data-buy]').forEach(b=>{const it=S.items.find(i=>i.id===b.dataset.buy); if(it) b.outerHTML=buyBtn(it)});
   if(f!=='w') renderNightsKeep(); else renderSummary();
   put('members/'+m.id,{[f]:v});
 });
@@ -1494,7 +1729,7 @@ $('#cats').addEventListener('input',e=>{
 });
 $('#cats').addEventListener('change',e=>{ if(e.target.dataset.if==='c'&&e.target.value){ const tr=e.target.closest('tr'); const it=S.items.find(i=>i.id===tr.dataset.iid); if(!it) return; const to=e.target.value; it.c=to; it.o=maxO(itemsOf(to)); openMap[to]=true; saveOpen(); put('items/'+it.id,{c:it.c,o:it.o}); renderAll(); const cn=(S.cats.find(x=>x.id===to)||{}).name||''; toast(`已移到「${cn}」`); return }
   if(e.target.dataset.if==='who'){ const tr=e.target.closest('tr'); const it=S.items.find(i=>i.id===tr.dataset.iid); if(!it) return; it.who=e.target.value; renderSummary(); put('items/'+it.id,{who:it.who}); return }
-  if(e.target.dataset.if==='p'){ const tr=e.target.closest('tr'); const it=S.items.find(i=>i.id===tr.dataset.iid); if(!it) return; it.p=e.target.value; tr.classList.toggle('excl',!it.p); renderSummary(); put('items/'+it.id,{p:it.p}); }});
+  if(e.target.dataset.if==='p'){ const tr=e.target.closest('tr'); const it=S.items.find(i=>i.id===tr.dataset.iid); if(!it) return; it.p=e.target.value; tr.className=itemCls(it); renderSummary(); put('items/'+it.id,{p:it.p}); }});
 $('#cats').addEventListener('click',e=>{
   const cel=e.target.closest('[data-cid]'); if(!cel) return; const c=S.cats.find(x=>x.id===cel.dataset.cid); if(!c) return;
   const fm=e.target.closest('[data-fmode]'); if(fm){ c.s=fm.dataset.fmode; put('cats/'+c.id,{s:c.s}); renderAll(); return }
@@ -1505,7 +1740,7 @@ $('#cats').addEventListener('click',e=>{
   if(e.target.closest('[data-cdel]')){ const its=itemsOf(c.id); if(its.length && !confirmInline(e.target.closest('button'),`分類內有 ${its.length} 個品項，再按一次確認刪除`)) return;
     offerUndo(`分類「${c.name||''}」和 ${its.length} 個品項`,[snap('cats',c),...its.map(i=>snap('items',i))]);
     S.cats=S.cats.filter(x=>x!==c); remove('cats/'+c.id); its.forEach(i=>remove('items/'+i.id)); S.items=S.items.filter(i=>i.c!==c.id); renderAll(); return}
-  if(e.target.closest('[data-iadd]')){ openMap[c.id]=true; const it={id:nid(),c:c.id,n:'',q:'',u:'',p:getMe(),f:'',s:'',r:'',o:maxO(itemsOf(c.id))}; S.items.push(it); put('items/'+it.id,{},true); renderAll();
+  if(e.target.closest('[data-iadd]')){ openMap[c.id]=true; const it={id:nid(),c:c.id,n:'',q:'',u:'',p:'',f:'',s:'',r:'',o:maxO(itemsOf(c.id))}; S.items.push(it); put('items/'+it.id,{},true); renderAll();
     const el=document.querySelector(`[data-key="items/${it.id}|n"]`); el&&el.focus(); return}
   if(e.target.closest('[data-idel]')){ const tr=e.target.closest('tr'); {const it=S.items.find(x=>x.id===tr.dataset.iid); if(it) offerUndo(`品項「${it.n||''}」`,[snap('items',it)])} S.items=S.items.filter(x=>x.id!==tr.dataset.iid); remove('items/'+tr.dataset.iid); renderAll(); }
 });
@@ -1646,6 +1881,7 @@ function maybeHi(){ if(MODE!=='shared'||!EID||NICK||hiShown) return; hiShown=tru
 $('#hiList').addEventListener('click',e=>{const b=e.target.closest('[data-hid]'); if(!b) return; $('#hiModal').classList.remove('on'); setMe(b.dataset.hid); toast('嗨，'+NICK+'！') });
 $('#hiOk').onclick=()=>{ const v=$('#hiName').value.trim(); if(!v){ $('#hiName').focus(); return } NICK=v.slice(0,20); try{localStorage.setItem(KEY+'-nick',NICK)}catch(e){} $('#nick').value=NICK; $('#hiModal').classList.remove('on'); paintPeers(); poll(); toast('嗨，'+NICK+'！') };
 $('#hiSkip').onclick=()=>$('#hiModal').classList.remove('on');
+$('#bNick').onclick=()=>{ hiShown=true; $('#hiList').innerHTML=members().map(m=>`<button type="button" data-hid="${m.id}">${esc(m.n||'(未命名)')}</button>`).join(''); $('#hiName').value=NICK||''; $('#hiModal').classList.add('on') };
 function setupNick(){
   const box=$('#nickBox'); if(!box) return; box.style.display='';
   const inp=$('#nick'); inp.value=NICK; inp.placeholder='你的名字';
@@ -1711,9 +1947,9 @@ function renderEvList(){
       <button type="button" class="evc-main" data-evopen>
         <span class="evc-ic" style="background:${cur?'var(--rose)':colorOf(nm)}">${esc(nm.slice(0,1))}</span>
         <span class="evc-t"><b>${esc(nm)}</b><small>${e.d?esc(e.d):'未填日期'}</small></span>
-        ${cur?'<span class="evc-cur">✓ 目前開啟</span>':'<span class="evc-go">開啟 ›</span>'}
+        ${cur?'<span class="evc-cur"><i class="i i-check"></i> 目前開啟</span>':'<span class="evc-go">開啟 ›</span>'}
       </button>
-      <button type="button" class="evc-edit" data-evedit title="改名稱、日期或刪除" aria-label="編輯">✎</button></div>`}).join('');
+      <button type="button" class="evc-edit" data-evedit title="改名稱、日期或刪除" aria-label="編輯"><i class="i i-edit"></i></button></div>`}).join('');
 }
 $('#evBtn').onclick=()=>openEvModal(false);
 $('#evClose').onclick=()=>{ if(EID) $('#evModal').classList.remove('on') };
@@ -1738,7 +1974,7 @@ $('#evCreate').onclick=async()=>{
   const id='e'+Math.random().toString(36).slice(2,7); const ev={id,name,d:$('#evNewD').value.trim(),o:Date.now()}; EVENTS.push(ev); put('events/'+id,{},true);
   const seed=blank(); seed.kidF=S.kidF??0.5; seed.babyF=S.babyF??0;
   if($('#evCopy').checked&&EID) seed.members=members().map((m,i)=>({id:nid(),n:m.n,a:m.a,k:m.k,b:m.b,w:null,lw:null,o:i}));
-  seed.nights=[{id:nid(),name:'第 1 晚',o:0}]; seed.cats=[{id:nid(),name:'共同採購',s:'all',o:0}];
+  seed.nights=[]; seed.cats=[];
   $('#evNew').value=''; $('#evNewD').value=''; $('#evModal').classList.remove('on');
   await openEvent(id,seed); toast('已建立「'+name+'」');
 };
@@ -1768,7 +2004,7 @@ async function startShared(){
 window.__test={compute,transfers,convert,get S(){return S},get EID(){return EID},get EVENTS(){return EVENTS}};
 
 // ---------- PWA ----------
-const APP_VER='v10.4・2026.11.20';
+const APP_VER='v10.8・2026.11.20';
 try{ $('#verTxt').textContent='分帳小幫手 '+APP_VER }catch(e){}
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; $('#insGo').style.display='' });
