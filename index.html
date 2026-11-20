@@ -156,12 +156,12 @@ tr.total td{font-weight:800;background:var(--soft);border-top:1px solid var(--li
 tr.flash td{background:#F1E3E6;transition:background .6s}
 
 /* ---- modal / toast ---- */
-.modal{position:fixed;inset:0;background:rgba(40,32,36,.42);display:none;align-items:center;justify-content:center;padding:16px;z-index:20}
+.modal{position:fixed;inset:0;background:rgba(40,32,36,.42);display:none;align-items:center;justify-content:center;padding:16px;z-index:60}
 .modal.on{display:flex}
 .modal .box{background:#fff;border-radius:16px;padding:20px 22px;width:min(640px,100%);max-height:90vh;display:flex;flex-direction:column;gap:10px;box-shadow:0 12px 40px rgba(0,0,0,.2)}
 .modal .box > b{font-size:calc(17px + var(--fs-bump));font-weight:800}
 textarea{font:13px/1.4 ui-monospace,monospace;width:100%;min-height:260px;border:1px solid var(--input);border-radius:10px;padding:10px;background:#FCFAFA}
-.toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:#3A3236;color:#fff;border-radius:999px;padding:9px 18px;font-size:calc(13.5px + var(--fs-bump));opacity:0;transition:opacity .25s;pointer-events:none;z-index:30}
+.toast{z-index:70!important;position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:#3A3236;color:#fff;border-radius:999px;padding:9px 18px;font-size:calc(13.5px + var(--fs-bump));opacity:0;transition:opacity .25s;pointer-events:none;z-index:30}
 .toast.on{opacity:.94}
 .ro input,.ro select{pointer-events:none;background:var(--soft)}
 .ro .noprint,.ro [data-del],.ro [data-idel],.ro [data-cdel],.ro [data-up],.ro [data-iadd],.ro [data-reset]{display:none!important}
@@ -421,6 +421,49 @@ section.card,#warns{scroll-margin-top:110px}
 .ins-row{display:flex;gap:12px;align-items:center}
 .ins-row img{width:64px;height:64px;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 @media (display-mode: standalone){ #bInstall{display:none} }
+/* ---- 活動清單（重新設計） ---- */
+.ev-box{width:min(560px,100%)!important;gap:12px!important}
+.ev-h{display:flex;align-items:center}
+.ev-h b{font-size:calc(19px + var(--fs-bump))}
+.ev-add{width:100%;padding:12px;border:1.5px dashed var(--rose);border-radius:14px;background:var(--rose-tint);color:var(--rose-dark);font-size:calc(15px + var(--fs-bump));font-weight:800}
+.ev-add:hover{background:#F1E1E5}
+.ev-new{display:flex!important;flex-direction:column;gap:10px;padding:14px;border-radius:14px;background:var(--rose-tint);border:1px solid var(--rose-border)}
+.ev-new[style*="none"]{display:none!important}
+.ev-new-t{font-weight:800;color:var(--rose-dark)}
+.evf,.evc-form label{display:flex;flex-direction:column;gap:4px}
+.evf span,.evc-form label span{font-size:calc(12.5px + var(--fs-bump));font-weight:700;color:var(--mute)}
+.ev-copy{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--ink);font-size:calc(14px + var(--fs-bump))}
+.ev-copy input{width:18px;height:18px}
+.ev-new-btns{display:flex;justify-content:flex-end;gap:8px}
+.ev-sec-t{font-size:calc(12.5px + var(--fs-bump));font-weight:700;color:var(--mute);margin-top:2px}
+.ev-list{display:flex;flex-direction:column;gap:8px;overflow:auto;max-height:52vh}
+.evc{display:flex;align-items:stretch;border:1.5px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;transition:border-color .12s,box-shadow .12s}
+.evc:hover{border-color:var(--rose);box-shadow:0 4px 12px rgba(140,104,112,.12)}
+.evc.cur{border-color:var(--rose);background:#FFF9FA}
+.evc-main{flex:1;display:flex;align-items:center;gap:12px;padding:12px 14px;border:none;background:none;text-align:left;border-radius:0;min-width:0}
+.evc-main:hover{background:none}
+.evc-ic{width:40px;height:40px;border-radius:12px;color:#fff;display:grid;place-items:center;font-weight:800;font-size:17px;flex:none}
+.evc-t{flex:1;min-width:0;display:flex;flex-direction:column}
+.evc-t b{font-size:calc(16px + var(--fs-bump));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.evc-t small{font-size:calc(12.5px + var(--fs-bump));color:var(--mute);font-weight:600}
+.evc-go{font-weight:800;color:var(--rose-dark);white-space:nowrap;font-size:calc(14px + var(--fs-bump))}
+.evc-cur{font-weight:800;color:#fff;background:var(--rose);border-radius:999px;padding:3px 10px;white-space:nowrap;font-size:calc(12.5px + var(--fs-bump))}
+.evc-edit{border:none;border-left:1px solid var(--line2);border-radius:0;background:none;color:var(--mute);width:52px;font-size:18px}
+.evc-edit:hover{background:var(--soft);color:var(--rose-dark)}
+.evc.editing{flex-direction:column;padding:14px;gap:12px;border-color:var(--rose)}
+.evc-form{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:10px}
+.evc-acts{display:flex;align-items:center;gap:8px}
+.evc-acts .sp{flex:1}
+.evc-del{border-color:#F1CFD3;color:var(--danger);background:#fff}
+.evc-del:hover{background:var(--danger-tint);border-color:var(--danger)}
+@media (max-width:680px){
+  #evModal{align-items:flex-end;padding:0}
+  #evModal .ev-box{width:100%!important;max-height:88vh;border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+  #evModal .ev-box::before{content:'';width:40px;height:4px;border-radius:2px;background:#D9CFD2;align-self:center;margin:-6px 0 2px}
+  .ev-list{max-height:none}
+  .evc-form{grid-template-columns:1fr}
+  .evc-main{padding:14px 12px}
+}
 /* ---- v10: food split ---- */
 .fsplit{margin:2px 0 12px;padding:10px 12px;border-radius:12px;background:var(--plum-tint);border:1px solid var(--plum-border)}
 .fhow{margin-bottom:6px}
@@ -629,14 +672,17 @@ details.tip > div{margin-top:8px}
   </div>
 </div></div>
 <div class="modal" id="evModal"><div class="box ev-box">
-  <div class="ev-h"><b>所有活動</b><span class="lbl">同一個網址可以放很多次出遊／聚餐，各自分開計算</span><button class="x" id="evClose" title="關閉">✕</button></div>
+  <div class="ev-h"><b>我的活動</b><button class="x" id="evClose" title="關閉">✕</button></div>
   <div class="warn" id="evNoneMsg" style="display:none;margin:0">還沒有任何活動，先建立第一個吧！</div>
-  <div class="ev-new">
-    <input id="evNew" placeholder="新活動名稱，例如：2027 墾丁三天兩夜" maxlength="40">
-    <input id="evNewD" placeholder="日期（可不填）" maxlength="30">
-    <label class="lbl"><input type="checkbox" id="evCopy" checked style="width:auto"> 沿用目前活動的成員</label>
-    <button class="pri" id="evCreate">＋ 建立新活動</button>
+  <button type="button" class="ev-add" id="evAddBtn">＋ 建立新活動</button>
+  <div class="ev-new" id="evNewBox" style="display:none">
+    <div class="ev-new-t">建立新活動</div>
+    <label class="evf"><span>活動名稱</span><input id="evNew" placeholder="例如：2027 墾丁三天兩夜" maxlength="40"></label>
+    <label class="evf"><span>日期（可不填）</span><input id="evNewD" placeholder="例如：1/20–1/22" maxlength="30"></label>
+    <label class="ev-copy"><input type="checkbox" id="evCopy" checked> 沿用目前活動的成員名單</label>
+    <div class="ev-new-btns"><button type="button" id="evCancel">取消</button><button class="pri" id="evCreate">建立並開啟</button></div>
   </div>
+  <div class="ev-sec-t" id="evListT">點一下就能切換活動</div>
   <div id="evList" class="ev-list"></div>
 </div></div>
 <div class="modal" id="shareModal"><div class="box share-box">
@@ -1449,25 +1495,43 @@ async function openEvent(id,seed){
 function eventGone(){ EID=''; S=blank(); $('#wrap').classList.add('noev'); renderAll(); openEvModal(true); toast('這個活動已被刪除') }
 const evSorted=()=>EVENTS.slice().sort((a,b)=>num(b.o)-num(a.o));
 function renderEvBtn(){ const b=$('#evBtn'); if(!b) return; $('#bShare').style.display=(MODE==='shared'&&EID)?'':'none'; if(MODE!=='shared'){b.style.display='none';return} b.style.display=''; const ev=EVENTS.find(x=>x.id===EID); $('#evName0').textContent=ev?(ev.name||'(未命名活動)'):'選擇活動'; }
-function openEvModal(force){ renderEvList(); $('#evModal').classList.add('on'); $('#evClose').style.display=(force||!EID)?'none':''; $('#evNoneMsg').style.display=EVENTS.length?'none':''; }
+let EVEDIT='';
+function evNewOpen(on){ $('#evNewBox').style.display=on?'':'none'; $('#evAddBtn').style.display=on?'none':''; if(on){ $('#evCancel').style.display=EVENTS.length?'':'none'; setTimeout(()=>$('#evNew').focus(),50) } }
+function openEvModal(force){ EVEDIT=''; renderEvList(); evNewOpen(!EVENTS.length); $('#evModal').classList.add('on'); $('#evClose').style.display=(force||!EID)?'none':''; $('#evNoneMsg').style.display=EVENTS.length?'none':''; }
 function renderEvList(){
   const es=evSorted();
-  $('#evList').innerHTML=es.map(e=>`<div class="evr ${e.id===EID?'cur':''}" data-eid="${e.id}">
-    <div class="evm"><input class="evn" data-evf="name" value="${esc(e.name)}" placeholder="活動名稱"><input class="evd" data-evf="d" value="${esc(e.d||'')}" placeholder="日期（例：10/24–10/25）"></div>
-    <div class="eva">${e.id===EID?'<span class="evcur">目前開啟</span>':`<button class="pri" data-evopen>開啟</button>`}<button class="x" data-evdel title="刪除整個活動">刪除</button></div></div>`).join('');
+  $('#evListT').style.display=es.length?'':'none';
+  $('#evList').innerHTML=es.map(e=>{ const cur=e.id===EID, ed=EVEDIT===e.id, nm=e.name||'(未命名活動)';
+    if(ed) return `<div class="evc editing" data-eid="${e.id}">
+      <div class="evc-form"><label><span>活動名稱</span><input data-evf="name" value="${esc(e.name)}" placeholder="活動名稱" maxlength="40"></label>
+      <label><span>日期</span><input data-evf="d" value="${esc(e.d||'')}" placeholder="例：10/24–10/25（可不填）" maxlength="30"></label></div>
+      <div class="evc-acts"><button type="button" class="evc-del" data-evdel>刪除這個活動</button><span class="sp"></span><button type="button" class="pri" data-evdone>完成</button></div></div>`;
+    return `<div class="evc ${cur?'cur':''}" data-eid="${e.id}">
+      <button type="button" class="evc-main" data-evopen>
+        <span class="evc-ic" style="background:${cur?'var(--rose)':colorOf(nm)}">${esc(nm.slice(0,1))}</span>
+        <span class="evc-t"><b>${esc(nm)}</b><small>${e.d?esc(e.d):'未填日期'}</small></span>
+        ${cur?'<span class="evc-cur">✓ 目前開啟</span>':'<span class="evc-go">開啟 ›</span>'}
+      </button>
+      <button type="button" class="evc-edit" data-evedit title="改名稱、日期或刪除" aria-label="編輯">✎</button></div>`}).join('');
 }
 $('#evBtn').onclick=()=>openEvModal(false);
 $('#evClose').onclick=()=>{ if(EID) $('#evModal').classList.remove('on') };
 $('#evModal').addEventListener('click',e=>{ if(e.target.id==='evModal'&&EID) $('#evModal').classList.remove('on') });
-$('#evList').addEventListener('input',e=>{ const row=e.target.closest('[data-eid]'); const ev=EVENTS.find(x=>x.id===row.dataset.eid); if(!ev) return; const f=e.target.dataset.evf; ev[f]=e.target.value; put('events/'+ev.id,{[f]:ev[f]}); if(ev.id===EID&&f==='name'){S.title=ev.name; $('#title').value=ev.name; renderEvBtn()} });
+$('#evAddBtn').onclick=()=>{ EVEDIT=''; renderEvList(); evNewOpen(true) };
+$('#evCancel').onclick=()=>evNewOpen(false);
+$('#evList').addEventListener('input',e=>{ const row=e.target.closest('[data-eid]'); const ev=EVENTS.find(x=>x.id===row.dataset.eid); if(!ev) return; const f=e.target.dataset.evf; if(!f) return; ev[f]=e.target.value; put('events/'+ev.id,{[f]:ev[f]}); if(ev.id===EID&&f==='name'){S.title=ev.name; $('#title').value=ev.name; renderEvBtn()} });
+$('#evList').addEventListener('keydown',e=>{ if(e.key==='Enter'&&!e.isComposing&&e.target.dataset.evf){ e.preventDefault(); EVEDIT=''; renderEvList() } });
 $('#evList').addEventListener('click',async e=>{ const row=e.target.closest('[data-eid]'); if(!row) return; const id=row.dataset.eid; const ev=EVENTS.find(x=>x.id===id);
-  if(e.target.closest('[data-evopen]')){ $('#evModal').classList.remove('on'); await openEvent(id); toast('已切換到「'+(ev.name||'')+'」'); return }
+  if(e.target.closest('[data-evedit]')){ EVEDIT=id; evNewOpen(false); renderEvList(); const el=document.querySelector(`[data-eid="${id}"] [data-evf="name"]`); el&&el.focus(); return }
+  if(e.target.closest('[data-evdone]')){ EVEDIT=''; renderEvList(); toast('已儲存'); return }
+  if(e.target.closest('[data-evopen]')){ $('#evModal').classList.remove('on'); if(id===EID) return; await openEvent(id); toast('已切換到「'+(ev.name||'')+'」'); return }
   const del=e.target.closest('[data-evdel]'); if(del){ if(!confirmInline(del,`會刪除「${ev.name||''}」的所有資料，再按一次確認`)) return;
-    try{ await waitFlush(); await gas('deleteEvent',id,myInfo()); EVENTS=EVENTS.filter(x=>x.id!==id); toast('已刪除活動');
+    try{ await waitFlush(); await gas('deleteEvent',id,myInfo()); EVENTS=EVENTS.filter(x=>x.id!==id); EVEDIT=''; toast('已刪除活動');
       if(id===EID){ const nx=evSorted()[0]; if(nx){ await openEvent(nx.id) } else { EID=''; S=blank(); $('#wrap').classList.add('noev'); renderAll() } }
-      renderEvList(); $('#evNoneMsg').style.display=EVENTS.length?'none':''; renderEvBtn(); $('#evClose').style.display=EID?'':'none';
+      renderEvList(); $('#evNoneMsg').style.display=EVENTS.length?'none':''; if(!EVENTS.length) evNewOpen(true); renderEvBtn(); $('#evClose').style.display=EID?'':'none';
     }catch(err){ toast('刪除失敗，請再試一次') } }
 });
+$('#evNew').addEventListener('keydown',e=>{ if(e.key==='Enter'&&!e.isComposing){ e.preventDefault(); $('#evCreate').click() } });
 $('#evCreate').onclick=async()=>{
   const name=$('#evNew').value.trim(); if(!name){ $('#evNew').focus(); toast('請先輸入活動名稱'); return }
   const id='e'+Math.random().toString(36).slice(2,7); const ev={id,name,d:$('#evNewD').value.trim(),o:Date.now()}; EVENTS.push(ev); put('events/'+id,{},true);
