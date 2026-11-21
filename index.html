@@ -786,6 +786,43 @@ tr.plan select[data-if="p"]{font-weight:800}
 
 #addMeal{display:none!important}
 .h2acts button{white-space:nowrap}
+/* ===== v11.1 ===== */
+table.xt{min-width:0}
+.xt .xn{width:1%}
+.mgrid{margin-top:4px}
+.mcard{gap:9px}
+.ovc-w{display:flex;gap:6px;flex-wrap:wrap}
+.ovc-w span{font-size:calc(12.5px + var(--fs-bump));font-weight:700;border-radius:8px;padding:3px 8px}
+.ovc-w .wf{background:#F6EDF1;color:#8C5A6E}.ovc-w .wl{background:#ECF0F5;color:#56677F}
+.ovc-w b{font-variant-numeric:tabular-nums}.ovc-w em{font-style:normal;font-size:.85em;margin-left:3px;opacity:.75}
+.madd{align-items:center;justify-content:center;text-align:center;border:1.6px dashed #D3C2CA!important;background:#FCFAFB!important;color:var(--plum)!important;min-height:150px;gap:4px!important}
+.madd b{font-size:calc(15.5px + var(--fs-bump))}.madd small{color:var(--mute);font-weight:600}
+.ma-ic{width:40px;height:40px;border-radius:50%;background:#F1E9EE;display:grid;place-items:center;margin-bottom:4px}.ma-ic .i{width:20px;height:20px}
+.msteps{display:flex;flex-direction:column;gap:8px}
+.mstep{display:flex;align-items:center;gap:12px;padding:8px 10px 8px 14px;border:1px solid var(--line);border-radius:14px;background:#FCFAFB}
+.ms-l{flex:1}.ms-l b{font-size:calc(16px + var(--fs-bump))}.ms-l small{margin-left:8px;color:var(--mute);font-weight:600}
+.ms-c{display:flex;align-items:center;gap:6px}
+.ms-c .fs-in{width:64px;text-align:center!important;font-weight:800;font-size:18px!important;padding:8px 4px!important;min-height:44px}
+.ms-b{width:44px;height:44px;border-radius:50%!important;padding:0!important;font-size:22px!important;font-weight:700;display:grid!important;place-items:center;background:#fff!important;border:1.5px solid var(--line)!important;color:var(--plum)}
+.ms-b:active{transform:scale(.94)}
+.mw{border:1px solid var(--line);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.mw.wf{background:#FBF6F8}.mw.wl{background:#F6F8FB}
+.mw-t{font-weight:800}
+.mw .fs-in{text-align:center!important;font-weight:800;font-size:18px!important}
+.mw-a{font-size:12.5px!important;padding:4px 8px!important;border-radius:999px!important;border:1px solid var(--line)!important;background:#fff!important;color:var(--mute);font-weight:700}
+.mw-a.on{background:var(--ochre-tint)!important;color:var(--ochre-ink);border-color:var(--ochre-border)!important}
+@media (max-width:680px){
+  .xt .mh,.xt .dl{display:none}
+  .xt{font-size:13.5px}
+  .xt th{padding:8px 4px;white-space:normal;line-height:1.25;font-size:12px}
+  .xt td{padding:9px 4px}
+  .xt .xn{width:auto;white-space:nowrap!important;padding-left:9px!important;padding-right:8px!important;min-width:0!important;max-width:110px;overflow:hidden;text-overflow:ellipsis}
+  .xt td.bal{font-size:13px}
+  .xt-items td.xn{max-width:150px}
+  .xt td{white-space:nowrap}
+  .madd{min-height:130px}
+  .ms-c .fs-in{width:56px}
+}
 /* ---- v10.8b ---- */
 .calc:empty{display:none}
 select.mv{width:40px!important;height:36px;color:transparent!important;background:var(--plum-tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237A5C7A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8h15M15 4.5L19 8l-4 3.5M20 16H5M9 12.5L5 16l4 3.5'/%3E%3C/svg%3E") center/19px no-repeat!important;-webkit-appearance:none;appearance:none;padding:0!important}
@@ -1040,10 +1077,7 @@ details.tip > div{margin-top:8px}
     <div class="bx lodge"><h4>住宿的計費基準 <span class="lbl">（算人頭）</span></h4>
       <label>大人、小孩、幼兒每人都算 1 人<input id="kidL" type="hidden"></label></div>
   </div></details>
-  <div class="tbl mcw"><table class="mc">
-    <thead><tr><th style="width:18%">名稱 / 家庭</th><th class="r">大人</th><th class="r">小孩<br><span class="lbl">3–12 歲</span></th><th class="r">幼兒<br><span class="lbl">未滿 3 歲</span></th><th class="r food">吃飯<br>計費人數</th><th class="r lodge">住宿<br>計費人數</th><th></th></tr></thead>
-    <tbody id="memBody"></tbody>
-  </table></div>
+  <div class="ovgrid mgrid" id="memGrid"></div><table hidden><tbody id="memBody"></tbody></table>
   <div class="memtot" id="memTot"></div>
   <details class="hint tip"><summary><i class="i i-info"></i>說明</summary><div>計費人數會依上面的基準自動計算；遇到特殊情況可直接改成自訂數字（顯示「自訂」），點「自訂」可還原。單身朋友各自新增一位成員即可，住宿時再把他們選進同一間房。</div></details>
 </section>
@@ -1428,19 +1462,6 @@ function itemPayerOpts(sel){ const ms=members();
   if(sel&&sel!=='__free'&&!ms.some(m=>m.id===sel)) h+=`<option selected value="${esc(sel)}">（已刪除的成員）</option>`; return h }
 function headCount(){ const ms=S.members; return {g:ms.length,a:ms.reduce((s,m)=>s+num(m.a),0),k:ms.reduce((s,m)=>s+num(m.k),0),b:ms.reduce((s,m)=>s+num(m.b),0),get t(){return this.a+this.k+this.b}} }
 function renderBasisSum(){ const e=$('#basisSum'); if(!e) return; e.innerHTML=`吃飯：小孩 ×<b>${esc(S.kidF)}</b>、幼兒 ×<b>${esc(S.babyF)}</b>　住宿：<i>每人算 1</i>`; const ed=document.querySelector('.bs-edit'); if(ed) ed.innerHTML=($('#basisBox').open?'收起':'調整')+' <i class="i i-chev-d"></i>' }
-function renderMembers(){
-  $('#memBody').innerHTML=members().map(m=>{
-    const k=f=>`data-key="members/${m.id}|${f}"`;
-    return `<tr data-id="${m.id}">
-    <td class="w6" data-l="名稱／家庭"><input data-f="n" ${k('n')} value="${esc(m.n)}" placeholder="名稱"${dfl(isDefName(m.n)?m.n:null)}></td>
-    <td data-l="大人"><input data-f="a" ${k('a')} class="num" inputmode="decimal" value="${esc(m.a)}" placeholder="0"${dfl((isDefName(m.n)&&String(m.a)==='1')||String(m.a)==='0'?String(m.a):null)}></td>
-    <td data-l="小孩 3–12歲"><input data-f="k" ${k('k')} class="num" inputmode="decimal" value="${esc(m.k)}" placeholder="0"${dfl(String(m.k)==='0'?'0':null)}></td>
-    <td data-l="幼兒 未滿3歲"><input data-f="b" ${k('b')} class="num" inputmode="decimal" value="${esc(m.b)}" placeholder="0"${dfl(String(m.b)==='0'?'0':null)}></td>
-    <td class="wcol food w3" data-l="吃飯計費人數">${wCell(m,'w',foodW(m))}</td>
-    <td class="wcol lodge w3" data-l="住宿計費人數">${wCell(m,'lw',lodgeW(m))}</td>
-    <td class="xcell"><button class="x" data-del title="刪除成員"><i class="i i-x"></i></button></td></tr>`}).join('')
-    || `<tr class="empty-row"><td colspan="7" class="lbl" style="padding:14px">還沒有成員，按「＋ 新增成員」開始。</td></tr>`;
-}
 function payerOpts(sel,none){
   const ms=members();
   let h=`<option value="">${none||'（不計／贊助）'}</option>`+ms.map(m=>`<option value="${m.id}" ${m.id===sel?'selected':''}>${esc(m.n||'(未命名)')}</option>`).join('');
@@ -1533,7 +1554,7 @@ const xtable=(head,rows,foot,cls)=>`<div class="xtw"><table class="xt ${cls||''}
 const xsec=(title,sub,body)=>`<section class="xsec"><div class="xsec-h"><b>${title}</b>${sub?`<span class="lbl">${sub}</span>`:''}</div>${body}</section>`;
 const pplN=m=>num(m.a)+num(m.k)+num(m.b);
 const sepAt=(rows,i)=>i>0&&pplN(rows[i].m)<=1&&pplN(rows[i-1].m)>1?'sep':'';
-const balCell=b=>`<td class="bal ${b>0?'pay':b<0?'get':'zero'}">${b>0?'應付 '+fmt(b):b<0?'應收 '+fmt(-b):'已結清'}</td>`;
+const balCell=b=>`<td class="bal ${b>0?'pay':b<0?'get':'zero'}">${b>0?'<span class="dl">應</span>付 '+fmt(b):b<0?'<span class="dl">應</span>收 '+fmt(-b):'已結清'}</td>`;
 function memberOvl(C){
   const hc=headCount(); const tot=C.rows.reduce((a,r)=>a+r.lodge+r.food,0); const D=S.done||{}; const X=transfers(C.rows);
   const xdone=X.filter(x=>D[x.from+'>'+x.to]===x.v).length; const lwT=C.rows.reduce((a,r)=>a+r.lw,0); const me=getMe();
@@ -1541,7 +1562,7 @@ function memberOvl(C){
   if(!C.rows.length) return h+`<div class="oempty">還沒有成員。到「成員」新增大家吧！</div>`;
   const R=C.rows;
   h+=xsec('人數與計費人數',`吃飯：小孩 ×${esc(S.kidF)}、幼兒 ×${esc(S.babyF)}　住宿：每人算 1`,xtable(
-    `<th class="xn">成員</th><th>大人</th><th>小孩</th><th>幼兒</th><th class="hf">吃飯計費</th><th class="hl">住宿計費</th>`,
+    `<th class="xn">成員</th><th>大人</th><th>小孩</th><th>幼兒</th><th class="hf">吃飯<span class="dl">計費</span></th><th class="hl">住宿<span class="dl">計費</span></th>`,
     R.map((r,i)=>`<tr class="${sepAt(R,i)} ${r.m.id===me?'me':''}" data-mdid="${r.m.id}"><td class="xn">${esc(r.m.n||'(未命名)')}</td><td>${zz(num(r.m.a))}</td><td>${zz(num(r.m.k))}</td><td>${zz(num(r.m.b))}</td><td class="hf"><b>${r2(r.fw)}</b></td><td class="hl"><b>${r2(r.lw)}</b></td></tr>`).join(''),
     `<td class="xn">合計 ${hc.g} 組</td><td>${hc.a}</td><td>${hc.k}</td><td>${hc.b}</td><td class="hf">${r2(C.totFW)}</td><td class="hl">${r2(lwT)}</td>`));
   h+=xsec('每人費用','點一列看完整明細',xtable(
@@ -1562,10 +1583,10 @@ function foodOvl(C){
     if(FOV!=='all'&&!its.length) return;
     body+=`<tr class="grp"><td colspan="5"><div class="grp-in"><b>${esc(c.name||'未命名')}</b><span class="mode-pill m-${s}">${esc(FMODE_TXT(c))}</span><span class="lbl">${dn}/${allIts.length} 已買</span><span class="sp"></span><b>$${fmt(C.catTot[c.id]||0)}</b></div></td></tr>`;
     body+=its.map(i=>{ shown++; const ok=st(i), v=evalFee(i.f).v, qty=[i.q,i.u].filter(Boolean).join(' ');
-      return `<tr class="${ok?'ok':'todo'}" data-jump="item" data-id="${i.id}"><td class="xn"><span class="st">${ok?(i.p==='__free'?'<i class="i i-gift"></i>':'<i class="i i-check"></i>'):''}</span>${i.n?esc(i.n):'<span class="z">(未命名)</span>'}</td><td>${esc(qty)}</td><td class="r">${ok?fmt(v):(v?'<span class="est">預估 '+fmt(v)+'</span>':'<span class="z">—</span>')}</td><td>${ok?(i.p==='__free'?'<span class="z">贊助</span>':esc(mName(i.p))):'<span class="tdo">還沒買</span>'}${s==='own'&&i.who?`<small>給 ${esc(mName(i.who))}</small>`:''}</td><td class="l">${[i.s,i.r].filter(Boolean).map(esc).join('・')}</td></tr>` }).join('')||`<tr><td colspan="5" class="z" style="text-align:left">這組還沒有品項</td></tr>`; });
-  h+=xsec(FOV==='todo'?'待買清單':FOV==='done'?'已買清單':'品項清單','點一列可以直接修改',body?xtable(`<th class="xn">品名</th><th>數量</th><th>金額</th><th>誰付的</th><th class="l">地點／備註</th>`,body,FOV==='all'?`<td class="xn">已買合計</td><td></td><td class="r">${fmt(C.foodPool)}</td><td></td><td></td>`:'','xt-items'):'<div class="oempty">沒有符合的品項</div>');
+      return `<tr class="${ok?'ok':'todo'}" data-jump="item" data-id="${i.id}"><td class="xn"><span class="st">${ok?(i.p==='__free'?'<i class="i i-gift"></i>':'<i class="i i-check"></i>'):''}</span>${i.n?esc(i.n):'<span class="z">(未命名)</span>'}</td><td>${esc(qty)}</td><td class="r">${ok?fmt(v):(v?'<span class="est">預估 '+fmt(v)+'</span>':'<span class="z">—</span>')}</td><td>${ok?(i.p==='__free'?'<span class="z">贊助</span>':esc(mName(i.p))):'<span class="tdo">還沒買</span>'}${s==='own'&&i.who?`<small>給 ${esc(mName(i.who))}</small>`:''}</td><td class="l mh">${[i.s,i.r].filter(Boolean).map(esc).join('・')}</td></tr>` }).join('')||`<tr><td colspan="5" class="z" style="text-align:left">這組還沒有品項</td></tr>`; });
+  h+=xsec(FOV==='todo'?'待買清單':FOV==='done'?'已買清單':'品項清單','點一列可以直接修改',body?xtable(`<th class="xn">品名</th><th>數量</th><th>金額</th><th>誰付的</th><th class="l mh">地點／備註</th>`,body,FOV==='all'?`<td class="xn">已買合計</td><td></td><td class="r">${fmt(C.foodPool)}</td><td></td><td class="mh"></td>`:'','xt-items'):'<div class="oempty">沒有符合的品項</div>');
   const R=C.rows; if(R.length) h+=xsec('每人餐費',`依各組的分法計算・小孩吃飯 ×${esc(S.kidF)}`,xtable(
-    `<th class="xn">成員</th><th class="hf">吃飯計費</th>${cs.map(c=>`<th>${esc(c.name||'未命名')}</th>`).join('')}<th>應攤</th><th>已代墊</th>`,
+    `<th class="xn">成員</th><th class="hf">吃飯<span class="dl">計費</span></th>${cs.map(c=>`<th>${esc(c.name||'未命名')}</th>`).join('')}<th>應攤</th><th>已代墊</th>`,
     R.map((r,i)=>`<tr class="${sepAt(R,i)}" data-mdid="${r.m.id}"><td class="xn">${esc(r.m.n||'(未命名)')}</td><td class="hf">${r2(r.fw)}</td>${cs.map(c=>`<td>${mz(catShare(C,c,r.m.id))}</td>`).join('')}<td><b>${mz(r.food)}</b></td><td>${mz(r.pdF)}</td></tr>`).join(''),
     `<td class="xn">合計</td><td class="hf">${r2(C.totFW)}</td>${cs.map(c=>`<td>${fmt(C.catTot[c.id]||0)}</td>`).join('')}<td>${fmt(R.reduce((a,r)=>a+r.food,0))}</td><td>${fmt(R.reduce((a,r)=>a+r.pdF,0))}</td>`));
   return h;
@@ -1584,7 +1605,7 @@ function lodgeOvl(C){
   const R=C.rows; const nShare=(g,mid)=>roomsOf(g.id).reduce((a,r)=>a+((C.roomInfo[r.id]||{}).share||{})[mid]||0,0);
   const nTot=g=>R.reduce((a,r)=>a+nShare(g,r.m.id),0);
   if(R.length) h+=xsec('每人住宿','住宿每人都算 1（含小孩）',xtable(
-    `<th class="xn">成員</th><th class="hl">住宿計費</th>${gs.map(g=>`<th>${esc(g.name||'未命名')}</th>`).join('')}<th>應攤</th><th>已付</th>`,
+    `<th class="xn">成員</th><th class="hl">住宿<span class="dl">計費</span></th>${gs.map(g=>`<th>${esc(g.name||'未命名')}</th>`).join('')}<th>應攤</th><th>已付</th>`,
     R.map((r,i)=>`<tr class="${sepAt(R,i)}" data-mdid="${r.m.id}"><td class="xn">${esc(r.m.n||'(未命名)')}</td><td class="hl">${r2(r.lw)}</td>${gs.map(g=>`<td>${mz(nShare(g,r.m.id))}</td>`).join('')}<td><b>${mz(r.lodge)}</b></td><td>${mz(r.pdL)}</td></tr>`).join(''),
     `<td class="xn">合計</td><td class="hl">${r2(R.reduce((a,r)=>a+r.lw,0))}</td>${gs.map(g=>`<td>${fmt(nTot(g))}</td>`).join('')}<td>${fmt(R.reduce((a,r)=>a+r.lodge,0))}</td><td>${fmt(C.lodgePaid)}</td>`));
   if(S.pays.length) h+=xsec('付款紀錄','押金、尾款、全額',xtable(`<th class="xn">類型</th><th>誰付的</th><th>日期</th><th class="l">備註</th><th>金額</th>`,
@@ -1612,16 +1633,17 @@ function renderCats(){
 let FS=null, LASTCAT='';
 function fsEnsure(){ let s=$('#fsheet'); if(!s){ const bg=document.createElement('div'); bg.id='fsBg'; bg.className='fs-bg'; bg.onclick=()=>closeSheet(); document.body.appendChild(bg); s=document.createElement('div'); s.id='fsheet'; s.className='fsheet'; document.body.appendChild(s); bindSheet(s) } return s }
 function fsHide(){ const s=$('#fsheet'); if(s) s.classList.remove('on'); const b=$('#fsBg'); if(b) b.classList.remove('on'); document.body.classList.remove('noscroll') }
-function openSheet(k,id,isNew){ FS={k,id,isNew:!!isNew}; const s=fsEnsure(); s.dataset.k=k; s.innerHTML=k==='item'?itemSheet():groupSheet(); $('#fsBg').classList.add('on'); s.classList.add('on'); document.body.classList.add('noscroll'); if(isNew) setTimeout(()=>{ const f=s.querySelector('[data-autofocus]'); f&&f.focus() },80) }
+function openSheet(k,id,isNew){ FS={k,id,isNew:!!isNew}; const s=fsEnsure(); s.dataset.k=k; s.innerHTML=sheetHtml(); $('#fsBg').classList.add('on'); s.classList.add('on'); document.body.classList.add('noscroll'); if(isNew) setTimeout(()=>{ const f=s.querySelector('[data-autofocus]'); f&&f.focus() },80) }
 function closeSheet(){ if(!FS) return; const was=FS; FS=null; fsHide();
   if(was.k==='item'){ const it=S.items.find(x=>x.id===was.id); if(it&&was.isNew&&!String(it.n||'').trim()&&!String(it.f||'').trim()&&!it.p){ S.items=S.items.filter(x=>x!==it); remove('items/'+it.id) } }
+  if(was.k==='mem'){ const m=S.members.find(x=>x.id===was.id); if(m&&was.isNew&&!String(m.n||'').trim()){ S.members=S.members.filter(x=>x!==m); remove('members/'+m.id) } }
   if(was.k==='group'){ const c=S.cats.find(x=>x.id===was.id); if(c&&!String(c.name||'').trim()){ c.name=(c.s||'all')==='all'?'共同採購':c.s==='own'?'各付各的':'聚餐'; put('cats/'+c.id,{name:c.name}) } }
   renderAll() }
 function refreshSheet(){ if(!FS) return; const s=$('#fsheet'); if(!s) return;
-  if((FS.k==='item'&&!S.items.some(x=>x.id===FS.id))||(FS.k==='group'&&!S.cats.some(x=>x.id===FS.id))){ FS=null; fsHide(); return }
+  if((FS.k==='item'&&!S.items.some(x=>x.id===FS.id))||(FS.k==='group'&&!S.cats.some(x=>x.id===FS.id))||(FS.k==='mem'&&!S.members.some(x=>x.id===FS.id))){ FS=null; fsHide(); return }
   const a=document.activeElement; if(a&&s.contains(a)&&(a.tagName==='INPUT'||a.tagName==='TEXTAREA')) return;
   const b0=s.querySelector('.fs-body'), sc=b0?b0.scrollTop:0, d0=s.querySelector('details.fs-more'), op=d0&&d0.open;
-  s.innerHTML=FS.k==='item'?itemSheet():groupSheet(); const b=s.querySelector('.fs-body'); if(b) b.scrollTop=sc; const d=s.querySelector('details.fs-more'); if(d&&op) d.open=true }
+  s.innerHTML=sheetHtml(); const b=s.querySelector('.fs-body'); if(b) b.scrollTop=sc; const d=s.querySelector('details.fs-more'); if(d&&op) d.open=true }
 function chipRow(attr,opts,cur){ return `<div class="fs-chips">${opts.map(([v,t,cls])=>`<button type="button" class="fc2 ${cls||''} ${cur===v?'on':''}" data-${attr}="${esc(v)}">${cur===v?'<i class="i i-check"></i>':''}<span>${t}</span></button>`).join('')}</div>` }
 const calcTxt=r=>!r.ok?'算式看不懂':r.expr?'= '+fmt(r.v):'可以打算式，例如 120*3';
 function itemSheet(){ const i=S.items.find(x=>x.id===FS.id); if(!i) return ''; const c=S.cats.find(x=>x.id===i.c)||{}; const ms=members(); const k=f=>`data-key="items/${i.id}|${f}"`; const r=evalFee(i.f);
@@ -1657,6 +1679,17 @@ function newItem(cid){
   const it={id:nid(),c:cid,n:'',q:'',u:'',p:'',f:'',s:'',r:'',o:maxO(itemsOf(cid))}; S.items.push(it); put('items/'+it.id,{},true); renderCats(); renderSummary(); openSheet('item',it.id,true) }
 function newGroup(){ const c={id:nid(),name:'',s:'all',o:maxO(S.cats)}; S.cats.push(c); openMap[c.id]=true; saveOpen(); put('cats/'+c.id,{},true); renderAll(); openSheet('group',c.id,true) }
 function bindSheet(s){
+
+  s.addEventListener('input',e=>{ const f=e.target.dataset.mf; if(!f||!FS||FS.k!=='mem') return; const m=S.members.find(x=>x.id===FS.id); if(!m) return;
+    let v=e.target.value; if((f==='w'||f==='lw')&&v==='') v=null; m[f]=v; put('members/'+m.id,{[f]:v});
+    if(f==='w'||f==='lw'){ const a=s.querySelector(`[data-mreset="${f}"]`); if(a){ a.classList.toggle('on',v!==null); a.textContent=v!==null?'自訂中・點我還原':'自動計算' } }
+    else { const w=s.querySelector('[data-mf="w"]'), l=s.querySelector('[data-mf="lw"]'); if(w) w.placeholder=r2(foodW({...m,w:null})); if(l) l.placeholder=r2(lodgeW({...m,lw:null})) }
+    memChanged() });
+  s.addEventListener('click',e=>{ if(!FS||FS.k!=='mem') return; const m=S.members.find(x=>x.id===FS.id); if(!m) return;
+    const st=e.target.closest('[data-mstep]'); if(st){ const f=st.dataset.mstep; m[f]=Math.max(0,num(m[f])+num(st.dataset.d)); put('members/'+m.id,{[f]:m[f]}); memChanged(); refreshSheet(); return }
+    const rs=e.target.closest('[data-mreset]'); if(rs){ const f=rs.dataset.mreset; if(isAuto(m[f])){ const i=s.querySelector(`[data-mf="${f}"]`); i&&i.focus(); return } m[f]=null; put('members/'+m.id,{[f]:null}); memChanged(); refreshSheet(); return }
+    const d=e.target.closest('[data-mdel]'); if(d){ if(FS.isNew&&!String(m.n||'').trim()){ S.members=S.members.filter(x=>x!==m); remove('members/'+m.id); FS=null; fsHide(); renderAll(); return } memDelete(m,d); return }
+    if(e.target.closest('[data-mnext]')){ closeSheet(); newMember(); return } });
   s.addEventListener('input',e=>{ const f=e.target.dataset.it; if(!f||!FS||FS.k!=='item') return; const it=S.items.find(x=>x.id===FS.id); if(!it) return; it[f]=e.target.value;
     if(f==='f'){ const h=s.querySelector('[data-calc]'); const r=evalFee(it.f); h.className='calc fs-calc'+(r.ok?'':' bad'); h.textContent=calcTxt(r) }
     put('items/'+it.id,{[f]:it[f]}); renderCats(); renderSummary() });
@@ -1672,6 +1705,44 @@ function bindSheet(s){
   s.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeSheet(); return } if(e.key==='Enter'&&e.target.tagName==='INPUT'){ e.preventDefault(); if(e.target.dataset.it==='n'){ const f=s.querySelector('[data-it="f"]'); f&&f.focus() } else e.target.blur() } });
 }
 $('#addItem').onclick=()=>newItem();
+
+// ===== v11.1: 成員卡片＋編輯視窗 =====
+function renderMembers(){ const g=$('#memGrid'); if(!g) return; const C=compute(), X=transfers(C.rows), D=S.done||{}, me=getMe();
+  g.innerHTML=C.rows.map(r=>{const m=r.m, b=Math.round(r.bal), nm=m.n||'(未命名)';
+    const xs=X.filter(x=>x.from===nm||x.to===nm); const done=xs.filter(x=>D[x.from+'>'+x.to]===x.v).length;
+    const xb=!xs.length?(b===0?'<span class="ovc-x ok">已結清</span>':''):done===xs.length?'<span class="ovc-x ok"><i class="i i-check"></i> 轉帳完成</span>':`<span class="ovc-x wait">${b>0?'待轉帳':'待收款'} ${done}/${xs.length}</span>`;
+    return `<button type="button" class="ovc mcard ${m.id===me?'me':''}" data-medit="${m.id}" title="點一下修改">${m.id===me?'<span class="ovc-me">你</span>':''}
+      <div class="ovc-h"><span class="av" style="background:${colorOf(nm)}">${esc(nm.slice(0,1))}</span><div><div class="ovc-n">${esc(nm)}</div><div class="ovc-ppl">${pplText(m)}</div></div></div>
+      <div class="ovc-w"><span class="wf">吃飯 <b>${r2(r.fw)}</b>${isAuto(m.w)?'':'<em>自訂</em>'}</span><span class="wl">住宿 <b>${r2(r.lw)}</b>${isAuto(m.lw)?'':'<em>自訂</em>'}</span></div>
+      <div class="ovc-room ${r.rooms.length?'':'none'}">${r.rooms.length?'<i class="i i-bed"></i>'+r.rooms.map(x=>esc(x.n.split('・').pop())).join('、'):'還沒排房間'}</div>
+      <div class="ovc-nums"><div><span>應攤</span> <b>${fmt(r.lodge+r.food)}</b></div><div><span>已付</span> <b>${fmt(r.pd)}</b></div></div>
+      <div class="ovc-bal"><span class="v ${b>0?'pay':b<0?'get':'zero'}">${b>0?'應付 $'+fmt(b):b<0?'應收 $'+fmt(-b):'已結清'}</span>${xb}</div></button>`}).join('')
+    +`<button type="button" class="ovc madd" data-madd><span class="ma-ic"><i class="i i-plus"></i></span><b>新增成員</b><small>一個家庭或一位朋友</small></button>`;
+}
+function newMember(){ const m={id:nid(),n:'',a:1,k:0,b:0,w:null,lw:null,o:maxO(S.members)}; S.members.push(m); put('members/'+m.id,{},true); renderAll(); openSheet('mem',m.id,true) }
+function memDelete(m,btn){ const used=S.items.some(i=>i.p===m.id)||S.pays.some(x=>x.p===m.id)||S.rooms.some(r=>(r.m||[]).includes(m.id));
+  if(used && !confirmInline(btn,'有代墊或住房紀錄，再按一次刪除')) return;
+  const U=[snap('members',m)]; S.rooms.forEach(r=>{ if((r.m||[]).includes(m.id)) U.push(snap('rooms',r)) }); S.cats.forEach(c=>{ if((c.m||[]).includes(m.id)) U.push(snap('cats',c)) }); offerUndo(`成員「${m.n||''}」`,U);
+  S.members=S.members.filter(x=>x!==m); remove('members/'+m.id);
+  S.rooms.forEach(r=>{ if((r.m||[]).includes(m.id)){ r.m=r.m.filter(x=>x!==m.id); put('rooms/'+r.id,{m:r.m}) } });
+  S.cats.forEach(c=>{ if((c.m||[]).includes(m.id)){ c.m=c.m.filter(x=>x!==m.id); put('cats/'+c.id,{m:c.m}) } });
+  FS=null; fsHide(); renderAll() }
+function memSheet(){ const m=S.members.find(x=>x.id===FS.id); if(!m) return ''; const k=f=>`data-key="members/${m.id}|${f}"`;
+  const step=(f,lbl,sub)=>`<div class="mstep"><div class="ms-l"><b>${lbl}</b>${sub?`<small>${sub}</small>`:''}</div><div class="ms-c"><button type="button" class="ms-b" data-mstep="${f}" data-d="-1" aria-label="減少">−</button><input class="fs-in num" data-mf="${f}" ${k(f)} inputmode="numeric" value="${esc(m[f]??0)}"><button type="button" class="ms-b" data-mstep="${f}" data-d="1" aria-label="增加">+</button></div></div>`;
+  const wc=(f,lbl,val,cls)=>{const c=!isAuto(m[f]); return `<div class="mw ${cls}"><div class="mw-t">${lbl}</div><input class="fs-in num" data-mf="${f}" ${k(f)} inputmode="decimal" value="${c?esc(m[f]):''}" placeholder="${r2(val)}"><button type="button" class="mw-a ${c?'on':''}" data-mreset="${f}">${c?'自訂中・點我還原':'自動計算'}</button></div>`};
+  return `<div class="fs-h"><div class="fs-tt"><b>${FS.isNew?'新增成員':'編輯成員'}</b><small>一個家庭或一位單身朋友算一組</small></div><button type="button" class="bp-x" data-fsx aria-label="關閉"><i class="i i-x"></i></button></div>
+  <div class="fs-body">
+    <label class="fs-l">名稱／家庭</label><input class="fs-in big" data-mf="n" ${k('n')} value="${esc(m.n)}" placeholder="例：小明家、阿華" data-autofocus autocomplete="off" enterkeyhint="done">
+    <label class="fs-l">有幾個人</label>
+    <div class="msteps">${step('a','大人','')}${step('k','小孩','3–12 歲')}${step('b','幼兒','未滿 3 歲')}</div>
+    <label class="fs-l">計費人數<span class="lbl">依人數自動算，特殊情況可以自己改</span></label>
+    <div class="fs-grid2">${wc('w','吃飯',foodW({...m,w:null}),'wf')}${wc('lw','住宿',lodgeW({...m,lw:null}),'wl')}</div>
+    <div class="lbl" style="margin-top:8px">吃飯：小孩 ×${esc(S.kidF)}、幼兒 ×${esc(S.babyF)}；住宿：每人都算 1</div>
+  </div>
+  <div class="fs-f"><button type="button" class="fs-del" data-mdel><i class="i i-x"></i>刪除</button><span class="sp"></span>${FS.isNew?'<button type="button" class="fs-next" data-mnext><i class="i i-plus"></i>再新增一位</button>':''}<button type="button" class="pri fs-ok" data-fsx>完成</button></div>` }
+const sheetHtml=()=>FS.k==='item'?itemSheet():FS.k==='mem'?memSheet():groupSheet();
+function memChanged(){ renderMembers(); renderNightsKeep() }
+document.addEventListener('click',e=>{ const c=e.target.closest('[data-medit]'); if(c){ openSheet('mem',c.dataset.medit); return } if(e.target.closest('[data-madd]')) newMember() });
 
 function compute(){
   const ms=members(); const ids=new Set(ms.map(m=>m.id));
@@ -1827,11 +1898,11 @@ function renderOverview(C,X,todo){
   g.style.display='block';
   if(!C.rows.length){ g.innerHTML='<div class="empty">還沒有成員。到「成員」新增大家吧！</div>'; return }
   const R=C.rows, tot=R.reduce((a,r)=>a+r.lodge+r.food,0), hc=headCount();
-  g.innerHTML=xtable(`<th class="xn">成員</th><th>人數</th><th>餐費</th><th>住宿</th><th>應攤</th><th>已付</th><th>結餘</th><th>轉帳</th>`,
+  g.innerHTML=xtable(`<th class="xn">成員</th><th class="mh">人數</th><th>餐費</th><th>住宿</th><th>應攤</th><th>已付</th><th>結餘</th><th class="mh">轉帳</th>`,
     R.map((r,i)=>{const m=r.m, b=Math.round(r.bal), nm=m.n||'(未命名)'; const xs=X.filter(x=>x.from===nm||x.to===nm); const dn=xs.filter(x=>D[x.from+'>'+x.to]===x.v).length;
       const xb=!xs.length?'<span class="z">—</span>':dn===xs.length?'<span class="xok"><i class="i i-check"></i>完成</span>':`<span class="xw">${b>0?'待轉':'待收'} ${dn}/${xs.length}</span>`;
-      return `<tr class="${sepAt(R,i)} ${m.id===me?'me':''}" data-mdid="${m.id}"><td class="xn">${esc(nm)}${m.id===me?'<span class="you">你</span>':''}</td><td>${pplText(m)}</td><td>${mz(r.food)}</td><td>${mz(r.lodge)}</td><td><b>${mz(r.food+r.lodge)}</b></td><td>${mz(r.pd)}</td>${balCell(b)}<td>${xb}</td></tr>`}).join(''),
-    `<td class="xn">合計 ${hc.g} 組</td><td>${hc.t} 人</td><td>${fmt(R.reduce((a,r)=>a+r.food,0))}</td><td>${fmt(R.reduce((a,r)=>a+r.lodge,0))}</td><td>${fmt(tot)}</td><td>${fmt(R.reduce((a,r)=>a+r.pd,0))}</td><td></td><td></td>`,'xt-ov');
+      return `<tr class="${sepAt(R,i)} ${m.id===me?'me':''}" data-mdid="${m.id}"><td class="xn">${esc(nm)}${m.id===me?'<span class="you">你</span>':''}</td><td class="mh">${pplText(m)}</td><td>${mz(r.food)}</td><td>${mz(r.lodge)}</td><td><b>${mz(r.food+r.lodge)}</b></td><td>${mz(r.pd)}</td>${balCell(b)}<td class="mh">${xb}</td></tr>`}).join(''),
+    `<td class="xn">合計 ${hc.g} 組</td><td class="mh">${hc.t} 人</td><td>${fmt(R.reduce((a,r)=>a+r.food,0))}</td><td>${fmt(R.reduce((a,r)=>a+r.lodge,0))}</td><td>${fmt(tot)}</td><td>${fmt(R.reduce((a,r)=>a+r.pd,0))}</td><td></td><td class="mh"></td>`,'xt-ov');
 }
 function openMember(id){
   const {C,X}=renderSummary(); const r=C.rows.find(x=>x.m.id===id); if(!r) return; const m=r.m, nm=m.n||'(未命名)', b=Math.round(r.bal), D=S.done||{};
@@ -1884,7 +1955,7 @@ $('#memBody').addEventListener('click',e=>{
     renderAll(); }
   const rs=e.target.closest('[data-reset]'); if(rs){ const f=rs.dataset.reset; m[f]=null; put('members/'+m.id,{[f]:null}); renderAll(); }
 });
-$('#addMem').onclick=()=>{const m={id:nid(),n:'成員'+(S.members.length+1),a:1,k:0,b:0,w:null,lw:null,o:maxO(S.members)}; S.members.push(m); put('members/'+m.id,{},true); renderAll(); const el=document.querySelector(`[data-key="members/${m.id}|n"]`); el&&el.focus();};
+$('#addMem').onclick=()=>newMember();
 
 // ---------- events: lodging ----------
 $('#nights').addEventListener('input',e=>{
@@ -2218,7 +2289,7 @@ async function startShared(){
 window.__test={compute,transfers,convert,get S(){return S},get EID(){return EID},get EVENTS(){return EVENTS}};
 
 // ---------- PWA ----------
-const APP_VER='v11.0・2026.11.21';
+const APP_VER='v11.1・2026.11.21';
 try{ $('#verTxt').textContent='分帳小幫手 '+APP_VER }catch(e){}
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; $('#insGo').style.display='' });
