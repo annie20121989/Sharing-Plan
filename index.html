@@ -823,6 +823,35 @@ table.xt{min-width:0}
   .madd{min-height:130px}
   .ms-c .fs-in{width:56px}
 }
+/* ===== v11.2 ===== */
+#fsheet>div[data-gid],#fsheet>div[data-cid],#fsheet .room{display:flex;flex-direction:column;min-height:0;flex:1 1 auto;overflow:hidden}
+.i-image{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='4.5' width='17' height='15' rx='2.5'/%3E%3Ccircle cx='9' cy='10' r='1.6'/%3E%3Cpath d='M20.5 16l-5-5L6 19.5'/%3E%3C/svg%3E")}
+.rrow,.prow{grid-template-columns:30px minmax(0,1fr) auto!important}
+.rr-ic{width:30px;height:30px;border-radius:9px;background:#ECF0F5;color:#56677F;display:grid;place-items:center}.rr-ic .i{width:17px;height:17px}
+.rrow.plan .rr-ic{background:var(--ochre-tint);color:var(--ochre-ink)}
+.rrow .fr-n small{white-space:normal}
+.rrow .fr-n small em{font-style:normal;color:var(--plum);font-weight:700}
+.rr-md{display:inline-block;margin-left:8px;font-size:.9em;padding:0 7px;border-radius:999px;background:#F3EDF0;color:var(--mute)}
+.ptag{font-size:12px;font-weight:800;padding:3px 8px;border-radius:8px;background:#ECF0F5;color:#56677F;text-align:center;white-space:nowrap}
+.prow{grid-template-columns:auto minmax(0,1fr) auto!important}
+.pay-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0 10px}
+.pay-h .pay-t{font-weight:800;font-size:calc(16px + var(--fs-bump))}
+#pays .fcard{margin-bottom:10px}
+.nacts{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.nact{display:flex!important;align-items:flex-start;gap:12px;text-align:left;padding:12px 14px!important;border-radius:14px!important;border:1.5px solid var(--line)!important;background:#fff!important}
+.nact .i{width:20px;height:20px;margin-top:2px;color:var(--plum)}.nact b{display:block}.nact small{display:block;color:var(--mute);font-weight:600}
+#fsheet .room{border:none!important;padding:0!important;background:none!important;margin:0!important;box-shadow:none!important}
+#fsheet .chips{display:flex;flex-wrap:wrap;gap:8px}
+#fsheet .split{margin-top:14px}
+.xt .pbn{color:#5B4466}
+.img-modal{position:fixed;inset:0;z-index:80;background:rgba(40,32,36,.5);display:none;align-items:center;justify-content:center;padding:16px}
+.img-modal.on{display:flex;animation:fsFade .18s}
+.img-box{background:#fff;border-radius:22px;width:min(620px,100%);max-height:92vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 70px rgba(40,30,36,.3)}
+.img-wrap{overflow:auto;padding:14px;background:#F2EDF0;flex:1}
+.img-wrap img{display:block;width:100%;height:auto;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.img-box .fs-f button{display:inline-flex!important;align-items:center;gap:6px}
+#ovlTools .sp{flex:1}
+@media (max-width:680px){ .img-modal{padding:0;align-items:flex-end} .img-box{border-radius:22px 22px 0 0;width:100%} .rr-md{margin-left:0;margin-top:2px} }
 /* ---- v10.8b ---- */
 .calc:empty{display:none}
 select.mv{width:40px!important;height:36px;color:transparent!important;background:var(--plum-tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237A5C7A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8h15M15 4.5L19 8l-4 3.5M20 16H5M9 12.5L5 16l4 3.5'/%3E%3C/svg%3E") center/19px no-repeat!important;-webkit-appearance:none;appearance:none;padding:0!important}
@@ -1095,11 +1124,11 @@ details.tip > div{margin-top:8px}
     <button class="pri noprint" id="addNight"><i class="i i-plus"></i>新增一晚</button></h2>
   <div id="nights"></div>
   <div id="pays" class="pays"></div>
-  <details class="hint tip"><summary><i class="i i-info"></i>說明</summary><div>房費由誰先付（押金、尾款、全額）請記在「住宿付款紀錄」。一間房只住一個家庭（或一個人）＝整間由他們負擔；多組人合住時，再選「照人數分／照家庭分／自己填金額」。家庭請建成一位成員，單身朋友各自一位。整趟只算一次房費就建一個「晚」放全部房間；每晚不同就分晚建立，可用「⧉ 複製」。</div></details>
+  <details class="hint tip"><summary><i class="i i-info"></i>說明</summary><div><b>怎麼用：</b>按「新增一晚」取名字，再「加一間房」：填房型、房價，點選住這間的人。只住一組＝整間由他們負擔；多組合住可以選照人數分、照家庭分或自己填金額。每晚都一樣的話，到那一晚的「設定 → 複製這一晚」。誰先付了押金、尾款，記在下面的「住宿付款紀錄」。</div></details>
 </section>
 
 <section class="card summary sec-sum" id="sec-sum" data-tab="sum">
-  <h2><span class="n">4</span>結算<span class="sp"></span><button class="pri noprint" id="bCopy">複製結算文字</button></h2>
+  <h2><span class="n">4</span>結算<span class="sp"></span><button class="noprint" id="bCopyImg"><i class="i i-image"></i>存成圖片</button><button class="pri noprint" id="bCopy">複製結算文字</button></h2>
   <div id="sumTodo"></div>
   <div class="kpis" id="kpis"></div>
   <div class="tbl mcw"><table class="mc sumtbl">
@@ -1406,17 +1435,18 @@ function renderOvl(){
   $('#ovlTitle').textContent=OVL==='lodge'?'住宿總表':OVL==='mem'?'成員總表':'餐費總表';
   $('#ovlSub').textContent=S.title||'';
   $('#ovlBody').innerHTML=ovlHtml(C);
-  $('#ovlTools').innerHTML=OVL==='food'?`<div class="fseg">${[['all','全部'],['todo','待買'],['done','已買']].map(([k,t])=>`<button type="button" class="${FOV===k?'on':''}" data-fov="${k}">${t}</button>`).join('')}</div><button type="button" class="ovl-copy" data-ovcopy>複製${FOV==='done'?'已買':'待買'}清單</button>`:'';
+  $('#ovlTools').innerHTML=OVL==='food'?`<div class="fseg">${[['all','全部'],['todo','待買'],['done','已買']].map(([k,t])=>`<button type="button" class="${FOV===k?'on':''}" data-fov="${k}">${t}</button>`).join('')}</div><button type="button" class="ovl-copy" data-ovcopy><i class="i i-copy"></i>複製${FOV==='done'?'已買':'待買'}文字</button><button type="button" class="ovl-copy" data-ovimg><i class="i i-image"></i>存成圖片</button>`:`<span class="sp"></span><button type="button" class="ovl-copy" data-ovimg><i class="i i-image"></i>存成圖片</button>`;
 }
 function ovlCopyText(){ const st=isBought; const want=FOV==='done'; let t=`【${S.title}】${want?'已買清單':'待買清單'}\n`; let n=0;
-  cats().forEach(c=>{ const its=itemsOf(c.id).filter(i=>want?st(i):!st(i)); if(!its.length) return; t+=`\n▍${c.name||'未命名'}\n`; its.forEach(i=>{ n++; const qty=[i.q,i.u].filter(Boolean).join(''); t+=`${want?'✅':'⬜'} ${i.n||'(未命名)'}${qty?' ×'+qty:''}${i.s?'（'+i.s+'）':''}${want?(i.p&&i.p!=='__free'?' — '+mName(i.p)+' $'+fmt(evalFee(i.f).v):' — 贊助'):(evalFee(i.f).v?' 預估 $'+fmt(evalFee(i.f).v):'')}\n` }) });
+  cats().forEach(c=>{ const its=itemsOf(c.id).filter(i=>want?st(i):!st(i)); if(!its.length) return; t+=`\n▍${c.name||'未命名'}\n`; its.forEach(i=>{ n++; const qty=[i.q,i.u].filter(Boolean).join(''); t+=`${want?'✅':'⬜'} ${i.n||'(未命名)'}${qty?' ×'+qty:''}${i.s?'（'+i.s+'）':''}${want?(i.p&&i.p!=='__free'?' — '+mName(i.p)+' $'+fmt(evalFee(i.f).v):' — 贊助'):(evalFee(i.f).v?' 預估 $'+fmt(evalFee(i.f).v):'')+(i.pb&&mName(i.pb)?' 👉 '+mName(i.pb)+'去買':'')}\n` }) });
+  if(!want&&n){ const by={}; cats().forEach(c=>itemsOf(c.id).filter(i=>!st(i)).forEach(i=>{ const k=i.pb&&mName(i.pb)?mName(i.pb):'未定'; (by[k]=by[k]||[]).push(i.n||'(未命名)') })); t+='\n【誰去買】\n'+Object.entries(by).sort((a,b)=>a[0]==='未定'?1:b[0]==='未定'?-1:0).map(([k,v])=>`${k}：${v.join('、')}`).join('\n')+'\n' }
   return n?t.trim():(want?'目前還沒有已買的品項':'全部都買齊了 🎉') }
 function jumpTo(kind,id){
   closeOvl();
   setTimeout(()=>{
     if(kind==='item'){ const it=S.items.find(x=>x.id===id); if(!it) return; setTab('food'); openMap[it.c]=true; saveOpen(); renderCats(); renderSummary(); openSheet('item',id); return; const el=document.querySelector(`[data-key="items/${id}|n"]`); if(el){ el.scrollIntoView({block:'center',behavior:'smooth'}); FLASH[id]=Date.now(); paintPeers(); setTimeout(()=>el.focus({preventScroll:true}),350) } }
-    if(kind==='room'){ const r=S.rooms.find(x=>x.id===id); if(!r) return; setTab('lodge'); openMap[r.g]=true; saveOpen(); renderNights(); renderSummary(); const el=document.querySelector(`.room[data-rid="${id}"]`); if(el){ el.scrollIntoView({block:'center',behavior:'smooth'}); FLASH[id]=Date.now(); paintPeers() } }
-    if(kind==='pay'){ setTab('lodge'); const el=document.querySelector(`tr[data-pid="${id}"]`); if(el){ el.scrollIntoView({block:'center',behavior:'smooth'}); FLASH[id]=Date.now(); paintPeers() } }
+    if(kind==='room'){ const r=S.rooms.find(x=>x.id===id); if(!r) return; setTab('lodge'); openMap[r.g]=true; saveOpen(); renderNights(); renderSummary(); openSheet('room',id); return; const el=document.querySelector(`.room[data-rid="${id}"]`); if(el){ el.scrollIntoView({block:'center',behavior:'smooth'}); FLASH[id]=Date.now(); paintPeers() } }
+    if(kind==='pay'){ setTab('lodge'); openSheet('pay',id); return; const el=document.querySelector(`tr[data-pid="${id}"]`); if(el){ el.scrollIntoView({block:'center',behavior:'smooth'}); FLASH[id]=Date.now(); paintPeers() } }
   },230);
 }
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-ov]'); if(b){ e.preventDefault(); openOvl(b.dataset.ov) } });
@@ -1431,7 +1461,7 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&OVL) closeOvl() })
 // ---------- 品項：誰買的（還沒買／贊助／成員） ----------
 const isBought=i=>!!i.p&&(i.p==='__free'||S.members.some(m=>m.id===i.p));
 function buyBtn(i){ const ch='<i class="i i-chev-d bc"></i>';
-  if(!i.p) return `<button type="button" class="buy b-todo" data-buy="${i.id}" title="點一下標記已買"><i class="i i-cart"></i><span>還沒買</span>${ch}</button>`;
+  if(!i.p) return `<button type="button" class="buy b-todo" data-buy="${i.id}" title="點一下標記已買"><i class="i i-cart"></i><span>${i.pb&&mName(i.pb)?esc(mName(i.pb))+' 去買':'還沒買'}</span>${ch}</button>`;
   if(i.p==='__free') return `<button type="button" class="buy b-free" data-buy="${i.id}"><i class="i i-gift"></i><span>贊助・不計</span>${ch}</button>`;
   const m=members().find(x=>x.id===i.p); return `<button type="button" class="buy b-done ${m?'':'b-bad'}" data-buy="${i.id}"><i class="i i-check"></i><span>${m?esc(m.n||'(未命名)')+' 付':'已刪除的成員'}</span>${ch}</button>`; }
 let BUYP=null;
@@ -1493,45 +1523,6 @@ function splitHtml(r){
     return `<div class="rl"><span class="nm">${esc(m.n||'(未命名)')}</span>${mid}<span class="dots"></span>${amt}</div>`}).join('');
   return `<div class="split"><div class="split-q">怎麼分？</div>${seg}<div class="howto-desc">${(MODES.find(x=>x[0]===mode)||[])[2]||''}</div><div class="receipt">${lines}</div><div class="split-sum" data-rsum></div></div>`;
 }
-function renderPays(){
-  const ps=pays();
-  $('#pays').innerHTML=`<div class="pay-h"><span class="pay-t">住宿付款紀錄</span><span class="lbl">押金、尾款或全額，誰付了多少</span><span class="sp"></span><button class="noprint" id="addPay"><i class="i i-plus"></i>新增一筆付款</button></div>
-  ${ps.length?`<div class="tbl mcw"><table class="paytbl mc"><thead><tr><th style="width:120px">類型</th><th class="r" style="width:150px">金額</th><th style="width:170px">誰付的</th><th style="width:150px">日期</th><th>備註</th><th></th></tr></thead><tbody>
-  ${ps.map(x=>{const k=f=>`data-key="pays/${x.id}|${f}"`; return `<tr data-pid="${x.id}">
-    <td data-l="類型"><select data-pf="t" ${k('t')}>${PAYT.map(t=>`<option ${t===x.t?'selected':''}>${t}</option>`).join('')}</select></td>
-    <td class="w4" data-l="金額"><input data-pf="f" ${k('f')} class="num" value="${esc(x.f)}" placeholder="0">${feeHint(x.f)}</td>
-    <td class="w3" data-l="誰付的"><select data-pf="p" ${k('p')}>${payerOpts(x.p,'（選擇付款人）')}</select></td>
-    <td class="w3" data-l="日期"><input data-pf="d" ${k('d')} value="${esc(x.d)}" placeholder="例：10/1"></td>
-    <td class="w3" data-l="備註"><input data-pf="r" ${k('r')} value="${esc(x.r)}" placeholder="例：轉帳給民宿"></td>
-    <td class="xcell"><button class="x" data-pdel title="刪除"><i class="i i-x"></i></button></td></tr>`}).join('')}</tbody></table></div>`
-  :`<div class="empty" style="margin:0">還沒有付款紀錄。誰付了押金、尾款或全額，按「＋ 新增一筆付款」記下來。</div>`}
-  <div class="pay-sum" id="paySum"></div>`;
-}
-function renderNights(){
-  $('#nights').innerHTML=nights().map(g=>{const rs=roomsOf(g.id); const op=isOpen(g.id); return `
-  <div class="cat night ${op?'':'closed'}" data-gid="${g.id}">
-    <div class="cathead"><span class="tg" data-gtg><i class="i i-chev-d"></i></span>
-      <input data-gf="name" data-key="nights/${g.id}|name" value="${esc(g.name)}" placeholder="例如 10/24（六）"${dfl(/^第 \d+ 晚$/.test(g.name||'')?g.name:null)}>
-      <span class="lbl">${rs.length} 間</span>
-      <span class="tot" data-gtot></span>
-      <button class="x noprint" data-gcopy title="複製這一晚的所有房間，建立新的一晚"><i class="i i-copy"></i><span class="hm"> 複製</span></button>
-      <button class="x noprint" data-gup title="上移"><i class="i i-up"></i></button>
-      <button class="x noprint" data-gdel title="刪除這一晚"><i class="i i-x"></i></button></div>
-    <div class="catbody">
-      ${rs.map(r=>`<div class="room" data-rid="${r.id}">
-        <div class="room-top">
-          <label class="fld grow"><span>房間／房型</span><input data-rf="n" data-key="rooms/${r.id}|n" value="${esc(r.n)}" placeholder="例：四人房 A"></label>
-          <label class="fld fee"><span>這間多少錢</span><input data-rf="f" data-key="rooms/${r.id}|f" class="num" value="${esc(r.f)}" placeholder="0">${feeHint(r.f)}</label>
-          <button class="x" data-rdel title="刪除房間"><i class="i i-x"></i></button>
-        </div>
-        <div class="chips-lbl">誰住這間？<span class="lbl">（點選打勾，可多選）</span></div>
-        <div class="chips">${chipsHtml(r)}</div>
-        ${splitHtml(r)}
-      </div>`).join('')}
-      <button class="noprint" data-radd><i class="i i-plus"></i>新增房間</button>
-    </div>
-  </div>`}).join('') || `<div class="empty">還沒有住宿資料。按「＋ 新增一晚」，再在裡面新增房間、勾選住的人。<br>不同晚的房間或入住人員不一樣時，可以用「<i class="i i-copy"></i> 複製」複製前一晚再修改。</div>`;
-}
 const FMODES=[['all','全員分攤','所有人依吃飯計費人數（共同採購）'],['some','選人分攤','只算有去的人（例：去餐廳）'],['own','各付各的','每個品項指定是誰的']];
 const FSUB=[['head','依吃飯計費人數'],['group','每組平分'],['custom','自己填金額']];
 function foodSplitHtml(c,noOpts){
@@ -1574,6 +1565,7 @@ function memberOvl(C){
 }
 const catShare=(C,c,mid)=>{ const s=c.s||'all'; if(s==='own') return itemsOf(c.id).filter(i=>i.who===mid&&i.p&&S.members.some(m=>m.id===i.p)).reduce((a,i)=>a+(evalFee(i.f).v||0),0); const inf=C.catInfo[c.id]; return inf&&inf.share?(inf.share[mid]||0):0 };
 function foodOvl(C){
+  const sP=FOV!=='todo', sB=FOV!=='done';
   const cs=cats(); let all=0,done=0,todoN=0; const st=isBought; let est=0;
   S.items.forEach(i=>{ if(!S.cats.some(c=>c.id===i.c)) return; all++; if(st(i)) done++; else { todoN++; est+=evalFee(i.f).v||0 } });
   let h=`<div class="ostats">${stat('餐費總額','$'+fmt(C.foodPool),'s-plum')}${stat('已買',done+' 項','s-sage')}${stat('待買',todoN+' 項',todoN?'s-warn':'s-sage',est?'預估 $'+fmt(est):'')}${stat('分組',cs.length+' 組','s-rose',`共 ${all} 項`)}</div>`;
@@ -1581,10 +1573,10 @@ function foodOvl(C){
   let body='', shown=0;
   cs.forEach(c=>{ const allIts=itemsOf(c.id); const its=allIts.filter(i=>FOV==='all'||(FOV==='done'?st(i):!st(i))); const dn=allIts.filter(st).length; const s=c.s||'all';
     if(FOV!=='all'&&!its.length) return;
-    body+=`<tr class="grp"><td colspan="5"><div class="grp-in"><b>${esc(c.name||'未命名')}</b><span class="mode-pill m-${s}">${esc(FMODE_TXT(c))}</span><span class="lbl">${dn}/${allIts.length} 已買</span><span class="sp"></span><b>$${fmt(C.catTot[c.id]||0)}</b></div></td></tr>`;
+    body+=`<tr class="grp"><td colspan="${4+sP+sB}"><div class="grp-in"><b>${esc(c.name||'未命名')}</b><span class="mode-pill m-${s}">${esc(FMODE_TXT(c))}</span><span class="lbl">${dn}/${allIts.length} 已買</span><span class="sp"></span><b>$${fmt(C.catTot[c.id]||0)}</b></div></td></tr>`;
     body+=its.map(i=>{ shown++; const ok=st(i), v=evalFee(i.f).v, qty=[i.q,i.u].filter(Boolean).join(' ');
-      return `<tr class="${ok?'ok':'todo'}" data-jump="item" data-id="${i.id}"><td class="xn"><span class="st">${ok?(i.p==='__free'?'<i class="i i-gift"></i>':'<i class="i i-check"></i>'):''}</span>${i.n?esc(i.n):'<span class="z">(未命名)</span>'}</td><td>${esc(qty)}</td><td class="r">${ok?fmt(v):(v?'<span class="est">預估 '+fmt(v)+'</span>':'<span class="z">—</span>')}</td><td>${ok?(i.p==='__free'?'<span class="z">贊助</span>':esc(mName(i.p))):'<span class="tdo">還沒買</span>'}${s==='own'&&i.who?`<small>給 ${esc(mName(i.who))}</small>`:''}</td><td class="l mh">${[i.s,i.r].filter(Boolean).map(esc).join('・')}</td></tr>` }).join('')||`<tr><td colspan="5" class="z" style="text-align:left">這組還沒有品項</td></tr>`; });
-  h+=xsec(FOV==='todo'?'待買清單':FOV==='done'?'已買清單':'品項清單','點一列可以直接修改',body?xtable(`<th class="xn">品名</th><th>數量</th><th>金額</th><th>誰付的</th><th class="l mh">地點／備註</th>`,body,FOV==='all'?`<td class="xn">已買合計</td><td></td><td class="r">${fmt(C.foodPool)}</td><td></td><td class="mh"></td>`:'','xt-items'):'<div class="oempty">沒有符合的品項</div>');
+      return `<tr class="${ok?'ok':'todo'}" data-jump="item" data-id="${i.id}"><td class="xn"><span class="st">${ok?(i.p==='__free'?'<i class="i i-gift"></i>':'<i class="i i-check"></i>'):''}</span>${i.n?esc(i.n):'<span class="z">(未命名)</span>'}</td><td class="mh">${esc(qty)}</td><td class="r">${ok?fmt(v):(v?'<span class="est">預估 '+fmt(v)+'</span>':'<span class="z">—</span>')}</td>${sP?`<td>${ok?(i.p==='__free'?'<span class="z">贊助</span>':esc(mName(i.p))):'<span class="tdo">還沒買</span>'}${s==='own'&&i.who?`<small>給 ${esc(mName(i.who))}</small>`:''}</td>`:''}${sB?`<td>${ok?'<span class="z">—</span>':i.pb&&mName(i.pb)?`<b class="pbn">${esc(mName(i.pb))}</b>`:'<span class="z">未定</span>'}</td>`:''}<td class="l mh">${[i.s,i.r].filter(Boolean).map(esc).join('・')}</td></tr>` }).join('')||`<tr><td colspan="${4+sP+sB}" class="z" style="text-align:left">這組還沒有品項</td></tr>`; });
+  h+=xsec(FOV==='todo'?'待買清單':FOV==='done'?'已買清單':'品項清單','點一列可以直接修改',body?xtable(`<th class="xn">品名</th><th class="mh">數量</th><th>金額</th>${sP?'<th>誰付的</th>':''}${sB?'<th>預計誰買</th>':''}<th class="l mh">地點／備註</th>`,body,FOV==='all'?`<td class="xn">已買合計</td><td class="mh"></td><td class="r">${fmt(C.foodPool)}</td>${sP?'<td></td>':''}${sB?'<td></td>':''}<td class="mh"></td>`:'','xt-items'):'<div class="oempty">沒有符合的品項</div>');
   const R=C.rows; if(R.length) h+=xsec('每人餐費',`依各組的分法計算・小孩吃飯 ×${esc(S.kidF)}`,xtable(
     `<th class="xn">成員</th><th class="hf">吃飯<span class="dl">計費</span></th>${cs.map(c=>`<th>${esc(c.name||'未命名')}</th>`).join('')}<th>應攤</th><th>已代墊</th>`,
     R.map((r,i)=>`<tr class="${sepAt(R,i)}" data-mdid="${r.m.id}"><td class="xn">${esc(r.m.n||'(未命名)')}</td><td class="hf">${r2(r.fw)}</td>${cs.map(c=>`<td>${mz(catShare(C,c,r.m.id))}</td>`).join('')}<td><b>${mz(r.food)}</b></td><td>${mz(r.pdF)}</td></tr>`).join(''),
@@ -1631,16 +1623,18 @@ function renderCats(){
   refreshSheet();
 }
 let FS=null, LASTCAT='';
-function fsEnsure(){ let s=$('#fsheet'); if(!s){ const bg=document.createElement('div'); bg.id='fsBg'; bg.className='fs-bg'; bg.onclick=()=>closeSheet(); document.body.appendChild(bg); s=document.createElement('div'); s.id='fsheet'; s.className='fsheet'; document.body.appendChild(s); bindSheet(s) } return s }
+function fsEnsure(){ let s=$('#fsheet'); if(!s){ const bg=document.createElement('div'); bg.id='fsBg'; bg.className='fs-bg'; bg.onclick=()=>closeSheet(); document.body.appendChild(bg); s=document.createElement('div'); s.id='fsheet'; s.className='fsheet'; document.body.appendChild(s); bindSheet(s); bindSheet2(s) } return s }
 function fsHide(){ const s=$('#fsheet'); if(s) s.classList.remove('on'); const b=$('#fsBg'); if(b) b.classList.remove('on'); document.body.classList.remove('noscroll') }
 function openSheet(k,id,isNew){ FS={k,id,isNew:!!isNew}; const s=fsEnsure(); s.dataset.k=k; s.innerHTML=sheetHtml(); $('#fsBg').classList.add('on'); s.classList.add('on'); document.body.classList.add('noscroll'); if(isNew) setTimeout(()=>{ const f=s.querySelector('[data-autofocus]'); f&&f.focus() },80) }
 function closeSheet(){ if(!FS) return; const was=FS; FS=null; fsHide();
   if(was.k==='item'){ const it=S.items.find(x=>x.id===was.id); if(it&&was.isNew&&!String(it.n||'').trim()&&!String(it.f||'').trim()&&!it.p){ S.items=S.items.filter(x=>x!==it); remove('items/'+it.id) } }
+  if(was.k==='room'){ const r=S.rooms.find(x=>x.id===was.id); if(r&&was.isNew&&!String(r.n||'').trim()&&!String(r.f||'').trim()&&!(r.m||[]).length){ S.rooms=S.rooms.filter(x=>x!==r); remove('rooms/'+r.id) } }
+  if(was.k==='pay'){ const x=S.pays.find(p=>p.id===was.id); if(x&&was.isNew&&!String(x.f||'').trim()){ S.pays=S.pays.filter(p=>p!==x); remove('pays/'+x.id) } }
   if(was.k==='mem'){ const m=S.members.find(x=>x.id===was.id); if(m&&was.isNew&&!String(m.n||'').trim()){ S.members=S.members.filter(x=>x!==m); remove('members/'+m.id) } }
   if(was.k==='group'){ const c=S.cats.find(x=>x.id===was.id); if(c&&!String(c.name||'').trim()){ c.name=(c.s||'all')==='all'?'共同採購':c.s==='own'?'各付各的':'聚餐'; put('cats/'+c.id,{name:c.name}) } }
   renderAll() }
 function refreshSheet(){ if(!FS) return; const s=$('#fsheet'); if(!s) return;
-  if((FS.k==='item'&&!S.items.some(x=>x.id===FS.id))||(FS.k==='group'&&!S.cats.some(x=>x.id===FS.id))||(FS.k==='mem'&&!S.members.some(x=>x.id===FS.id))){ FS=null; fsHide(); return }
+  if(!sheetAlive()){ FS=null; fsHide(); return }
   const a=document.activeElement; if(a&&s.contains(a)&&(a.tagName==='INPUT'||a.tagName==='TEXTAREA')) return;
   const b0=s.querySelector('.fs-body'), sc=b0?b0.scrollTop:0, d0=s.querySelector('details.fs-more'), op=d0&&d0.open;
   s.innerHTML=sheetHtml(); const b=s.querySelector('.fs-body'); if(b) b.scrollTop=sc; const d=s.querySelector('details.fs-more'); if(d&&op) d.open=true }
@@ -1657,6 +1651,7 @@ function itemSheet(){ const i=S.items.find(x=>x.id===FS.id); if(!i) return ''; c
     <label class="fs-l">買了嗎？誰付的錢<span class="lbl">還沒買的不會算進分攤</span></label>
     ${chipRow('itp',[['','還沒買','c-todo'],...ms.map(m=>[m.id,esc(m.n||'(未命名)')]),['__free','贊助・不計','c-free']],i.p||'')}
     ${ms.length?'':'<div class="lbl">還沒有成員，先到「成員」新增大家</div>'}
+    ${!i.p&&ms.length?`<label class="fs-l">預計誰去買<span class="lbl">會顯示在待買清單，大家就知道誰負責</span></label>${chipRow('itpb',[['','未定','c-free'],...ms.map(m=>[m.id,esc(m.n||'(未命名)')])],i.pb||'')}`:''}
     ${(c.s==='own')?`<label class="fs-l">這是誰的？<span class="lbl">這組是「各付各的」</span></label>${chipRow('itw',ms.map(m=>[m.id,esc(m.n||'(未命名)')]),i.who||'')}`:''}
     ${cats().length>1?`<label class="fs-l">放在哪一組</label>${chipRow('itc',cats().map(x=>[x.id,`${esc(x.name||'未命名')}<small>${esc(FMODE_TXT(x))}</small>`,'c-grp']),i.c)}`:''}
     <details class="fs-more"${i.s||i.r?' open':''}><summary>購買地點、備註<i class="i i-chev-d"></i></summary><div class="fs-grid2"><div><label class="fs-l">購買地點</label><input class="fs-in" data-it="s" ${k('s')} value="${esc(i.s)}" placeholder="例：好市多" autocomplete="off"></div><div><label class="fs-l">備註</label><input class="fs-in" data-it="r" ${k('r')} value="${esc(i.r)}" autocomplete="off"></div></div></details>
@@ -1697,6 +1692,7 @@ function bindSheet(s){
     if(e.target.closest('[data-fsx]')){ closeSheet(); return }
     if(!FS||FS.k!=='item') return; const it=S.items.find(x=>x.id===FS.id); if(!it) return;
     const p=e.target.closest('[data-itp]'); if(p){ it.p=p.dataset.itp; put('items/'+it.id,{p:it.p}); renderCats(); renderSummary(); return }
+    const pb=e.target.closest('[data-itpb]'); if(pb){ it.pb=pb.dataset.itpb; put('items/'+it.id,{pb:it.pb}); renderCats(); renderSummary(); return }
     const w=e.target.closest('[data-itw]'); if(w){ it.who=w.dataset.itw; put('items/'+it.id,{who:it.who}); renderCats(); renderSummary(); return }
     const c=e.target.closest('[data-itc]'); if(c){ if(c.dataset.itc!==it.c){ it.c=c.dataset.itc; it.o=maxO(itemsOf(it.c)); LASTCAT=it.c; openMap[it.c]=true; saveOpen(); put('items/'+it.id,{c:it.c,o:it.o}); renderCats(); renderSummary() } return }
     if(e.target.closest('[data-itdel]')){ offerUndo(`品項「${it.n||''}」`,[snap('items',it)]); S.items=S.items.filter(x=>x!==it); remove('items/'+it.id); FS=null; fsHide(); renderAll(); return }
@@ -1740,9 +1736,150 @@ function memSheet(){ const m=S.members.find(x=>x.id===FS.id); if(!m) return ''; 
     <div class="lbl" style="margin-top:8px">吃飯：小孩 ×${esc(S.kidF)}、幼兒 ×${esc(S.babyF)}；住宿：每人都算 1</div>
   </div>
   <div class="fs-f"><button type="button" class="fs-del" data-mdel><i class="i i-x"></i>刪除</button><span class="sp"></span>${FS.isNew?'<button type="button" class="fs-next" data-mnext><i class="i i-plus"></i>再新增一位</button>':''}<button type="button" class="pri fs-ok" data-fsx>完成</button></div>` }
-const sheetHtml=()=>FS.k==='item'?itemSheet():FS.k==='mem'?memSheet():groupSheet();
+const sheetHtml=()=>({item:itemSheet,mem:memSheet,group:groupSheet,room:roomSheet,night:nightSheet,pay:paySheet}[FS.k]||(()=>''))();
 function memChanged(){ renderMembers(); renderNightsKeep() }
 document.addEventListener('click',e=>{ const c=e.target.closest('[data-medit]'); if(c){ openSheet('mem',c.dataset.medit); return } if(e.target.closest('[data-madd]')) newMember() });
+
+// ===== v11.2: 住宿（清單＋編輯視窗） =====
+const RMODE_TXT={head:'照人數分',group:'照家庭分',custom:'自己填金額'};
+function rrow(r,C){ const i=(C&&C.roomInfo[r.id])||{share:{},cost:0}; const occ=members().filter(m=>(r.m||[]).includes(m.id)); const has=String(r.f||'').trim()!=='';
+  const who=occ.length?occ.map(m=>esc(m.n||'')+(has&&i.share[m.id]?` <em>$${fmt(i.share[m.id])}</em>`:'')).join('、'):'<span class="tdo">還沒選住的人</span>';
+  const md=occ.length>1?RMODE_TXT[r.s||'head']:occ.length?'整間負擔':'';
+  return `<div class="frow rrow ${occ.length&&has?'bought':'plan'}" data-rid="${r.id}" data-redit role="button" tabindex="0"><span class="rr-ic"><i class="i i-bed"></i></span><span class="fr-n"><b>${r.n?esc(r.n):'<span class="z">(未命名房間)</span>'}</b><small>${who}${md?`<span class="rr-md">${md}</span>`:''}</small></span><span class="fr-amt">${has?'$'+fmt(i.cost):'<span class="tdo">未填房價</span>'}</span></div>` }
+function renderNights(){ const C=compute();
+  $('#nights').innerHTML=nights().map(g=>{const rs=roomsOf(g.id); const op=isOpen(g.id); return `
+  <div class="cat fcard night ${op?'':'closed'}" data-gid="${g.id}">
+    <div class="fc-h"><span class="tg" data-gtg title="收合／展開"><i class="i i-chev-d"></i></span>
+      <button type="button" class="fc-t" data-nset><b>${esc(g.name||'未命名')}</b><small class="mode-pill">${rs.length} 間房</small></button>
+      <span class="tot" data-gtot></span>
+      <button type="button" class="fc-set noprint" data-nset title="這一晚的設定：名稱、複製、刪除"><i class="i i-sliders"></i><span>設定</span></button></div>
+    <div class="catbody"><div class="flist">${rs.map(r=>rrow(r,C)).join('')||'<div class="fempty">這晚還沒有房間</div>'}</div>
+      <button type="button" class="fadd noprint" data-radd><i class="i i-plus"></i>在「${esc(g.name||'這晚')}」加一間房</button></div>
+  </div>`}).join('') || `<div class="fwelcome"><div class="fw-ic"><i class="i i-bed"></i></div><b>還沒有住宿資料</b><div>按上面的「<i class="i i-plus"></i>新增一晚」，再加房間、選誰住</div><small>每晚房間或住的人不一樣時，可以在那一晚的「設定」裡複製後再改</small></div>`;
+  refreshSheet();
+}
+function roomSheet(){ const r=S.rooms.find(x=>x.id===FS.id); if(!r) return ''; const g=S.nights.find(x=>x.id===r.g)||{}; const k=f=>`data-key="rooms/${r.id}|${f}"`; const fr=evalFee(r.f);
+  return `<div data-gid="${r.g}"><div class="room" data-rid="${r.id}"><div class="fs-h"><div class="fs-tt"><b>${FS.isNew?'加一間房':'編輯房間'}</b><small>${esc(g.name||'')}</small></div><button type="button" class="bp-x" data-fsx aria-label="關閉"><i class="i i-x"></i></button></div>
+  <div class="fs-body">
+    <label class="fs-l">房間／房型</label><input class="fs-in big" data-rr="n" ${k('n')} value="${esc(r.n)}" placeholder="例：家庭房、四人房 A" data-autofocus autocomplete="off" enterkeyhint="next">
+    <label class="fs-l">這間多少錢</label><div class="fs-money"><span>$</span><input class="fs-in num" data-rr="f" ${k('f')} value="${esc(r.f)}" inputmode="decimal" placeholder="0" autocomplete="off" enterkeyhint="done"></div><div class="calc fs-calc ${fr.ok?'':'bad'}" data-calc>${calcTxt(fr)}</div>
+    <label class="fs-l">誰住這間？<span class="lbl">點名字選，可以選好幾組</span></label>
+    <div class="chips">${chipsHtml(r)}</div>
+    ${splitHtml(r)}
+    ${nights().length>1?`<label class="fs-l">放在哪一晚</label>${chipRow('rg',nights().map(x=>[x.id,esc(x.name||'未命名'),'c-grp']),r.g)}`:''}
+  </div>
+  <div class="fs-f"><button type="button" class="fs-del" data-rrdel><i class="i i-x"></i>刪除</button><span class="sp"></span><button type="button" class="fs-next" data-rnext><i class="i i-plus"></i>再加一間</button><button type="button" class="pri fs-ok" data-fsx>完成</button></div></div></div>` }
+function nightSheet(){ const g=S.nights.find(x=>x.id===FS.id); if(!g) return ''; const rs=roomsOf(g.id); const C=compute();
+  return `<div data-gid="${g.id}"><div class="fs-h"><div class="fs-tt"><b>${FS.isNew?'新增一晚':'這一晚的設定'}</b><small>${rs.length} 間房・$${fmt(C.nightTot[g.id]||0)}</small></div><button type="button" class="bp-x" data-fsx aria-label="關閉"><i class="i i-x"></i></button></div>
+  <div class="fs-body">
+    <label class="fs-l">這晚的名稱</label><input class="fs-in big" data-ng="name" data-key="nights/${g.id}|name" value="${esc(g.name)}" placeholder="例：10/24（六）、第 1 晚" data-autofocus autocomplete="off" enterkeyhint="done">
+    ${FS.isNew?'<div class="lbl" style="margin-top:10px">取好名字後，按「下一步：加房間」。</div>':`<div class="nacts"><button type="button" class="nact" data-gcopy><i class="i i-copy"></i><span><b>複製這一晚</b><small>房間和住的人一起複製，適合每晚都一樣的情況</small></span></button>${nights().indexOf(g)>0?'<button type="button" class="nact" data-gup><i class="i i-up"></i><span><b>往前移</b><small>調整晚的順序</small></span></button>':''}</div>`}
+  </div>
+  <div class="fs-f"><button type="button" class="fs-del" data-gdel><i class="i i-x"></i>刪除這一晚</button><span class="sp"></span>${FS.isNew?'<button type="button" class="pri fs-ok" data-nnext>下一步：加房間</button>':'<button type="button" class="pri fs-ok" data-fsx>完成</button>'}</div></div>` }
+function payrow(x){ const v=evalFee(x.f); return `<div class="frow prow ${x.p&&v.v?'bought':'plan'}" data-pid="${x.id}" data-pyedit role="button" tabindex="0"><span class="ptag">${esc(x.t||'')}</span><span class="fr-n"><b>${x.p?esc(mName(x.p)||'（已刪除的成員）')+' 付':'<span class="tdo">還沒選誰付</span>'}</b>${x.d||x.r?`<small>${[x.d,x.r].filter(Boolean).map(esc).join('・')}</small>`:''}</span><span class="fr-amt">${!v.ok?'<span class="bad">算式錯</span>':v.v?'$'+fmt(v.v):'<span class="tdo">未填</span>'}</span></div>` }
+function renderPays(){ const ps=pays();
+  $('#pays').innerHTML=`<div class="pay-h"><span class="pay-t">住宿付款紀錄</span><span class="lbl">押金、尾款或全額，誰付了多少</span><span class="sp"></span><button class="noprint" id="addPay"><i class="i i-plus"></i>記一筆付款</button></div>
+  ${ps.length?`<div class="fcard"><div class="flist">${ps.map(payrow).join('')}</div></div>`:`<div class="empty" style="margin:0">還沒有付款紀錄。誰付了押金、尾款或全額，按「記一筆付款」記下來。</div>`}
+  <div class="pay-sum" id="paySum"></div>`;
+}
+function paySheet(){ const x=S.pays.find(p=>p.id===FS.id); if(!x) return ''; const k=f=>`data-key="pays/${x.id}|${f}"`; const v=evalFee(x.f); const ms=members();
+  return `<div class="fs-h"><div class="fs-tt"><b>${FS.isNew?'記一筆住宿付款':'編輯付款'}</b><small>押金、尾款或全額</small></div><button type="button" class="bp-x" data-fsx aria-label="關閉"><i class="i i-x"></i></button></div>
+  <div class="fs-body">
+    <label class="fs-l">付了什麼</label>${chipRow('pt',PAYT.map(t=>[t,t]),x.t)}
+    <label class="fs-l">金額</label><div class="fs-money"><span>$</span><input class="fs-in num" data-pp="f" ${k('f')} value="${esc(x.f)}" inputmode="decimal" placeholder="0" data-autofocus autocomplete="off" enterkeyhint="done"></div><div class="calc fs-calc ${v.ok?'':'bad'}" data-calc>${calcTxt(v)}</div>
+    <label class="fs-l">誰付的</label>${ms.length?chipRow('ppay',ms.map(m=>[m.id,esc(m.n||'(未命名)')]),x.p||''):'<div class="lbl">先到「成員」新增大家</div>'}
+    <div class="fs-grid2"><div><label class="fs-l">日期</label><input class="fs-in" data-pp="d" ${k('d')} value="${esc(x.d)}" placeholder="例：10/1" autocomplete="off"></div><div><label class="fs-l">備註</label><input class="fs-in" data-pp="r" ${k('r')} value="${esc(x.r)}" placeholder="例：轉帳給民宿" autocomplete="off"></div></div>
+  </div>
+  <div class="fs-f"><button type="button" class="fs-del" data-ppdel><i class="i i-x"></i>刪除</button><span class="sp"></span><button type="button" class="pri fs-ok" data-fsx>完成</button></div>` }
+function newNight(){ const g={id:nid(),name:'第 '+(S.nights.length+1)+' 晚',o:maxO(S.nights)}; S.nights.push(g); openMap[g.id]=true; saveOpen(); put('nights/'+g.id,{},true); renderAll(); openSheet('night',g.id,true); setTimeout(()=>{const i=$('#fsheet [data-ng]'); i&&i.select()},120) }
+function newRoom(gid){ if(!gid||!S.nights.some(g=>g.id===gid)){ if(!S.nights.length){ newNight(); return } gid=nights()[nights().length-1].id }
+  openMap[gid]=true; saveOpen(); const r={id:nid(),g:gid,n:'',f:'',p:'',m:[],s:'head',x:{},xa:{},r:'',o:maxO(roomsOf(gid))}; S.rooms.push(r); put('rooms/'+r.id,{},true); renderNights(); renderSummary(); openSheet('room',r.id,true) }
+function newPay(){ const x={id:nid(),t:S.pays.length?'尾款':'押金',f:'',p:getMe(),d:'',r:'',o:maxO(S.pays)}; S.pays.push(x); put('pays/'+x.id,{},true); renderPays(); renderSummary(); openSheet('pay',x.id,true) }
+const sheetAlive=()=>({item:S.items,group:S.cats,mem:S.members,room:S.rooms,night:S.nights,pay:S.pays}[FS.k]||[]).some(x=>x.id===FS.id);
+function bindSheet2(s){
+  s.addEventListener('input',e=>{ if(!FS) return; const t=e.target;
+    if(t.dataset.rr&&FS.k==='room'){ const r=S.rooms.find(x=>x.id===FS.id); if(!r) return; const f=t.dataset.rr; r[f]=t.value; if(f==='f'){ const h=s.querySelector('[data-calc]'); const v=evalFee(r.f); h.className='calc fs-calc'+(v.ok?'':' bad'); h.textContent=calcTxt(v) } put('rooms/'+r.id,{[f]:r[f]}); renderNights(); renderSummary(); return }
+    if(t.dataset.ng&&FS.k==='night'){ const g=S.nights.find(x=>x.id===FS.id); if(!g) return; g.name=t.value; put('nights/'+g.id,{name:g.name}); renderNights(); return }
+    if(t.dataset.pp&&FS.k==='pay'){ const x=S.pays.find(p=>p.id===FS.id); if(!x) return; const f=t.dataset.pp; x[f]=t.value; if(f==='f'){ const h=s.querySelector('[data-calc]'); const v=evalFee(x.f); h.className='calc fs-calc'+(v.ok?'':' bad'); h.textContent=calcTxt(v) } put('pays/'+x.id,{[f]:x[f]}); renderPays(); renderSummary(); return } });
+  s.addEventListener('click',e=>{ if(!FS) return; const t=e.target;
+    if(FS.k==='room'){ const r=S.rooms.find(x=>x.id===FS.id); if(!r) return;
+      if(t.closest('[data-rrdel]')){ offerUndo(`房間「${r.n||''}」`,[snap('rooms',r)]); S.rooms=S.rooms.filter(x=>x!==r); remove('rooms/'+r.id); FS=null; fsHide(); renderAll(); return }
+      if(t.closest('[data-rnext]')){ const gid=r.g; closeSheet(); newRoom(gid); return }
+      const rg=t.closest('[data-rg]'); if(rg){ if(rg.dataset.rg!==r.g){ r.g=rg.dataset.rg; r.o=maxO(roomsOf(r.g)); openMap[r.g]=true; saveOpen(); put('rooms/'+r.id,{g:r.g,o:r.o}); renderNights(); renderSummary() } return } }
+    if(FS.k==='night'){ if(t.closest('[data-nnext]')){ const gid=FS.id; closeSheet(); newRoom(gid); return } if(t.closest('[data-gcopy]')){ FS=null; fsHide(); return } }
+    if(FS.k==='pay'){ const x=S.pays.find(p=>p.id===FS.id); if(!x) return;
+      const pt=t.closest('[data-pt]'); if(pt){ x.t=pt.dataset.pt; put('pays/'+x.id,{t:x.t}); renderPays(); renderSummary(); refreshSheet(); return }
+      const pp=t.closest('[data-ppay]'); if(pp){ x.p=pp.dataset.ppay; put('pays/'+x.id,{p:x.p}); renderPays(); renderSummary(); refreshSheet(); return }
+      if(t.closest('[data-ppdel]')){ offerUndo(`一筆${x.t}`,[snap('pays',x)]); S.pays=S.pays.filter(p=>p!==x); remove('pays/'+x.id); FS=null; fsHide(); renderAll(); return } } });
+}
+document.addEventListener('click',e=>{ if(e.target.closest('#fsheet')) return;
+  const n=e.target.closest('#nights [data-nset]'); if(n){ openSheet('night',n.closest('[data-gid]').dataset.gid); return }
+  const r=e.target.closest('#nights [data-redit]'); if(r){ openSheet('room',r.dataset.rid); return }
+  const ra=e.target.closest('#nights [data-radd]'); if(ra){ e.stopImmediatePropagation(); newRoom(ra.closest('[data-gid]').dataset.gid); return }
+  const p=e.target.closest('#pays [data-pyedit]'); if(p){ openSheet('pay',p.dataset.pid); return }
+  if(e.target.closest('#addPay')){ e.stopImmediatePropagation(); newPay(); return } },true);
+document.addEventListener('keydown',e=>{ if(e.key!=='Enter'||!e.target.matches) return; if(e.target.matches('.rrow[data-rid]')) openSheet('room',e.target.dataset.rid); else if(e.target.matches('.prow[data-pid]')) openSheet('pay',e.target.dataset.pid) });
+
+// ===== v11.2: 複製成圖片 =====
+function drawTable(spec){
+  const S2=2, W=560, pad=20, font='"PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif';
+  const cv=document.createElement('canvas'), x=cv.getContext('2d');
+  const rowsH=spec.blocks.reduce((a,b)=>a+(b.type==='table'?36+b.rows.length*34+10:b.lines.length*26+40),0);
+  const H=pad+30+22+18+rowsH+34; cv.width=W*S2; cv.height=H*S2; x.scale(S2,S2);
+  x.fillStyle='#F7F3F5'; x.fillRect(0,0,W,H); x.fillStyle='#3F363A'; x.fillRect(0,0,W,6);
+  x.textBaseline='middle';
+  const txt=(t,X,Y,o={})=>{ x.font=`${o.b?800:500} ${o.s||14}px ${font}`; x.fillStyle=o.c||'#3F363A'; x.textAlign=o.a||'left'; let s=String(t??''); if(o.max){ while(s.length>1&&x.measureText(s).width>o.max) s=s.slice(0,-2)+'…' } x.fillText(s,X,Y) };
+  let y=pad+16; txt(spec.title,pad,y,{b:1,s:20}); y+=26; txt(spec.sub,pad,y,{s:12.5,c:'#8A7D83'}); y+=20;
+  spec.blocks.forEach(b=>{
+    if(b.type==='text'){ y+=8; txt(b.title,pad,y+8,{b:1,s:14.5,c:'#6E5378'}); y+=24; b.lines.forEach(l=>{ txt(l,pad+6,y+10,{s:13.5,max:W-2*pad-10}); y+=26 }); y+=8; return }
+    const tw=W-2*pad, cols=b.cols, sum=cols.reduce((a,c)=>a+c.w,0); const xs=[]; let cx=pad; cols.forEach(c=>{ xs.push(cx); cx+=c.w/sum*tw });
+    x.fillStyle='#fff'; x.beginPath(); x.roundRect?x.roundRect(pad,y,tw,36+b.rows.length*34,12):x.rect(pad,y,tw,36+b.rows.length*34); x.fill();
+    x.save(); x.beginPath(); x.roundRect?x.roundRect(pad,y,tw,36+b.rows.length*34,12):x.rect(pad,y,tw,36+b.rows.length*34); x.clip();
+    x.fillStyle='#EFE6EB'; x.fillRect(pad,y,tw,36);
+    const cellX=(i,a)=>a==='r'?xs[i]+cols[i].w/sum*tw-10:a==='c'?xs[i]+cols[i].w/sum*tw/2:xs[i]+10;
+    b.head.forEach((h,i)=>txt(h,cellX(i,cols[i].a),y+18,{b:1,s:12.5,c:'#6E5378',a:cols[i].a==='r'?'right':cols[i].a==='c'?'center':'left'}));
+    y+=36;
+    b.rows.forEach(r=>{ if(r.cls==='grp'){ x.fillStyle='#F3ECF0'; x.fillRect(pad,y,tw,34); txt(r.cells[0],pad+10,y+17,{b:1,s:13.5,max:tw*0.7}); if(r.cells[1]) txt(r.cells[1],pad+tw-10,y+17,{b:1,s:13.5,a:'right'}); }
+      else { if(r.cls==='todo'){ x.fillStyle='#FFF8EA'; x.fillRect(pad,y,tw,34) } if(r.cls==='foot'){ x.fillStyle='#FAF6F8'; x.fillRect(pad,y,tw,34) }
+        r.cells.forEach((c,i)=>{ const a=cols[i].a; let t=c, col=i===0?'#5B4466':'#3F363A', bold=i===0||r.cls==='foot'; if(c&&typeof c==='object'){ t=c.t; col=c.c||col; bold=c.b??bold }
+          if(i===0&&r.mark){ x.beginPath(); x.arc(pad+18,y+17,7,0,7); if(r.mark==='ok'){ x.fillStyle='#7E9F88'; x.fill(); x.strokeStyle='#fff'; x.lineWidth=1.8; x.beginPath(); x.moveTo(pad+14.5,y+17); x.lineTo(pad+17,y+19.5); x.lineTo(pad+21.5,y+14.5); x.stroke() } else { x.setLineDash([2.5,2.5]); x.strokeStyle='#C9A15F'; x.lineWidth=1.4; x.stroke(); x.setLineDash([]) } }
+          txt(t,i===0&&r.mark?xs[0]+32:cellX(i,a),y+17,{s:13.5,b:bold,c:col,a:a==='r'?'right':a==='c'?'center':'left',max:cols[i].w/sum*tw-(i===0&&r.mark?40:16)}) }) }
+      x.strokeStyle='#EEE6EA'; x.lineWidth=1; x.beginPath(); x.moveTo(pad,y+34); x.lineTo(pad+tw,y+34); x.stroke(); y+=34 });
+    x.restore(); y+=10 });
+  txt('分帳小幫手・'+new Date().toLocaleDateString('zh-TW'),W-pad,H-16,{s:11,c:'#B3A6AC',a:'right'});
+  return cv;
+}
+function ovlImageSpec(C,K){
+  const title=S.title||'分帳';
+  if(K==='food'){ const st=isBought, want=FOV; const showP=want!=='todo', showB=want!=='done';
+    const cols=[{w:3.2,a:'l'},{w:1.1,a:'c'},{w:1.4,a:'r'}]; const head=['品名','數量','金額']; if(showP){cols.push({w:1.6,a:'c'}); head.push('誰付的')} if(showB){cols.push({w:1.6,a:'c'}); head.push('預計誰買')}
+    const rows=[]; const by={}; let n=0;
+    cats().forEach(c=>{ const its=itemsOf(c.id).filter(i=>want==='all'||(want==='done'?st(i):!st(i))); if(!its.length) return; rows.push({cls:'grp',cells:[`${c.name||'未命名'}（${FMODE_TXT(c)}）`,want==='todo'?'':'$'+fmt(C.catTot[c.id]||0)]});
+      its.forEach(i=>{ n++; const ok=st(i), v=evalFee(i.f).v; const cells=[i.n||'(未命名)',[i.q,i.u].filter(Boolean).join(' '),ok?fmt(v):(v?{t:'約 '+fmt(v),c:'#9A7430',b:false}:'—')];
+        if(showP) cells.push(ok?(i.p==='__free'?{t:'贊助',c:'#9C9096'}:mName(i.p)):{t:'還沒買',c:'#9A7430',b:true});
+        if(showB) cells.push(ok?'':(i.pb?{t:mName(i.pb)||'?',c:'#5B4466',b:true}:{t:'未定',c:'#B3A6AC'}));
+        if(!ok){ const k=i.pb?mName(i.pb)||'?':'未定'; (by[k]=by[k]||[]).push(i.n||'(未命名)') }
+        rows.push({cls:ok?'':'todo',mark:ok?'ok':'todo',cells}) }) });
+    const blocks=[{type:'table',cols,head,rows}];
+    if(showB&&Object.keys(by).length) blocks.push({type:'text',title:'誰去買',lines:Object.entries(by).sort((a,b)=>a[0]==='未定'?1:b[0]==='未定'?-1:0).map(([k,v])=>`${k}：${v.join('、')}`)});
+    return {title:`${title}｜${want==='todo'?'待買清單':want==='done'?'已買清單':'餐費清單'}`,sub:want==='todo'?`共 ${n} 項還沒買`:`已買合計 $${fmt(C.foodPool)}`,blocks} }
+  if(K==='lodge'){ const rows=[]; nights().forEach(g=>{ rows.push({cls:'grp',cells:[g.name||'未命名','$'+fmt(C.nightTot[g.id]||0)]}); roomsOf(g.id).forEach(r=>{ const i=C.roomInfo[r.id]||{share:{}}; const occ=members().filter(m=>(r.m||[]).includes(m.id)); rows.push({cells:[r.n||'(未命名房間)',occ.map(m=>m.n+(i.share[m.id]?' '+fmt(i.share[m.id]):'')).join('、')||{t:'還沒選人',c:'#9A7430'},String(r.f||'').trim()?fmt(i.cost):{t:'未填',c:'#9A7430'}]}) }) });
+    rows.push({cls:'foot',cells:['合計','',fmt(C.lodgeTotal)]});
+    const R=C.rows; return {title:`${title}｜住宿`,sub:`總房費 $${fmt(C.lodgeTotal)}・已付 $${fmt(C.lodgePaid)}`,blocks:[{type:'table',cols:[{w:2,a:'l'},{w:4.2,a:'l'},{w:1.4,a:'r'}],head:['房間','住的人（各負擔）','房價'],rows},{type:'table',cols:[{w:2,a:'l'},{w:1.2,a:'c'},{w:1.6,a:'r'},{w:1.6,a:'r'}],head:['成員','住宿計費','應攤','已付'],rows:R.map(r=>({cells:[r.m.n||'(未命名)',r2(r.lw),fmt(r.lodge),fmt(r.pdL)]}))}]} }
+  const R=C.rows, X=transfers(R), D=S.done||{};
+  return {title:`${title}｜結算`,sub:`${R.length} 組・全部花費 $${fmt(R.reduce((a,r)=>a+r.lodge+r.food,0))}`,blocks:[{type:'table',cols:[{w:2,a:'l'},{w:1.4,a:'r'},{w:1.4,a:'r'},{w:1.5,a:'r'},{w:1.5,a:'r'},{w:2,a:'r'}],head:['成員','餐費','住宿','應攤','已付','結餘'],
+    rows:[...R.map(r=>{const b=Math.round(r.bal); return {cells:[r.m.n||'(未命名)',fmt(r.food),fmt(r.lodge),{t:fmt(r.food+r.lodge),b:true},fmt(r.pd),b>0?{t:'應付 '+fmt(b),c:'#B2475E',b:true}:b<0?{t:'應收 '+fmt(-b),c:'#4C6B55',b:true}:{t:'已結清',c:'#8A7D83'}]}}),{cls:'foot',cells:['合計',fmt(R.reduce((a,r)=>a+r.food,0)),fmt(R.reduce((a,r)=>a+r.lodge,0)),fmt(R.reduce((a,r)=>a+r.food+r.lodge,0)),fmt(R.reduce((a,r)=>a+r.pd,0)),'']}]},
+    ...(X.length?[{type:'text',title:'轉帳清單',lines:X.map(t=>`${D[t.from+'>'+t.to]===t.v?'✓ ':''}${t.from} → ${t.to}　$${fmt(t.v)}`)}]:[])]} }
+let IMGBLOB=null;
+function openImg(K){ const {C}=renderSummary(); const cv=drawTable(ovlImageSpec(C,K||OVL)); const url=cv.toDataURL('image/png');
+  let m=$('#imgModal'); if(!m){ m=document.createElement('div'); m.id='imgModal'; m.className='img-modal'; document.body.appendChild(m);
+    m.addEventListener('click',async e=>{ if(e.target===m||e.target.closest('[data-imgx]')){ m.classList.remove('on'); return }
+      if(e.target.closest('[data-imgcopy]')){ try{ await navigator.clipboard.write([new ClipboardItem({'image/png':IMGBLOB})]); toast('已複製圖片，可以直接貼到 LINE') }catch(err){ toast('這裡不能直接複製，請長按（或按右鍵）圖片來複製／儲存') } return }
+      if(e.target.closest('[data-imgshare]')){ try{ await navigator.share({files:[new File([IMGBLOB],'分帳.png',{type:'image/png'})]}) }catch(err){} return }
+      if(e.target.closest('[data-imgdl]')){ const a=document.createElement('a'); a.href=URL.createObjectURL(IMGBLOB); a.download=(S.title||'分帳')+'.png'; document.body.appendChild(a); a.click(); a.remove(); return } }) }
+  cv.toBlob(b=>{ IMGBLOB=b; const canShare=!!(navigator.canShare&&navigator.canShare({files:[new File([b],'a.png',{type:'image/png'})]}));
+    m.innerHTML=`<div class="img-box"><div class="fs-h"><div class="fs-tt"><b>圖片預覽</b><small>手機可以長按圖片儲存或分享；電腦可以按右鍵複製</small></div><button type="button" class="bp-x" data-imgx aria-label="關閉"><i class="i i-x"></i></button></div><div class="img-wrap"><img src="${url}" alt="分帳圖片"></div><div class="fs-f"><button type="button" data-imgdl><i class="i i-install"></i>下載</button><span class="sp"></span>${canShare?'<button type="button" data-imgshare><i class="i i-share"></i>分享</button>':''}<button type="button" class="pri fs-ok" data-imgcopy><i class="i i-copy"></i>複製圖片</button></div></div>`;
+    m.classList.add('on') },'image/png'); }
 
 function compute(){
   const ms=members(); const ids=new Set(ms.map(m=>m.id));
@@ -1815,7 +1952,7 @@ function renderSummary(){
     el.querySelectorAll('[data-famt]').forEach(s=>{s.textContent='$'+fmt(i.share[s.dataset.famt]||0)});
     const sum=el.querySelector('[data-fsum]'); if(!sum) return;
     sum.innerHTML=!i.tot?'<span class="lbl">在下面新增品項、填入費用後，會自動算出每人多少</span>':i.occ===1?`由 1 組全額負擔 <b>$${fmt(i.tot)}</b>`:i.sm==='custom'?(Math.abs(i.diff)<0.5?`<span class="ok"><i class="i i-check"></i> 合計 $${fmt(i.assigned)}，剛好等於這筆餐費</span>`:`<span class="bad"><i class="i i-warn"></i>合計 $${fmt(i.assigned)}，${i.diff>0?'還差':'多了'} $${fmt(Math.abs(i.diff))}（餐費共 $${fmt(i.tot)}）</span>`):i.sm==='group'?`$${fmt(i.tot)} ÷ ${i.occ} 組 ＝ <b>每組 $${fmt(i.per)}</b>`:`$${fmt(i.tot)} ÷ ${r2(i.sw)} 人 ＝ <b>每人 $${fmt(i.per)}</b>`; });
-  document.querySelectorAll('[data-gid]').forEach(el=>{el.querySelector('[data-gtot]').textContent='$'+fmt(C.nightTot[el.dataset.gid]||0)});
+  document.querySelectorAll('[data-gid]').forEach(el=>{const t=el.querySelector('[data-gtot]'); if(t) t.textContent='$'+fmt(C.nightTot[el.dataset.gid]||0)});
   document.querySelectorAll('[data-rid]').forEach(el=>{const i=C.roomInfo[el.dataset.rid]; if(!i) return;
     el.querySelectorAll('[data-oamt]').forEach(s=>{s.textContent=i.hasFee?'$'+fmt(i.share[s.dataset.oamt]||0):'—'});
     const sum=el.querySelector('[data-rsum]'); if(!sum) return;
@@ -1932,7 +2069,7 @@ function confirmInline(btn,msg){ if(btn.dataset.armed){return true} const old=bt
 $('#title').addEventListener('input',e=>{S.title=e.target.value; if(MODE!=='shared'){touchLocal();return} const ev=EVENTS.find(x=>x.id===EID); if(ev){ev.name=S.title; put('events/'+EID,{name:S.title}); renderEvBtn()} });
 $('#basisBox').addEventListener('toggle',renderBasisSum);
 ['kidF','babyF'].forEach(k=>$('#'+k).addEventListener('input',e=>{S[k]=e.target.value; renderBasisSum(); renderSummary(); put('meta/main',{[k]:S[k]}); if(k==='kidL'||k==='babyL') renderNightsKeep()}));
-function renderNightsKeep(){ const a=document.activeElement; document.querySelectorAll('[data-cid]').forEach(el=>{const c=S.cats.find(x=>x.id===el.dataset.cid); const fsp=el.querySelector('.fsplit'); if(c&&fsp&&!fsp.contains(a)) fsp.outerHTML=foodSplitHtml(c,!!fsp.closest('#fsheet'))}); document.querySelectorAll('[data-rid]').forEach(el=>{const r=S.rooms.find(x=>x.id===el.dataset.rid); if(!r) return; el.querySelector('.chips').innerHTML=chipsHtml(r); const sp=el.querySelector('.split'); if(sp&&!sp.contains(a)) sp.outerHTML=splitHtml(r)}); renderSummary(); paintPeers(); }
+function renderNightsKeep(){ const a=document.activeElement; document.querySelectorAll('[data-cid]').forEach(el=>{const c=S.cats.find(x=>x.id===el.dataset.cid); const fsp=el.querySelector('.fsplit'); if(c&&fsp&&!fsp.contains(a)) fsp.outerHTML=foodSplitHtml(c,!!fsp.closest('#fsheet'))}); renderNights(); document.querySelectorAll('#fsheet [data-rid]').forEach(el=>{const r=S.rooms.find(x=>x.id===el.dataset.rid); if(!r) return; const ch=el.querySelector('.chips'); if(ch) ch.innerHTML=chipsHtml(r); const sp=el.querySelector('.split'); if(sp&&!sp.contains(a)) sp.outerHTML=splitHtml(r)}); renderSummary(); paintPeers(); }
 
 // ---------- events: members ----------
 $('#memBody').addEventListener('input',e=>{
@@ -1958,7 +2095,7 @@ $('#memBody').addEventListener('click',e=>{
 $('#addMem').onclick=()=>newMember();
 
 // ---------- events: lodging ----------
-$('#nights').addEventListener('input',e=>{
+document.addEventListener('input',e=>{ if(!e.target.closest('#nights,#fsheet')) return;
   const gel=e.target.closest('[data-gid]'); if(!gel) return; const g=S.nights.find(x=>x.id===gel.dataset.gid); if(!g) return;
   if(e.target.dataset.gf){g.name=e.target.value; put('nights/'+g.id,{name:g.name}); return}
   const rel=e.target.closest('[data-rid]'); if(!rel) return; const r=S.rooms.find(x=>x.id===rel.dataset.rid); if(!r) return; const f=e.target.dataset.rf;
@@ -1969,7 +2106,7 @@ $('#nights').addEventListener('input',e=>{
   renderSummary(); put('rooms/'+r.id,{[f]:r[f]});
 });
 $('#nights').addEventListener('change',e=>{ if(e.target.dataset.rf==='p'){ const r=S.rooms.find(x=>x.id===e.target.closest('[data-rid]').dataset.rid); if(!r) return; r.p=e.target.value; renderSummary(); put('rooms/'+r.id,{p:r.p}); }});
-$('#nights').addEventListener('click',e=>{
+document.addEventListener('click',e=>{ if(!e.target.closest('#nights,#fsheet')) return;
   const gel=e.target.closest('[data-gid]'); if(!gel) return; const g=S.nights.find(x=>x.id===gel.dataset.gid); if(!g) return;
   const pe=e.target.closest('[data-pedit]');
   if(pe){ const rid=pe.closest('[data-rid]').dataset.rid; PEDIT.add(rid+':'+pe.dataset.pedit); renderAll(); const el=document.querySelector(`[data-key="rooms/${rid}|x:${pe.dataset.pedit}"]`); el&&el.focus(); return }
@@ -1977,7 +2114,7 @@ $('#nights').addEventListener('click',e=>{
   if(sm){ const r=S.rooms.find(x=>x.id===sm.closest('[data-rid]').dataset.rid); if(!r) return; r.s=sm.dataset.smode; put('rooms/'+r.id,{s:r.s}); renderAll(); return }
   const chip=e.target.closest('.chip');
   if(chip){ const r=S.rooms.find(x=>x.id===chip.closest('[data-rid]').dataset.rid); if(!r) return; const id=chip.dataset.mid; const m=new Set(r.m||[]); m.has(id)?m.delete(id):m.add(id);
-    r.m=members().map(x=>x.id).filter(x=>m.has(x)); const rel=chip.closest('[data-rid]'); rel.querySelector('.chips').innerHTML=chipsHtml(r); const sp=rel.querySelector('.split'); const html=splitHtml(r); if(sp) sp.outerHTML=html||''; else if(html) rel.querySelector('.chips').insertAdjacentHTML('afterend',html); renderSummary(); put('rooms/'+r.id,{m:r.m}); myFocus(`rooms/${r.id}|m`); return }
+    r.m=members().map(x=>x.id).filter(x=>m.has(x)); const rel=chip.closest('[data-rid]'); rel.querySelector('.chips').innerHTML=chipsHtml(r); const sp=rel.querySelector('.split'); const html=splitHtml(r); if(sp) sp.outerHTML=html||''; else if(html) rel.querySelector('.chips').insertAdjacentHTML('afterend',html); renderNights(); renderSummary(); put('rooms/'+r.id,{m:r.m}); myFocus(`rooms/${r.id}|m`); return }
   if(e.target.closest('[data-gtg]')){openMap[g.id]=!isOpen(g.id); saveOpen(); renderNights(); renderSummary(); paintPeers(); return}
   if(e.target.closest('[data-gup]')){ const gs=nights(); const k=gs.indexOf(g); if(k>0){ const p=gs[k-1]; let a=num(g.o), b=num(p.o); if(a===b){b=a-1} g.o=b; p.o=a; put('nights/'+g.id,{o:g.o}); put('nights/'+p.id,{o:p.o}); renderAll(); } return}
   if(e.target.closest('[data-gdel]')){ const rs=roomsOf(g.id); if(rs.length && !confirmInline(e.target.closest('button'),`這一晚有 ${rs.length} 間房，再按一次確認刪除`)) return;
@@ -1997,8 +2134,7 @@ $('#pays').addEventListener('click',e=>{
   if(e.target.closest('#addPay')){ const x={id:nid(),t:S.pays.length?'尾款':'押金',f:'',p:getMe(),d:'',r:'',o:maxO(S.pays)}; S.pays.push(x); put('pays/'+x.id,{},true); renderAll(); const el=document.querySelector(`[data-key="pays/${x.id}|f"]`); el&&el.focus(); return }
   const d=e.target.closest('[data-pdel]'); if(d){ const id=d.closest('tr').dataset.pid; {const x=S.pays.find(p=>p.id===id); if(x) offerUndo(`一筆${x.t}`,[snap('pays',x)])} S.pays=S.pays.filter(p=>p.id!==id); remove('pays/'+id); renderAll(); }
 });
-$('#addNight').onclick=()=>{const g={id:nid(),name:'第 '+(S.nights.length+1)+' 晚',o:maxO(S.nights)}; S.nights.push(g); put('nights/'+g.id,{},true);
-  const r={id:nid(),g:g.id,n:'',f:'',p:'',m:[],s:'head',x:{},xa:{},r:'',o:0}; S.rooms.push(r); put('rooms/'+r.id,{},true); openMap[g.id]=true; renderAll(); const el=document.querySelector(`[data-key="nights/${g.id}|name"]`); el&&el.select();};
+$('#addNight').onclick=()=>newNight();
 
 // ---------- events: food ----------
 document.addEventListener('input',e=>{ if(!e.target.closest('#cats,#fsheet')) return;
@@ -2157,7 +2293,7 @@ function paintPeers(){
     box.classList.add('other'); box.style.setProperty('--pc',colorOf(p.name));
     if(!box.querySelector(':scope > .tag')){const t=document.createElement('span');t.className='tag';t.textContent=p.name+' 正在改';box.appendChild(t)}
   });
-  const now=Date.now(); document.querySelectorAll('.frow[data-iid],tr[data-id],tr[data-pid],.room[data-rid]').forEach(r=>{const id=r.dataset.iid||r.dataset.id||r.dataset.pid||r.dataset.rid; r.classList.toggle('flash',!!(FLASH[id]&&now-FLASH[id]<3000))});
+  const now=Date.now(); document.querySelectorAll('.frow[data-iid],tr[data-id],.prow[data-pid],.rrow[data-rid]').forEach(r=>{const id=r.dataset.iid||r.dataset.id||r.dataset.pid||r.dataset.rid; r.classList.toggle('flash',!!(FLASH[id]&&now-FLASH[id]<3000))});
 }
 let hiShown=false;
 function maybeHi(){ if(MODE!=='shared'||!EID||NICK||hiShown) return; hiShown=true;
@@ -2288,8 +2424,11 @@ async function startShared(){
 })();
 window.__test={compute,transfers,convert,get S(){return S},get EID(){return EID},get EVENTS(){return EVENTS}};
 
+document.addEventListener('click',e=>{ if(e.target.closest('[data-ovimg]')) openImg(); });
+$('#bCopyImg').onclick=()=>openImg('mem');
+
 // ---------- PWA ----------
-const APP_VER='v11.1・2026.11.21';
+const APP_VER='v11.2・2026.11.21';
 try{ $('#verTxt').textContent='分帳小幫手 '+APP_VER }catch(e){}
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; $('#insGo').style.display='' });
