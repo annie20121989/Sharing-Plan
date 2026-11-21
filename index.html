@@ -1824,28 +1824,46 @@ document.addEventListener('keydown',e=>{ if(e.key!=='Enter'||!e.target.matches) 
 
 // ===== v11.2: 複製成圖片 =====
 function drawTable(spec){
-  const S2=2, W=spec.w||560, pad=20, font='"PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif';
-  const cv=document.createElement('canvas'), x=cv.getContext('2d');
-  const rowsH=spec.blocks.reduce((a,b)=>a+(b.type==='table'?36+b.rows.length*34+10:b.lines.length*26+40),0);
-  const H=pad+30+22+18+rowsH+34; cv.width=W*S2; cv.height=H*S2; x.scale(S2,S2);
-  x.fillStyle='#F7F3F5'; x.fillRect(0,0,W,H); x.fillStyle='#3F363A'; x.fillRect(0,0,W,6);
-  x.textBaseline='middle';
+  const S2=2, pad=20, font='"PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif';
+  const mc=document.createElement('canvas').getContext('2d');
+  const mw=(t,s,b)=>{ mc.font=`${b?800:500} ${s}px ${font}`; return mc.measureText(String(t??'')).width };
+  const cellT=c=>c&&typeof c==='object'?c.t:c;
+  // 1) 量每一欄需要多寬
+  let W=spec.w||560;
+  spec.blocks.forEach(b=>{ if(b.type!=='table') return;
+    b.need=b.cols.map((c,i)=>{ let w=mw(b.head[i],12.5,1); b.rows.forEach(r=>{ if(r.cls==='grp') return; const cl=r.cells[i]; const bold=cl&&typeof cl==='object'&&cl.b!==undefined?cl.b:(i===0||r.cls==='foot'); w=Math.max(w,mw(cellT(cl),13.5,bold)+(i===0&&r.mark?32:0)) }); w+=22; return c.f?Math.min(w,c.max||240):w });
+    const g=b.rows.filter(r=>r.cls==='grp').reduce((a,r)=>Math.max(a,mw(r.cells[0],13.5,1)+mw(r.cells[1]||'',13.5,1)+50),0);
+    W=Math.max(W,Math.min(1200,b.need.reduce((a,x)=>a+x,0)+2*pad),Math.min(1200,g+2*pad)) });
+  const tw=W-2*pad;
+  spec.blocks.forEach(b=>{ if(b.type!=='table') return; const tot=b.need.reduce((a,x)=>a+x,0); const extra=Math.max(0,tw-tot); const fl=b.cols.map((c,i)=>c.f?i:-1).filter(i=>i>=0);
+    b.cw=b.need.map((n,i)=>fl.length?(fl.includes(i)?n+extra/fl.length:n):n+extra*n/tot);
+    const k=b.cw.reduce((a,x)=>a+x,0); if(k>tw) b.cw=b.cw.map(x=>x*tw/k) });
+  // 文字區塊自動換行
+  const wrap=(t,max,s)=>{ const out=[]; let cur=''; for(const ch of String(t)){ if(mw(cur+ch,s)>max&&cur){ out.push(cur); cur=ch } else cur+=ch } if(cur) out.push(cur); return out };
+  spec.blocks.forEach(b=>{ if(b.type==='text') b.wl=b.lines.flatMap(l=>wrap(l,tw-12,13.5)) });
+  const rowsH=spec.blocks.reduce((a,b)=>a+(b.type==='table'?36+b.rows.length*34+10:b.wl.length*24+44),0);
+  const H=pad+30+22+18+rowsH+34;
+  const cv=document.createElement('canvas'), x=cv.getContext('2d'); cv.width=W*S2; cv.height=H*S2; x.scale(S2,S2);
+  x.fillStyle='#F7F3F5'; x.fillRect(0,0,W,H); x.fillStyle='#3F363A'; x.fillRect(0,0,W,6); x.textBaseline='middle';
   const txt=(t,X,Y,o={})=>{ x.font=`${o.b?800:500} ${o.s||14}px ${font}`; x.fillStyle=o.c||'#3F363A'; x.textAlign=o.a||'left'; let s=String(t??''); if(o.max){ while(s.length>1&&x.measureText(s).width>o.max) s=s.slice(0,-2)+'…' } x.fillText(s,X,Y) };
-  let y=pad+16; txt(spec.title,pad,y,{b:1,s:20}); y+=26; txt(spec.sub,pad,y,{s:12.5,c:'#8A7D83'}); y+=20;
+  const rr=(X,Y,w,h,r)=>{ x.beginPath(); if(x.roundRect) x.roundRect(X,Y,w,h,r); else x.rect(X,Y,w,h) };
+  let y=pad+16; txt(spec.title,pad,y,{b:1,s:20,max:tw}); y+=26; txt(spec.sub,pad,y,{s:12.5,c:'#8A7D83',max:tw}); y+=20;
   spec.blocks.forEach(b=>{
-    if(b.type==='text'){ y+=8; txt(b.title,pad,y+8,{b:1,s:14.5,c:'#6E5378'}); y+=24; b.lines.forEach(l=>{ txt(l,pad+6,y+10,{s:13.5,max:W-2*pad-10}); y+=26 }); y+=8; return }
-    const tw=W-2*pad, cols=b.cols, sum=cols.reduce((a,c)=>a+c.w,0); const xs=[]; let cx=pad; cols.forEach(c=>{ xs.push(cx); cx+=c.w/sum*tw });
-    x.fillStyle='#fff'; x.beginPath(); x.roundRect?x.roundRect(pad,y,tw,36+b.rows.length*34,12):x.rect(pad,y,tw,36+b.rows.length*34); x.fill();
-    x.save(); x.beginPath(); x.roundRect?x.roundRect(pad,y,tw,36+b.rows.length*34,12):x.rect(pad,y,tw,36+b.rows.length*34); x.clip();
+    if(b.type==='text'){ y+=8; txt(b.title,pad,y+8,{b:1,s:14.5,c:'#6E5378'}); y+=24; b.wl.forEach(l=>{ txt(l,pad+6,y+10,{s:13.5}); y+=24 }); y+=12; return }
+    const cols=b.cols, cw=b.cw, xs=[]; let cx=pad; cw.forEach(w=>{ xs.push(cx); cx+=w });
+    const th=36+b.rows.length*34;
+    x.fillStyle='#fff'; rr(pad,y,tw,th,12); x.fill(); x.save(); rr(pad,y,tw,th,12); x.clip();
     x.fillStyle='#EFE6EB'; x.fillRect(pad,y,tw,36);
-    const cellX=(i,a)=>a==='r'?xs[i]+cols[i].w/sum*tw-10:a==='c'?xs[i]+cols[i].w/sum*tw/2:xs[i]+10;
-    b.head.forEach((h,i)=>txt(h,cellX(i,cols[i].a),y+18,{b:1,s:12.5,c:'#6E5378',a:cols[i].a==='r'?'right':cols[i].a==='c'?'center':'left'}));
+    const al=a=>a==='r'?'right':a==='c'?'center':'left';
+    const cellX=(i,a)=>a==='r'?xs[i]+cw[i]-11:a==='c'?xs[i]+cw[i]/2:xs[i]+11;
+    b.head.forEach((h,i)=>txt(h,cellX(i,cols[i].a),y+18,{b:1,s:12.5,c:'#6E5378',a:al(cols[i].a),max:cw[i]-12}));
     y+=36;
-    b.rows.forEach(r=>{ if(r.cls==='grp'){ x.fillStyle='#F3ECF0'; x.fillRect(pad,y,tw,34); txt(r.cells[0],pad+10,y+17,{b:1,s:13.5,max:tw*0.7}); if(r.cells[1]) txt(r.cells[1],pad+tw-10,y+17,{b:1,s:13.5,a:'right'}); }
+    b.rows.forEach(r=>{
+      if(r.cls==='grp'){ x.fillStyle='#F3ECF0'; x.fillRect(pad,y,tw,34); const rw=r.cells[1]?mw(r.cells[1],13.5,1)+24:0; txt(r.cells[0],pad+11,y+17,{b:1,s:13.5,max:tw-rw-22}); if(r.cells[1]) txt(r.cells[1],pad+tw-11,y+17,{b:1,s:13.5,a:'right'}) }
       else { if(r.cls==='todo'){ x.fillStyle='#FFF8EA'; x.fillRect(pad,y,tw,34) } if(r.cls==='foot'){ x.fillStyle='#FAF6F8'; x.fillRect(pad,y,tw,34) }
-        r.cells.forEach((c,i)=>{ const a=cols[i].a; let t=c, col=i===0?'#5B4466':'#3F363A', bold=i===0||r.cls==='foot'; if(c&&typeof c==='object'){ t=c.t; col=c.c||col; bold=c.b??bold }
+        r.cells.forEach((c,i)=>{ const a=cols[i].a; let t=c, col=i===0?'#5B4466':'#3F363A', bold=i===0||r.cls==='foot'; if(c&&typeof c==='object'){ t=c.t; col=c.c||col; if(c.b!==undefined) bold=c.b }
           if(i===0&&r.mark){ x.beginPath(); x.arc(pad+18,y+17,7,0,7); if(r.mark==='ok'){ x.fillStyle='#7E9F88'; x.fill(); x.strokeStyle='#fff'; x.lineWidth=1.8; x.beginPath(); x.moveTo(pad+14.5,y+17); x.lineTo(pad+17,y+19.5); x.lineTo(pad+21.5,y+14.5); x.stroke() } else { x.setLineDash([2.5,2.5]); x.strokeStyle='#C9A15F'; x.lineWidth=1.4; x.stroke(); x.setLineDash([]) } }
-          txt(t,i===0&&r.mark?xs[0]+32:cellX(i,a),y+17,{s:13.5,b:bold,c:col,a:a==='r'?'right':a==='c'?'center':'left',max:cols[i].w/sum*tw-(i===0&&r.mark?40:16)}) }) }
+          txt(t,i===0&&r.mark?xs[0]+32:cellX(i,a),y+17,{s:13.5,b:bold,c:col,a:al(a),max:cw[i]-(i===0&&r.mark?40:14)}) }) }
       x.strokeStyle='#EEE6EA'; x.lineWidth=1; x.beginPath(); x.moveTo(pad,y+34); x.lineTo(pad+tw,y+34); x.stroke(); y+=34 });
     x.restore(); y+=10 });
   txt('分帳小幫手・'+new Date().toLocaleDateString('zh-TW'),W-pad,H-16,{s:11,c:'#B3A6AC',a:'right'});
@@ -1854,10 +1872,10 @@ function drawTable(spec){
 function ovlImageSpec(C,K){
   const title=S.title||'分帳';
   if(K==='food'){ const st=isBought, want=FOV; const showP=want!=='todo', showB=want!=='done';
-    const cols=[{w:3.2,a:'l'},{w:1.1,a:'c'},{w:1.4,a:'r'}]; const head=['品名','數量','金額']; if(showP){cols.push({w:1.6,a:'c'}); head.push('誰付的')} if(showB){cols.push({w:1.6,a:'c'}); head.push('預計誰買')}
+    const cols=[{w:3.2,a:'l',f:1,max:260},{w:1.1,a:'c'},{w:1.4,a:'r'}]; const head=['品名','數量','金額']; if(showP){cols.push({w:1.6,a:'c'}); head.push('誰付的')} if(showB){cols.push({w:1.6,a:'c'}); head.push('預計誰買')}
     const rows=[]; const by={}; let n=0;
     cats().forEach(c=>{ const its=itemsOf(c.id).filter(i=>want==='all'||(want==='done'?st(i):!st(i))); if(!its.length) return; rows.push({cls:'grp',cells:[`${c.name||'未命名'}（${FMODE_TXT(c)}）`,want==='todo'?'':'$'+fmt(C.catTot[c.id]||0)]});
-      its.forEach(i=>{ n++; const ok=st(i), v=evalFee(i.f).v; const cells=[i.n||'(未命名)',[i.q,i.u].filter(Boolean).join(' '),ok?fmt(v):(v?{t:'約 '+fmt(v),c:'#9A7430',b:false}:'—')];
+      its.forEach(i=>{ n++; const ok=st(i), v=evalFee(i.f).v; const cells=[i.n||'(未命名)',[i.q,i.u].filter(Boolean).join(' '),ok?(v?fmt(v):{t:'—',c:'#B3A6AC'}):(v?{t:'約 '+fmt(v),c:'#9A7430',b:false}:'—')];
         if(showP) cells.push(ok?(i.p==='__free'?{t:(i.sp&&mName(i.sp)?mName(i.sp)+' ':'')+'贊助',c:'#9C9096'}:mName(i.p)):{t:'還沒買',c:'#9A7430',b:true});
         if(showB) cells.push(ok?'':(i.pb?{t:mName(i.pb)||'?',c:'#5B4466',b:true}:{t:'未定',c:'#B3A6AC'}));
         if(!ok){ const k=i.pb?mName(i.pb)||'?':'未定'; (by[k]=by[k]||[]).push(i.n||'(未命名)') }
@@ -1867,7 +1885,7 @@ function ovlImageSpec(C,K){
     return {title:`${title}｜${want==='todo'?'待買清單':want==='done'?'已買清單':'餐費清單'}`,sub:want==='todo'?`共 ${n} 項還沒買`:`已買合計 $${fmt(C.foodPool)}`,blocks} }
   if(K==='lodge'){ const rows=[]; nights().forEach(g=>{ rows.push({cls:'grp',cells:[g.name||'未命名','$'+fmt(C.nightTot[g.id]||0)]}); roomsOf(g.id).forEach(r=>{ const i=C.roomInfo[r.id]||{share:{}}; const occ=members().filter(m=>(r.m||[]).includes(m.id)); rows.push({cells:[r.n||'(未命名房間)',occ.map(m=>m.n+(i.share[m.id]?' '+fmt(i.share[m.id]):'')).join('、')||{t:'還沒選人',c:'#9A7430'},String(r.f||'').trim()?fmt(i.cost):{t:'未填',c:'#9A7430'}]}) }) });
     rows.push({cls:'foot',cells:['合計','',fmt(C.lodgeTotal)]});
-    const R=C.rows; return {title:`${title}｜住宿`,sub:`總房費 $${fmt(C.lodgeTotal)}・已付 $${fmt(C.lodgePaid)}`,blocks:[{type:'table',cols:[{w:2,a:'l'},{w:4.2,a:'l'},{w:1.4,a:'r'}],head:['房間','住的人（各負擔）','房價'],rows},{type:'table',cols:[{w:2,a:'l'},{w:1.7,a:'c'},{w:1.2,a:'c'},{w:1.6,a:'r'},{w:1.6,a:'r'}],head:['成員','人數','住宿計費','應攤','已付'],rows:R.map(r=>({cells:[r.m.n||'(未命名)',{t:pplText(r.m),c:'#8A7D83',b:false},r2(r.lw),fmt(r.lodge),fmt(r.pdL)]}))}]} }
+    const R=C.rows; return {title:`${title}｜住宿`,sub:`總房費 $${fmt(C.lodgeTotal)}・已付 $${fmt(C.lodgePaid)}`,blocks:[{type:'table',cols:[{w:2,a:'l'},{w:4.2,a:'l',f:1,max:420},{w:1.4,a:'r'}],head:['房間','住的人（各負擔）','房價'],rows},{type:'table',cols:[{w:2,a:'l'},{w:1.7,a:'c'},{w:1.2,a:'c'},{w:1.6,a:'r'},{w:1.6,a:'r'}],head:['成員','人數','住宿計費','應攤','已付'],rows:R.map(r=>({cells:[r.m.n||'(未命名)',{t:pplText(r.m),c:'#8A7D83',b:false},r2(r.lw),fmt(r.lodge),fmt(r.pdL)]}))}]} }
   const R=C.rows, X=transfers(R), D=S.done||{};
   return {title:`${title}｜結算`,sub:`${R.length} 組・全部花費 $${fmt(R.reduce((a,r)=>a+r.lodge+r.food,0))}`,w:660,blocks:[{type:'table',cols:[{w:2,a:'l'},{w:1.7,a:'c'},{w:1.4,a:'r'},{w:1.4,a:'r'},{w:1.5,a:'r'},{w:1.5,a:'r'},{w:2,a:'r'}],head:['成員','人數','餐費','住宿','應攤','已付','結餘'],
     rows:[...R.map(r=>{const b=Math.round(r.bal); return {cells:[r.m.n||'(未命名)',{t:pplText(r.m),c:'#8A7D83',b:false},fmt(r.food),fmt(r.lodge),{t:fmt(r.food+r.lodge),b:true},fmt(r.pd),b>0?{t:'應付 '+fmt(b),c:'#B2475E',b:true}:b<0?{t:'應收 '+fmt(-b),c:'#4C6B55',b:true}:{t:'已結清',c:'#8A7D83'}]}}),{cls:'foot',cells:['合計',headCount().t+' 人',fmt(R.reduce((a,r)=>a+r.food,0)),fmt(R.reduce((a,r)=>a+r.lodge,0)),fmt(R.reduce((a,r)=>a+r.food+r.lodge,0)),fmt(R.reduce((a,r)=>a+r.pd,0)),'']}]},
@@ -2430,7 +2448,7 @@ document.addEventListener('click',e=>{ if(e.target.closest('[data-ovimg]')) open
 $('#bCopyImg').onclick=()=>openImg('mem');
 
 // ---------- PWA ----------
-const APP_VER='v11.3・2026.11.21';
+const APP_VER='v11.4・2026.11.21';
 try{ $('#verTxt').textContent='分帳小幫手 '+APP_VER }catch(e){}
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; $('#insGo').style.display='' });
