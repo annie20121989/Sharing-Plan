@@ -1869,6 +1869,10 @@ function drawTable(spec){
   txt('分帳小幫手・'+new Date().toLocaleDateString('zh-TW'),W-pad,H-16,{s:11,c:'#B3A6AC',a:'right'});
   return cv;
 }
+const zc=v=>v?{t:String(v),b:false}:{t:'0',c:'#CFC4C9',b:false};
+const pplCells=m=>{const a=num(m.a),k=num(m.k),b=num(m.b); return [zc(a),zc(k),zc(b),{t:(a+k+b)+' 人',b:true}]};
+const pplFoot=()=>{const h=headCount(); return [String(h.a),String(h.k),String(h.b),h.t+' 人']};
+const pplSum=()=>{const h=headCount(); return `共 ${h.t} 人（大人 ${h.a}、小孩 ${h.k}、幼兒 ${h.b}）`};
 function ovlImageSpec(C,K){
   const title=S.title||'分帳';
   if(K==='food'){ const st=isBought, want=FOV; const showP=want!=='todo', showB=want!=='done';
@@ -1885,10 +1889,10 @@ function ovlImageSpec(C,K){
     return {title:`${title}｜${want==='todo'?'待買清單':want==='done'?'已買清單':'餐費清單'}`,sub:want==='todo'?`共 ${n} 項還沒買`:`已買合計 $${fmt(C.foodPool)}`,blocks} }
   if(K==='lodge'){ const rows=[]; nights().forEach(g=>{ rows.push({cls:'grp',cells:[g.name||'未命名','$'+fmt(C.nightTot[g.id]||0)]}); roomsOf(g.id).forEach(r=>{ const i=C.roomInfo[r.id]||{share:{}}; const occ=members().filter(m=>(r.m||[]).includes(m.id)); rows.push({cells:[r.n||'(未命名房間)',occ.map(m=>m.n+(i.share[m.id]?' '+fmt(i.share[m.id]):'')).join('、')||{t:'還沒選人',c:'#9A7430'},String(r.f||'').trim()?fmt(i.cost):{t:'未填',c:'#9A7430'}]}) }) });
     rows.push({cls:'foot',cells:['合計','',fmt(C.lodgeTotal)]});
-    const R=C.rows; return {title:`${title}｜住宿`,sub:`總房費 $${fmt(C.lodgeTotal)}・已付 $${fmt(C.lodgePaid)}`,blocks:[{type:'table',cols:[{w:2,a:'l'},{w:4.2,a:'l',f:1,max:420},{w:1.4,a:'r'}],head:['房間','住的人（各負擔）','房價'],rows},{type:'table',cols:[{w:2,a:'l'},{w:1.7,a:'c'},{w:1.2,a:'c'},{w:1.6,a:'r'},{w:1.6,a:'r'}],head:['成員','人數','住宿計費','應攤','已付'],rows:R.map(r=>({cells:[r.m.n||'(未命名)',{t:pplText(r.m),c:'#8A7D83',b:false},r2(r.lw),fmt(r.lodge),fmt(r.pdL)]}))}]} }
+    const R=C.rows; return {title:`${title}｜住宿`,sub:`總房費 $${fmt(C.lodgeTotal)}・已付 $${fmt(C.lodgePaid)}`,blocks:[{type:'table',cols:[{w:2,a:'l'},{w:4.2,a:'l',f:1,max:420},{w:1.4,a:'r'}],head:['房間','住的人（各負擔）','房價'],rows},{type:'table',cols:[{w:2,a:'l'},{w:.8,a:'c'},{w:.8,a:'c'},{w:.8,a:'c'},{w:.9,a:'c'},{w:1.2,a:'c'},{w:1.6,a:'r'},{w:1.6,a:'r'}],head:['成員','大人','小孩','幼兒','人數','住宿計費','應攤','已付'],rows:[...R.map(r=>({cells:[r.m.n||'(未命名)',...pplCells(r.m),r2(r.lw),fmt(r.lodge),fmt(r.pdL)]})),{cls:'foot',cells:['合計',...pplFoot(),r2(R.reduce((a,r)=>a+r.lw,0)),fmt(R.reduce((a,r)=>a+r.lodge,0)),fmt(R.reduce((a,r)=>a+r.pdL,0))]}]}]} }
   const R=C.rows, X=transfers(R), D=S.done||{};
-  return {title:`${title}｜結算`,sub:`${R.length} 組・全部花費 $${fmt(R.reduce((a,r)=>a+r.lodge+r.food,0))}`,w:660,blocks:[{type:'table',cols:[{w:2,a:'l'},{w:1.7,a:'c'},{w:1.4,a:'r'},{w:1.4,a:'r'},{w:1.5,a:'r'},{w:1.5,a:'r'},{w:2,a:'r'}],head:['成員','人數','餐費','住宿','應攤','已付','結餘'],
-    rows:[...R.map(r=>{const b=Math.round(r.bal); return {cells:[r.m.n||'(未命名)',{t:pplText(r.m),c:'#8A7D83',b:false},fmt(r.food),fmt(r.lodge),{t:fmt(r.food+r.lodge),b:true},fmt(r.pd),b>0?{t:'應付 '+fmt(b),c:'#B2475E',b:true}:b<0?{t:'應收 '+fmt(-b),c:'#4C6B55',b:true}:{t:'已結清',c:'#8A7D83'}]}}),{cls:'foot',cells:['合計',headCount().t+' 人',fmt(R.reduce((a,r)=>a+r.food,0)),fmt(R.reduce((a,r)=>a+r.lodge,0)),fmt(R.reduce((a,r)=>a+r.food+r.lodge,0)),fmt(R.reduce((a,r)=>a+r.pd,0)),'']}]},
+  return {title:`${title}｜結算`,sub:`${R.length} 組・${pplSum()}・全部花費 $${fmt(R.reduce((a,r)=>a+r.lodge+r.food,0))}`,w:660,blocks:[{type:'table',cols:[{w:2,a:'l'},{w:.8,a:'c'},{w:.8,a:'c'},{w:.8,a:'c'},{w:.9,a:'c'},{w:1.4,a:'r'},{w:1.4,a:'r'},{w:1.5,a:'r'},{w:1.5,a:'r'},{w:2,a:'r'}],head:['成員','大人','小孩','幼兒','人數','餐費','住宿','應攤','已付','結餘'],
+    rows:[...R.map(r=>{const b=Math.round(r.bal); return {cells:[r.m.n||'(未命名)',...pplCells(r.m),fmt(r.food),fmt(r.lodge),{t:fmt(r.food+r.lodge),b:true},fmt(r.pd),b>0?{t:'應付 '+fmt(b),c:'#B2475E',b:true}:b<0?{t:'應收 '+fmt(-b),c:'#4C6B55',b:true}:{t:'已結清',c:'#8A7D83'}]}}),{cls:'foot',cells:['合計',...pplFoot(),fmt(R.reduce((a,r)=>a+r.food,0)),fmt(R.reduce((a,r)=>a+r.lodge,0)),fmt(R.reduce((a,r)=>a+r.food+r.lodge,0)),fmt(R.reduce((a,r)=>a+r.pd,0)),'']}]},
     ...(X.length?[{type:'text',title:'轉帳清單',lines:X.map(t=>`${D[t.from+'>'+t.to]===t.v?'✓ ':''}${t.from} → ${t.to}　$${fmt(t.v)}`)}]:[])]} }
 let IMGBLOB=null;
 function openImg(K){ const {C}=renderSummary(); const cv=drawTable(ovlImageSpec(C,K||OVL)); const url=cv.toDataURL('image/png');
@@ -2448,7 +2452,7 @@ document.addEventListener('click',e=>{ if(e.target.closest('[data-ovimg]')) open
 $('#bCopyImg').onclick=()=>openImg('mem');
 
 // ---------- PWA ----------
-const APP_VER='v11.4・2026.11.21';
+const APP_VER='v11.5・2026.11.21';
 try{ $('#verTxt').textContent='分帳小幫手 '+APP_VER }catch(e){}
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; $('#insGo').style.display='' });
