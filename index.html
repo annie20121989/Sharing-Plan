@@ -648,6 +648,144 @@ tr.plan select[data-if="p"]{font-weight:800}
   .mc tr[data-iid] td[data-l="數量"],.mc tr[data-iid] td[data-l="單位"],.mc tr[data-iid] td[data-l="購買地點"]{order:4;grid-column:span 2}
   .mc tr[data-iid] td[data-l="備註"]{order:5}
 }
+/* ===== v11 ===== */
+.i-sliders{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h9M17 7h3M4 17h3M11 17h9'/%3E%3Ccircle cx='15' cy='7' r='2'/%3E%3Ccircle cx='9' cy='17' r='2'/%3E%3C/svg%3E")}
+/* ---- 表格（總表） ---- */
+.xsec{margin:14px 0 4px}
+.xsec-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 2px 8px}
+.xsec-h b{font-size:calc(16px + var(--fs-bump));color:var(--ink)}
+.xtw{overflow-x:auto;-webkit-overflow-scrolling:touch;background:#fff;border:1px solid var(--line);border-radius:14px}
+.xt{width:100%;border-collapse:separate;border-spacing:0;font-variant-numeric:tabular-nums;font-size:calc(14.5px + var(--fs-bump))}
+.xt th{background:#F7F2F4;color:var(--plum);font-weight:800;font-size:calc(13px + var(--fs-bump));padding:11px 12px;text-align:center;white-space:nowrap;border-bottom:2px solid #DCCFD5}
+.xt td{padding:11px 12px;text-align:center;white-space:nowrap;border-bottom:1px solid #EFE7EB;color:var(--ink)}
+.xt .xn{text-align:left;position:sticky;left:0;z-index:1;font-weight:800;color:#5B4466;background:#fff;border-right:2px solid #CFC0C8;min-width:84px}
+.xt th.xn{background:#F7F2F4;color:var(--plum)}
+.xt td.r{text-align:right}.xt td.l,.xt th.l{text-align:left}.xt td.wrap{white-space:normal;min-width:180px}
+.xt td small{display:block;font-size:.8em;color:var(--mute);font-weight:600}
+.xt .hf{background:#FBF6F8}.xt th.hf{background:#F2E9EE}
+.xt .hl{background:#F6F8FB}.xt th.hl{background:#EAEFF5}
+.xt tbody tr:last-child td{border-bottom:none}
+.xt tr.sep td{border-top:3px solid #3F363A}
+.xt tbody tr[data-mdid],.xt tbody tr[data-jump]{cursor:pointer}
+.xt tbody tr[data-mdid]:hover td,.xt tbody tr[data-jump]:hover td{background:#FBF7F9}
+.xt tr.me td.xn{color:var(--rose-ink,#9A5A6E)}
+.xt .you{display:inline-block;margin-left:6px;font-size:11px;padding:1px 7px;border-radius:999px;background:#3F363A;color:#fff;vertical-align:2px}
+.xt tfoot td{font-weight:800;background:#FAF7F8;border-top:2px solid #DCCFD5;border-bottom:none}
+.xt tfoot td.xn{background:#FAF7F8}
+.xt .z{color:#C3B6BC;font-weight:600}
+.xt .tdo{color:var(--ochre-ink);font-weight:800}
+.xt .est{color:var(--ochre-ink);font-weight:700}
+.xt td.bal{font-weight:800}.xt td.bal.pay{color:#B2475E}.xt td.bal.get{color:#4C6B55}.xt td.bal.zero{color:var(--mute)}
+.xt .xok{color:#4C6B55;font-weight:800;display:inline-flex;align-items:center;gap:3px}.xt .xw{color:var(--ochre-ink);font-weight:800}
+.xt tr.grp td{background:#F3EDF0;text-align:left;padding:9px 12px;border-bottom:1px solid #E4D8DE;position:static}
+.grp-in{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.grp-in .sp{flex:1}
+.xt-items tr.todo td{background:#FFFBF3}.xt-items tr.todo td.xn{background:#FFFBF3}
+.xt .st{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;margin-right:8px;vertical-align:-4px;border:1.5px dashed #C9A15F;color:#fff}
+.xt tr.ok .st{background:#7E9F88;border:none}.xt tr.ok .st .i{width:13px;height:13px}
+.xt .ocp{display:inline-block;margin:2px 10px 2px 0}.xt .ocp em{font-style:normal;color:var(--mute);font-size:.88em}
+.ovgrid .xtw{margin-top:4px}
+.xt-ov td.xn{min-width:96px}
+@media (max-width:680px){
+  .xt{font-size:14px}.xt th{padding:9px 9px;font-size:12.5px}.xt td{padding:10px 9px}
+  .xt .xn{min-width:72px;max-width:120px;white-space:normal}
+  .xsec-h b{font-size:16px}
+}
+/* ---- 餐費清單 ---- */
+.fcard{border:1px solid var(--line);border-radius:16px;background:#fff;margin:0 0 12px;overflow:hidden}
+.fc-h{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#FAF6F8;border-bottom:1px solid var(--line)}
+.fcard.closed .fc-h{border-bottom:none}.fcard.closed .catbody{display:none}
+.fc-h .tg{cursor:pointer;width:28px;height:28px;display:grid;place-items:center;border-radius:8px;color:var(--mute)}
+.fcard.closed .fc-h .tg .i{transform:rotate(-90deg)}
+.fc-t{flex:1;min-width:0;display:flex!important;align-items:center;gap:8px;flex-wrap:wrap;background:none!important;border:none!important;padding:2px 0!important;text-align:left;cursor:pointer}
+.fc-t b{font-size:calc(16px + var(--fs-bump));color:var(--ink)}
+.fc-t .mode-pill.warn{background:var(--ochre-tint)!important;color:var(--ochre-ink)!important;border-color:var(--ochre-border)!important}
+.fc-h .tot{font-weight:800;font-size:calc(16px + var(--fs-bump));color:var(--plum)}
+.fc-set{display:inline-flex!important;align-items:center;gap:5px;padding:6px 11px!important;border-radius:10px!important;font-weight:700;font-size:calc(13px + var(--fs-bump));color:var(--mute)}
+.fc-set .i{width:17px;height:17px}
+.flist{display:flex;flex-direction:column}
+.frow{display:grid;grid-template-columns:24px minmax(0,1fr) auto auto;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid #F1EAEE;cursor:pointer;transition:background .12s}
+.frow:hover{background:#FCF9FA}.frow:focus-visible{outline:2px solid var(--rose);outline-offset:-2px}
+.frow.plan{background:#FFFBF3}.frow.plan:hover{background:#FDF5E6}
+.fr-ck{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;border:1.6px dashed #C9A15F;color:#fff}
+.frow.bought .fr-ck{background:#7E9F88;border:none}.frow.excl .fr-ck{background:#B9AEB3;border:none}
+.fr-ck .i{width:14px;height:14px}
+.fr-n{min-width:0}.fr-n b{display:block;font-size:calc(15.5px + var(--fs-bump));overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fr-n small{display:block;color:var(--mute);font-size:calc(12.5px + var(--fs-bump));overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.frow.excl .fr-n b{color:var(--mute)}
+.fr-amt{font-weight:800;font-size:calc(16px + var(--fs-bump));font-variant-numeric:tabular-nums;white-space:nowrap}
+.frow.plan .fr-amt{color:var(--ochre-ink);font-weight:700}
+.frow .buy{width:auto;min-height:34px;max-width:140px;padding:5px 9px 5px 10px!important;font-size:calc(13px + var(--fs-bump));border-radius:999px!important}
+.frow .buy .bc{display:none}
+.fempty{padding:14px;color:var(--mute);font-size:calc(13.5px + var(--fs-bump))}
+.fadd{display:flex!important;align-items:center;justify-content:center;gap:6px;width:calc(100% - 24px);margin:10px 12px 12px;min-height:44px;border:1.5px dashed #D6C6CE!important;background:#fff!important;color:var(--plum)!important;font-weight:800;border-radius:12px!important}
+.fadd:hover{background:#FBF7F9!important}
+.fwelcome{text-align:center;padding:28px 16px;border:1.5px dashed var(--line);border-radius:16px;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:6px}
+.fwelcome b{color:var(--ink);font-size:calc(17px + var(--fs-bump))}
+.fw-ic{width:52px;height:52px;border-radius:16px;background:#F3EDF0;display:grid;place-items:center;color:var(--plum);margin-bottom:4px}.fw-ic .i{width:26px;height:26px}
+#addItem{min-width:110px;justify-content:center}
+@media (max-width:680px){
+  .frow{grid-template-columns:22px minmax(0,1fr) auto;gap:10px;padding:11px 12px}
+  .frow .buy{grid-column:2/4;justify-self:start;margin-top:-2px;min-height:30px;font-size:12.5px}
+  .frow.plan .buy,.frow.bought .buy,.frow.excl .buy{max-width:none}
+  .fc-set span{display:none}.fc-set{padding:6px 8px!important}
+  .h2acts #addItem{flex:1.3}
+}
+/* ---- 編輯視窗 ---- */
+.fs-bg{position:fixed;inset:0;background:rgba(40,32,36,.42);z-index:72;display:none}
+.fs-bg.on{display:block;animation:fsFade .18s}
+@keyframes fsFade{from{opacity:0}to{opacity:1}}
+.fsheet{position:fixed;z-index:73;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100vw - 32px));max-height:min(86vh,760px);background:#fff;border-radius:22px;box-shadow:0 24px 70px rgba(40,30,36,.3);display:none;flex-direction:column;overflow:hidden}
+.fsheet.on{display:flex;animation:fsPop .2s ease-out}
+@keyframes fsPop{from{opacity:0;transform:translate(-50%,-48%) scale(.98)}to{opacity:1;transform:translate(-50%,-50%)}}
+.fs-h{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;border-bottom:1px solid var(--line)}
+.fs-tt{flex:1;min-width:0}.fs-tt b{display:block;font-size:calc(18px + var(--fs-bump))}.fs-tt small{color:var(--mute);font-weight:700;font-size:calc(12.5px + var(--fs-bump))}
+.fs-body{padding:6px 18px 16px;overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
+.fs-l{display:flex;align-items:baseline;gap:8px;font-weight:800;color:var(--plum);font-size:calc(13.5px + var(--fs-bump));margin:14px 0 7px}
+.fs-l .lbl{font-weight:600}
+.fs-in{width:100%;box-sizing:border-box;min-height:46px;font-size:16px!important;border-radius:12px!important;padding:10px 12px!important}
+.fs-in.big{font-size:18px!important;font-weight:700;min-height:52px}
+.fs-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:10px}.fs-grid .fs-l{margin-top:14px}
+.fs-grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fs-money{position:relative}.fs-money span{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--mute);font-weight:800}
+.fs-money .fs-in{padding-left:26px!important;text-align:right;font-weight:800;font-size:18px!important}
+.fs-calc{text-align:left!important;margin-top:4px;min-height:16px}
+.fs-chips{display:flex;flex-wrap:wrap;gap:8px}
+.fc2{display:inline-flex!important;align-items:center;gap:6px;min-height:42px;padding:8px 14px!important;border-radius:12px!important;border:1.5px solid var(--line)!important;background:#fff!important;font-weight:800;font-size:calc(14.5px + var(--fs-bump));color:var(--ink)}
+.fc2 small{display:block;font-size:11.5px;color:var(--mute);font-weight:600}
+.fc2.c-grp{flex-direction:column;align-items:flex-start;gap:0;text-align:left}
+.fc2.c-grp.on{flex-direction:row;align-items:center;gap:6px}
+.fc2 .i{width:16px;height:16px}
+.fc2:hover{border-color:#CBB7C1!important}
+.fc2.on{background:#E4EDE6!important;border-color:#7E9F88!important;color:#3F5F49}
+.fc2.c-todo{border-style:dashed!important;color:var(--ochre-ink)}.fc2.c-todo.on{background:var(--ochre-tint)!important;border-color:#C9A15F!important;border-style:solid!important;color:var(--ochre-ink)}
+.fc2.c-free{color:var(--mute)}.fc2.c-free.on{background:#EFEBED!important;border-color:#B9AEB3!important;color:var(--ink)}
+.fc2.c-grp.on{background:#F1EAF2!important;border-color:var(--plum)!important;color:var(--plum)}
+.fs-more{margin-top:14px;border-top:1px dashed var(--line);padding-top:4px}
+.fs-more summary{cursor:pointer;font-weight:800;color:var(--mute);padding:8px 0;list-style:none;display:flex;align-items:center;gap:6px}
+.fs-more summary::-webkit-details-marker{display:none}.fs-more[open] summary .i{transform:rotate(180deg)}
+.fs-f{display:flex;align-items:center;gap:8px;padding:12px 18px;border-top:1px solid var(--line);background:#FCFAFB}
+.fs-f .sp{flex:1}
+.fs-f button{min-height:44px;display:inline-flex!important;align-items:center;gap:5px;border-radius:12px!important;font-weight:800}
+.fs-del{color:#B2475E!important;background:none!important;border-color:transparent!important;padding:8px 6px!important}
+.fs-ok{min-width:96px;justify-content:center}
+.gmodes{display:flex;flex-direction:column;gap:8px}
+.gmode{display:flex!important;align-items:flex-start;gap:12px;text-align:left;padding:12px 14px!important;border-radius:14px!important;border:1.5px solid var(--line)!important;background:#fff!important}
+.gmode.on{border-color:var(--plum)!important;background:#F6F0F6!important}
+.gm-r{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid #CDBEC6;display:grid;place-items:center;margin-top:1px;color:#fff}
+.gmode.on .gm-r{background:var(--plum);border-color:var(--plum)}.gm-r .i{width:14px;height:14px}
+.gm-t b{display:block;font-size:calc(15.5px + var(--fs-bump))}.gm-t small{display:block;color:var(--ink);opacity:.8;font-weight:600;margin-top:2px}.gm-t em{display:block;font-style:normal;color:var(--mute);font-size:calc(12.5px + var(--fs-bump));margin-top:2px}
+#fsheet .fsplit{margin-top:14px;background:#FAF6F8;border:1px solid var(--line);border-radius:14px}
+@media (max-width:680px){
+  .fsheet{left:0;right:0;top:auto;bottom:0;transform:none;width:auto;max-height:92vh;border-radius:22px 22px 0 0}
+  .fsheet.on{animation:fsUp .24s ease-out}
+  @keyframes fsUp{from{transform:translateY(100%)}to{transform:none}}
+  .fs-f{padding-bottom:calc(12px + env(safe-area-inset-bottom))}
+  .fs-grid{grid-template-columns:1fr 1fr}.fs-grid .fs-amt{grid-column:1/-1}
+  .fs-next{padding:8px 10px!important}
+}
+
+#addMeal{display:none!important}
+.h2acts button{white-space:nowrap}
 /* ---- v10.8b ---- */
 .calc:empty{display:none}
 select.mv{width:40px!important;height:36px;color:transparent!important;background:var(--plum-tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237A5C7A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8h15M15 4.5L19 8l-4 3.5M20 16H5M9 12.5L5 16l4 3.5'/%3E%3C/svg%3E") center/19px no-repeat!important;-webkit-appearance:none;appearance:none;padding:0!important}
@@ -869,8 +1007,8 @@ details.tip > div{margin-top:8px}
 <div class="secnav"><div class="secnav-in">
   <a data-go="sec-ov">總覽</a>
   <a data-go="sec-mem">成員<b id="nvMem"></b></a>
-  <a data-go="sec-lodge">住宿<b id="nvLodge"></b></a>
   <a data-go="sec-items">餐費<b id="nvFood"></b></a>
+  <a data-go="sec-lodge">住宿<b id="nvLodge"></b></a>
   <a data-go="sec-sum">結算</a>
   <a data-go="warns" id="nvTodo" class="todo" style="display:none">待處理<b></b></a>
 </div></div></nav>
@@ -885,10 +1023,10 @@ details.tip > div{margin-top:8px}
 <div id="meCard" class="mecard" data-tab="ov" style="display:none"></div>
 <section class="card sec-ov" id="sec-ov" data-tab="ov">
   <h2><span class="n"><i class="i i-grid"></i></span>成員總覽<span class="sp"></span><span class="lbl" id="ovStat"></span></h2>
-  <div class="ovquick"><button type="button" class="oq oq-mem" data-ov="mem"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2c3 .2 5.5 2.4 5.5 5.8"/></svg><span><b>成員總表</b><small>人數總計、每人金額</small></span><em>›</em></button><button type="button" class="oq oq-lodge" data-ov="lodge"><svg viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.8"/></svg><span><b>住宿總表</b><small>房間、誰住哪、付款</small></span><em>›</em></button><button type="button" class="oq oq-food" data-ov="food"><svg viewBox="0 0 24 24"><path d="M6 3v8a2 2 0 0 0 4 0V3M8 11v10M17 21V3c-2 1-3 3.5-3 7h3"/></svg><span><b>餐費總表</b><small>採買清單、待買、代墊</small></span><em>›</em></button></div>
+  <div class="ovquick"><button type="button" class="oq oq-mem" data-ov="mem"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2c3 .2 5.5 2.4 5.5 5.8"/></svg><span><b>成員總表</b><small>人數總計、每人金額</small></span><em>›</em></button><button type="button" class="oq oq-food" data-ov="food"><svg viewBox="0 0 24 24"><path d="M6 3v8a2 2 0 0 0 4 0V3M8 11v10M17 21V3c-2 1-3 3.5-3 7h3"/></svg><span><b>餐費總表</b><small>採買清單、待買、代墊</small></span><em>›</em></button><button type="button" class="oq oq-lodge" data-ov="lodge"><svg viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.8"/></svg><span><b>住宿總表</b><small>房間、誰住哪、付款</small></span><em>›</em></button></div>
   <div class="ov-todo" id="ovTodo"></div>
   <div class="ovgrid" id="ovGrid"></div>
-  <div class="lbl" style="margin-top:8px">點卡片可以看這個人的完整明細：住哪間、吃飯算幾人、先付了哪些、要轉給誰。</div>
+  <div class="lbl" style="margin-top:8px">點一列可以看這個人的完整明細：吃飯算幾人、住哪間、先付了哪些、要轉給誰。</div>
 </section>
 
 <section class="card" id="sec-mem" data-tab="mem">
@@ -910,20 +1048,20 @@ details.tip > div{margin-top:8px}
   <details class="hint tip"><summary><i class="i i-info"></i>說明</summary><div>計費人數會依上面的基準自動計算；遇到特殊情況可直接改成自訂數字（顯示「自訂」），點「自訂」可還原。單身朋友各自新增一位成員即可，住宿時再把他們選進同一間房。</div></details>
 </section>
 
+<section class="card sec-items" id="sec-items" data-tab="food">
+  <h2><span class="n">2</span>餐費・採購<button type="button" class="ovbtn ov-food" data-ov="food" title="餐費總表"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>總表</button><span class="sp"></span>
+    <span class="h2acts"><button class="pri noprint" id="addItem"><i class="i i-plus"></i>記一筆</button><button class="noprint" id="addCat"><i class="i i-plus"></i>新增分組</button><button class="noprint icbtn" id="tgAll" title="全部收合／展開" aria-label="全部收合／展開"><i class="i i-fold"></i></button><button id="addMeal" hidden></button></span></h2>
+  <div id="foodTodo"></div>
+  <div id="cats"></div>
+  <details class="hint tip"><summary><i class="i i-info"></i>說明</summary><div><b>怎麼用：</b>按「記一筆」輸入品名和金額；買好了就在「誰付的錢」點那個人，還沒買的會留在「待買」、不算進分攤。<br><b>分組</b>決定這些錢怎麼分：<b>全員一起分</b>（依吃飯計費人數）、<b>只有部分人分</b>（例如只有幾家去的餐廳）、<b>各付各的</b>。點分組右邊的「設定」可以改名稱和分法。金額可以打算式，例如 120*3。</div></details>
+</section>
+
 <section class="card sec-lodge" id="sec-lodge" data-tab="lodge">
-  <h2><span class="n">2</span>住宿<button type="button" class="ovbtn ov-lodge" data-ov="lodge" title="住宿總表"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>總表</button><span class="sp"></span>
+  <h2><span class="n">3</span>住宿<button type="button" class="ovbtn ov-lodge" data-ov="lodge" title="住宿總表"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>總表</button><span class="sp"></span>
     <button class="pri noprint" id="addNight"><i class="i i-plus"></i>新增一晚</button></h2>
   <div id="nights"></div>
   <div id="pays" class="pays"></div>
   <details class="hint tip"><summary><i class="i i-info"></i>說明</summary><div>房費由誰先付（押金、尾款、全額）請記在「住宿付款紀錄」。一間房只住一個家庭（或一個人）＝整間由他們負擔；多組人合住時，再選「照人數分／照家庭分／自己填金額」。家庭請建成一位成員，單身朋友各自一位。整趟只算一次房費就建一個「晚」放全部房間；每晚不同就分晚建立，可用「⧉ 複製」。</div></details>
-</section>
-
-<section class="card sec-items" id="sec-items" data-tab="food">
-  <h2><span class="n">3</span>餐費・採購<button type="button" class="ovbtn ov-food" data-ov="food" title="餐費總表"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>總表</button><span class="sp"></span>
-    <span class="h2acts"><button class="pri noprint" id="addCat"><i class="i i-plus"></i>共同採購</button><button class="noprint" id="addMeal"><i class="i i-plus"></i>餐廳／聚餐</button><button class="noprint icbtn" id="tgAll" title="全部收合／展開" aria-label="全部收合／展開"><i class="i i-fold"></i></button></span></h2>
-  <div id="foodTodo"></div>
-  <div id="cats"></div>
-  <details class="hint tip"><summary><i class="i i-info"></i>說明</summary><div>每個分類可以選怎麼分：<b>全員分攤</b>（所有人依吃飯計費人數，適合一起買的東西）、<b>選人分攤</b>（只算有去的人，適合去餐廳；可再選依人數、每組平分或自己填金額）、<b>各付各的</b>（每個品項指定是誰的）。代墊人選「（不計／贊助）」的品項不列入分攤。</div></details>
 </section>
 
 <section class="card summary sec-sum" id="sec-sum" data-tab="sum">
@@ -996,8 +1134,8 @@ details.tip > div{margin-top:8px}
 <nav class="tabbar noprint" id="tabbar">
   <button data-t="ov"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1z"/></svg><span>總覽</span></button>
   <button data-t="mem"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2c3 .2 5.5 2.4 5.5 5.8"/></svg><span>成員</span></button>
-  <button data-t="lodge"><svg viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.8"/></svg><span>住宿</span></button>
   <button data-t="food"><svg viewBox="0 0 24 24"><path d="M6 3v8a2 2 0 0 0 4 0V3M8 11v10M17 21V3c-2 1-3 3.5-3 7h3"/></svg><span>餐費</span></button>
+  <button data-t="lodge"><svg viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.8"/></svg><span>住宿</span></button>
   <button data-t="sum"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg><span>結算</span><b class="tb-badge" id="tbTodo"></b></button>
 </nav>
 <div class="modal" id="insModal"><div class="box ins-box">
@@ -1236,45 +1374,13 @@ function renderOvl(){
   $('#ovlBody').innerHTML=ovlHtml(C);
   $('#ovlTools').innerHTML=OVL==='food'?`<div class="fseg">${[['all','全部'],['todo','待買'],['done','已買']].map(([k,t])=>`<button type="button" class="${FOV===k?'on':''}" data-fov="${k}">${t}</button>`).join('')}</div><button type="button" class="ovl-copy" data-ovcopy>複製${FOV==='done'?'已買':'待買'}清單</button>`:'';
 }
-function lodgeOvl(C){
-  const ms=members(); const gs=nights(); const ld=C.lodgeTotal-C.lodgePaid; const nm=id=>mName(id)||'?';
-  const occN=new Set(S.rooms.flatMap(r=>r.m||[])).size, ppl=ms.filter(m=>S.rooms.some(r=>(r.m||[]).includes(m.id))).reduce((a,m)=>a+lodgeW(m),0);
-  let h=`<div class="ostats">${stat('總房費','$'+fmt(C.lodgeTotal),'s-haze')}${stat('已付款','$'+fmt(C.lodgePaid),'s-sage')}${!C.lodgeTotal?stat('付款狀態','尚未填房價',''):stat(Math.abs(ld)<0.5?'付款狀態':ld>0?'還沒付':'多付了',Math.abs(ld)<0.5?'已付清 <i class="i i-check"></i>':'$'+fmt(Math.abs(ld)),Math.abs(ld)<0.5?'s-sage':'s-warn')}${stat('房間',S.rooms.length+' 間','s-rose',`${gs.length} 晚・住 ${occN} 組 ${r2(ppl)} 人`)}</div>`;
-  if(!gs.length) h+=`<div class="oempty">還沒有住宿資料。到「住宿」按「＋ 新增一晚」開始。</div>`;
-  gs.forEach(g=>{ const rs=roomsOf(g.id); const tot=C.nightTot[g.id]||0;
-    h+=`<section class="ocard"><div class="ocard-h"><b>${esc(g.name||'未命名')}</b><span class="lbl">${rs.length} 間</span><span class="sp"></span><b class="oamt">$${fmt(tot)}</b></div>
-    <div class="orooms">${rs.map(r=>{const i=C.roomInfo[r.id]||{occ:0,share:{},cost:0}; const occ=members().filter(m=>(r.m||[]).includes(m.id)); const mode=occ.length<=1?'':({head:'照人數分',group:'照家庭分',custom:'自己填金額'})[r.s||'head'];
-      return `<button type="button" class="oroom" data-jump="room" data-id="${r.id}"><div class="oroom-h"><b>${esc(r.n||'未命名房間')}</b><span class="oamt">${String(r.f||'').trim()?'$'+fmt(i.cost):'<span class="lbl">未填金額</span>'}</span></div>
-        <div class="oroom-p">${occ.length?occ.map(m=>`<span class="op"><span class="av sm" style="background:${colorOf(m.n||'?')}">${esc((m.n||'?').slice(0,1))}</span>${esc(m.n||'')}<em>${i.share&&i.share[m.id]?'$'+fmt(i.share[m.id]):''}</em></span>`).join(''):'<span class="owarn">還沒選住的人</span>'}</div>
-        ${mode?`<div class="oroom-f">${mode}${(r.s||'head')!=='custom'&&i.per?`・${(r.s||'head')==='group'?'每組':'每人'} $${fmt(i.per)}`:''}</div>`:''}</button>`}).join('')}</div></section>`; });
-  if(S.pays.length){ h+=`<section class="ocard"><div class="ocard-h"><b>付款紀錄</b><span class="sp"></span><b class="oamt">$${fmt(C.lodgePaid)}</b></div><div class="olist">${pays().map(x=>{const v=evalFee(x.f); return `<button type="button" class="orow" data-jump="pay" data-id="${x.id}"><span class="otag">${esc(x.t||'')}</span><span class="on">${x.p?esc(nm(x.p)):'<span class="owarn">未選付款人</span>'}${x.d?`<small>${esc(x.d)}</small>`:''}</span><span class="oamt">${v.v?'$'+fmt(v.v):'<span class="lbl">未填</span>'}</span></button>`}).join('')}</div></section>` }
-  h+=`<section class="ocard"><div class="ocard-h"><b>每人住宿費</b></div><div class="olist">${C.rows.map(r=>`<div class="orow"><span class="av sm" style="background:${colorOf(r.m.n||'?')}">${esc((r.m.n||'?').slice(0,1))}</span><span class="on">${esc(r.m.n||'(未命名)')}<small>${r.rooms.length?r.rooms.map(x=>esc(x.n.split('・').pop())).join('、'):'<span class="owarn">沒排房間</span>'}・${r2(r.lw)} 人</small></span><span class="oamt">$${fmt(r.lodge)}</span></div>`).join('')}</div></section>`;
-  return h;
-}
-function foodOvl(C){
-  const cs=cats(); let all=0,done=0,todoN=0; const paidBy={};
-  const st=isBought; let est=0;
-  S.items.forEach(i=>{ if(!S.cats.some(c=>c.id===i.c)) return; all++; if(st(i)){done++; if(i.p&&i.p!=='__free'){ paidBy[i.p]=(paidBy[i.p]||0)+evalFee(i.f).v } } else { todoN++; est+=evalFee(i.f).v||0 } });
-  let h=`<div class="ostats">${stat('餐費總額','$'+fmt(C.foodPool),'s-plum')}${stat('已買',done+' 項','s-sage')}${stat('待買',todoN+' 項',todoN?'s-warn':'s-sage',est?'預估 $'+fmt(est):'')}${stat('分類',cs.length+' 個','s-rose',`共 ${all} 項`)}</div>`;
-  if(!cs.length) h+=`<div class="oempty">還沒有餐費資料。到「餐費」新增分類和品項。</div>`;
-  cs.forEach(c=>{ const its=itemsOf(c.id).filter(i=>FOV==='all'||(FOV==='done'?st(i):!st(i))); const allIts=itemsOf(c.id); const dn=allIts.filter(st).length; const s=c.s||'all';
-    if(FOV!=='all'&&!its.length) return;
-    h+=`<section class="ocard"><div class="ocard-h"><b>${esc(c.name||'未命名')}</b><span class="mode-pill m-${s}">${s==='all'?'全員分攤':s==='own'?'各付各的':(c.m||[]).length+' 人分攤'}</span><span class="lbl">${dn}/${allIts.length} 已買</span><span class="sp"></span><b class="oamt">$${fmt(C.catTot[c.id]||0)}</b></div>
-    <div class="oprog"><i style="width:${allIts.length?Math.round(dn/allIts.length*100):0}%"></i></div>
-    <div class="olist">${its.length?its.map(i=>{const ok=st(i); const v=evalFee(i.f); const qty=[i.q,i.u].filter(Boolean).join(' ');
-      return `<button type="button" class="orow item ${ok?'ok':'todo'}" data-jump="item" data-id="${i.id}"><span class="ock">${ok?'<i class="i i-check"></i>':''}</span><span class="on">${esc(i.n||'(未命名品項)')}${qty||i.s||i.r?`<small>${[qty,i.s,i.r].filter(Boolean).map(esc).join('・')}</small>`:''}</span><span class="owho">${ok?(i.p!=='__free'?esc(mName(i.p))+' 買':'贊助'):'<span class="lbl">還沒買</span>'}${s==='own'&&i.who?`<small>給 ${esc(mName(i.who))}</small>`:''}</span><span class="oamt">${ok?'$'+fmt(v.v):(v.v?'<span class="est">預估 $'+fmt(v.v)+'</span>':'—')}</span></button>`}).join(''):'<div class="lbl" style="padding:8px 4px">這個分類還沒有品項</div>'}</div></section>`; });
-  const pb=Object.entries(paidBy).sort((a,b)=>b[1]-a[1]);
-  if(pb.length) h+=`<section class="ocard"><div class="ocard-h"><b>誰代墊了多少</b></div><div class="olist">${pb.map(([id,v])=>`<div class="orow"><span class="av sm" style="background:${colorOf(mName(id))}">${esc(mName(id).slice(0,1))}</span><span class="on">${esc(mName(id))}</span><span class="oamt">$${fmt(v)}</span></div>`).join('')}</div></section>`;
-  h+=`<section class="ocard"><div class="ocard-h"><b>每人餐費</b></div><div class="olist">${C.rows.map(r=>`<div class="orow"><span class="av sm" style="background:${colorOf(r.m.n||'?')}">${esc((r.m.n||'?').slice(0,1))}</span><span class="on">${esc(r.m.n||'(未命名)')}<small>${r.foodDet.length?r.foodDet.map(x=>esc(x.n)+' '+fmt(x.amt)).join('、'):'—'}</small></span><span class="oamt">$${fmt(r.food)}</span></div>`).join('')}</div></section>`;
-  return h;
-}
 function ovlCopyText(){ const st=isBought; const want=FOV==='done'; let t=`【${S.title}】${want?'已買清單':'待買清單'}\n`; let n=0;
   cats().forEach(c=>{ const its=itemsOf(c.id).filter(i=>want?st(i):!st(i)); if(!its.length) return; t+=`\n▍${c.name||'未命名'}\n`; its.forEach(i=>{ n++; const qty=[i.q,i.u].filter(Boolean).join(''); t+=`${want?'✅':'⬜'} ${i.n||'(未命名)'}${qty?' ×'+qty:''}${i.s?'（'+i.s+'）':''}${want?(i.p&&i.p!=='__free'?' — '+mName(i.p)+' $'+fmt(evalFee(i.f).v):' — 贊助'):(evalFee(i.f).v?' 預估 $'+fmt(evalFee(i.f).v):'')}\n` }) });
   return n?t.trim():(want?'目前還沒有已買的品項':'全部都買齊了 🎉') }
 function jumpTo(kind,id){
   closeOvl();
   setTimeout(()=>{
-    if(kind==='item'){ const it=S.items.find(x=>x.id===id); if(!it) return; setTab('food'); openMap[it.c]=true; saveOpen(); renderCats(); renderSummary(); const el=document.querySelector(`[data-key="items/${id}|n"]`); if(el){ el.scrollIntoView({block:'center',behavior:'smooth'}); FLASH[id]=Date.now(); paintPeers(); setTimeout(()=>el.focus({preventScroll:true}),350) } }
+    if(kind==='item'){ const it=S.items.find(x=>x.id===id); if(!it) return; setTab('food'); openMap[it.c]=true; saveOpen(); renderCats(); renderSummary(); openSheet('item',id); return; const el=document.querySelector(`[data-key="items/${id}|n"]`); if(el){ el.scrollIntoView({block:'center',behavior:'smooth'}); FLASH[id]=Date.now(); paintPeers(); setTimeout(()=>el.focus({preventScroll:true}),350) } }
     if(kind==='room'){ const r=S.rooms.find(x=>x.id===id); if(!r) return; setTab('lodge'); openMap[r.g]=true; saveOpen(); renderNights(); renderSummary(); const el=document.querySelector(`.room[data-rid="${id}"]`); if(el){ el.scrollIntoView({block:'center',behavior:'smooth'}); FLASH[id]=Date.now(); paintPeers() } }
     if(kind==='pay'){ setTab('lodge'); const el=document.querySelector(`tr[data-pid="${id}"]`); if(el){ el.scrollIntoView({block:'center',behavior:'smooth'}); FLASH[id]=Date.now(); paintPeers() } }
   },230);
@@ -1310,9 +1416,9 @@ function buyOpen(btn){ const it=S.items.find(x=>x.id===btn.dataset.buy); if(!it)
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-buy]'); if(b){ e.preventDefault(); e.stopPropagation(); buyOpen(b); return }
   if(e.target.closest('[data-bpx]')){ buyClose(); return }
   const v=e.target.closest('[data-bpv]'); if(v&&BUYP){ const it=S.items.find(x=>x.id===BUYP); buyClose(); if(!it) return; it.p=v.dataset.bpv; put('items/'+it.id,{p:it.p});
-    const tr=document.querySelector(`tr[data-iid="${it.id}"]`); if(tr){ tr.className=itemCls(it); const bb=tr.querySelector('[data-buy]'); if(bb) bb.outerHTML=buyBtn(it) }
+    renderCats();
     renderSummary(); toast(!it.p?'已改回「還沒買」':it.p==='__free'?'已設為贊助・不計（不分攤）':'已標記為已買'); } },true);
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&BUYP) buyClose() });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&BUYP) buyClose(); if(e.key==='Enter'&&e.target.matches&&e.target.matches('.frow[data-iid]')) openSheet('item',e.target.dataset.iid) });
 window.addEventListener('scroll',()=>{ const p=$('#buyPop'); if(BUYP&&p&&!p.classList.contains('sheet')) buyClose() },{passive:true});
 const itemCls=i=>!i.p?'plan':(i.p==='__free'?'excl':'bought');
 const istHtml_old=i=>!i.p?'<span class="ist ist-todo" data-ist><i class="i i-cart"></i>待買</span>':i.p==='__free'?'<span class="ist ist-free" data-ist><i class="i i-gift"></i>不計</span>':'<span class="ist ist-done" data-ist><i class="i i-check"></i> 已買</span>';
@@ -1321,17 +1427,6 @@ function itemPayerOpts(sel){ const ms=members();
   let h=`<option value="" ${!sel?'selected':''}><i class="i i-cart"></i>還沒買</option><option value="__free" ${sel==='__free'?'selected':''}><i class="i i-gift"></i>贊助／不計</option>`+ms.map(m=>`<option value="${m.id}" ${m.id===sel?'selected':''}>${esc(m.n||'(未命名)')}</option>`).join('');
   if(sel&&sel!=='__free'&&!ms.some(m=>m.id===sel)) h+=`<option selected value="${esc(sel)}">（已刪除的成員）</option>`; return h }
 function headCount(){ const ms=S.members; return {g:ms.length,a:ms.reduce((s,m)=>s+num(m.a),0),k:ms.reduce((s,m)=>s+num(m.k),0),b:ms.reduce((s,m)=>s+num(m.b),0),get t(){return this.a+this.k+this.b}} }
-function memberOvl(C){
-  const hc=headCount(); const tot=C.rows.reduce((a,r)=>a+r.lodge+r.food,0); const D=S.done||{}; const X=transfers(C.rows);
-  const xdone=X.filter(x=>D[x.from+'>'+x.to]===x.v).length;
-  let h=`<div class="ostats">${stat('人數總計',hc.t+' 人','s-rose',`${hc.g} 組・大人 ${hc.a}・小孩 ${hc.k}・幼兒 ${hc.b}`)}${stat('計費人數',r2(C.totFW)+' 人','s-plum',`吃飯 ${r2(C.totFW)}・住宿 ${r2(C.rows.reduce((a,r)=>a+r.lw,0))}`)}${stat('全部花費','$'+fmt(tot),'s-haze',`住宿 $${fmt(C.lodgeTotal)}・餐費 $${fmt(C.foodPool)}`)}${stat('轉帳進度',X.length?xdone+'/'+X.length+' 筆':'—',!X.length?'':xdone===X.length?'s-sage':'s-warn',X.length?(xdone===X.length?'全部完成 <i class="i i-check"></i>':'還有 '+(X.length-xdone)+' 筆沒轉'):'不需要轉帳')}</div>`;
-  if(!C.rows.length) return h+`<div class="oempty">還沒有成員。到「成員」新增大家吧！</div>`;
-  h+=`<section class="ocard"><div class="ocard-h"><b>每人明細</b><span class="lbl">點一下看完整明細</span></div><div class="mtbl"><div class="mt-h"><span>成員</span><span>人數</span><span>住宿</span><span>餐費</span><span>合計</span><span>已付</span><span>結餘</span></div>
-  ${C.rows.map(r=>{const b=Math.round(r.bal); return `<button type="button" class="mt-r" data-mdid="${r.m.id}"><span class="mt-n"><span class="av sm" style="background:${colorOf(r.m.n||'?')}">${esc((r.m.n||'?').slice(0,1))}</span>${esc(r.m.n||'(未命名)')}</span><span class="mt-c" data-l="人數">${pplText(r.m)}</span><span data-l="住宿">${fmt(r.lodge)}</span><span data-l="餐費">${fmt(r.food)}</span><span data-l="合計"><b>${fmt(r.lodge+r.food)}</b></span><span data-l="已付">${fmt(r.pd)}</span><span data-l="結餘" class="mt-b ${b>0?'pay':b<0?'get':'zero'}">${b>0?'應付 '+fmt(b):b<0?'應收 '+fmt(-b):'已結清'}</span></button>`}).join('')}
-  <div class="mt-r mt-t"><span class="mt-n">總計</span><span class="mt-c" data-l="人數">${hc.t} 人</span><span data-l="住宿">${fmt(C.rows.reduce((a,r)=>a+r.lodge,0))}</span><span data-l="餐費">${fmt(C.rows.reduce((a,r)=>a+r.food,0))}</span><span data-l="合計"><b>${fmt(tot)}</b></span><span data-l="已付">${fmt(C.rows.reduce((a,r)=>a+r.pd,0))}</span><span data-l="結餘">${fmt(C.rows.reduce((a,r)=>a+r.bal,0))}</span></div></div></section>`;
-  if(X.length) h+=`<section class="ocard"><div class="ocard-h"><b>轉帳清單</b><span class="lbl">點一下打勾</span></div><div class="xfer">${X.map(x=>{const k=x.from+'>'+x.to, ok=D[k]===x.v; return `<button type="button" class="xf ${ok?'done':''}" data-xk="${esc(k)}" data-xv="${x.v}"><span class="ck">${ok?'<i class="i i-check"></i>':''}</span>${esc(x.from)} → ${esc(x.to)}　<b>$${fmt(x.v)}</b>${ok?'<small>已轉</small>':''}</button>`}).join('')}</div></section>`;
-  return h;
-}
 function renderBasisSum(){ const e=$('#basisSum'); if(!e) return; e.innerHTML=`吃飯：小孩 ×<b>${esc(S.kidF)}</b>、幼兒 ×<b>${esc(S.babyF)}</b>　住宿：<i>每人算 1</i>`; const ed=document.querySelector('.bs-edit'); if(ed) ed.innerHTML=($('#basisBox').open?'收起':'調整')+' <i class="i i-chev-d"></i>' }
 function renderMembers(){
   $('#memBody').innerHTML=members().map(m=>{
@@ -1418,9 +1513,9 @@ function renderNights(){
 }
 const FMODES=[['all','全員分攤','所有人依吃飯計費人數（共同採購）'],['some','選人分攤','只算有去的人（例：去餐廳）'],['own','各付各的','每個品項指定是誰的']];
 const FSUB=[['head','依吃飯計費人數'],['group','每組平分'],['custom','自己填金額']];
-function foodSplitHtml(c){
+function foodSplitHtml(c,noOpts){
   const s=c.s||'all';
-  const opts=`<div class="fhead"><span class="fq">怎麼分</span><div class="howto fhow">${FMODES.map(([k,t,d])=>`<button type="button" class="opt ${s===k?'on':''}" data-fmode="${k}" data-key="cats/${c.id}|s"><b>${t}</b><small>${d}</small></button>`).join('')}</div></div><div class="howto-desc">${(FMODES.find(x=>x[0]===s)||[])[2]||''}</div>`;
+  const opts=noOpts?'':`<div class="fhead"><span class="fq">怎麼分</span><div class="howto fhow">${FMODES.map(([k,t,d])=>`<button type="button" class="opt ${s===k?'on':''}" data-fmode="${k}" data-key="cats/${c.id}|s"><b>${t}</b><small>${d}</small></button>`).join('')}</div></div><div class="howto-desc">${(FMODES.find(x=>x[0]===s)||[])[2]||''}</div>`;
   if(s==='all') return `<div class="fsplit">${opts}</div>`;
   if(s==='own') return `<div class="fsplit">${opts}<div class="lbl" style="margin-top:2px">在下面每個品項選「誰的」</div></div>`;
   const ms=members(), sel=ms.filter(m=>(c.m||[]).includes(m.id)), sm=c.sm||'head', XA=c.xa||{};
@@ -1430,34 +1525,153 @@ function foodSplitHtml(c){
   const lines=sel.length?`<div class="receipt">${sel.map(m=>`<div class="rl"><span class="nm">${esc(m.n||'')}</span>${sm==='head'&&sel.length>1?`<span class="ppl lbl">${r2(foodW(m))} 人</span>`:''}<span class="dots"></span>${sm==='custom'&&sel.length>1?`<span class="amt-in">$ <input class="num sm-in w" data-fx="${m.id}" data-key="cats/${c.id}|xa:${m.id}" inputmode="decimal" value="${esc(XA[m.id]??'')}" placeholder="0"></span>`:`<span class="amt" data-famt="${m.id}"></span>`}</div>`).join('')}</div><div class="split-sum" data-fsum></div>`:'';
   return `<div class="fsplit">${opts}<div class="chips-lbl">誰有去／有吃？<span class="lbl">（點選打勾）</span></div><div class="chips">${chips}</div>${sub}${lines}</div>`;
 }
-function renderCats(){
-  $('#cats').innerHTML=cats().map(c=>{const its=itemsOf(c.id); const op=isOpen(c.id); const others=cats().filter(x=>x.id!==c.id);
-    const own=(c.s||'all')==='own';
-    const mv=others.length?`<select class="mv" data-if="c" title="移到其他分類"><option value="">移動</option>${others.map(x=>`<option value="${x.id}">移到「${esc(x.name||'未命名')}」</option>`).join('')}</select>`:''; return `
-  <div class="cat food-cat ${op?'':'closed'}" data-cid="${c.id}">
-    <div class="cathead"><span class="tg" data-tg><i class="i i-chev-d"></i></span>
-      <input data-cf="name" data-key="cats/${c.id}|name" value="${esc(c.name)}" placeholder="分類名稱"${dfl(DEF_CATS.includes(c.name)?c.name:null)}>
-      <span class="mode-pill m-${c.s||'all'}">${(c.s||'all')==='all'?'全員分攤':(c.s==='own'?'各付各的':`${(c.m||[]).length} 人分攤`)}</span>
-      <span class="lbl cprog" data-cprog></span>
-      <span class="tot" data-ctot></span>
-      <button class="x noprint" data-up title="上移"><i class="i i-up"></i></button>
-      <button class="x noprint" data-cdel title="刪除分類"><i class="i i-x"></i></button></div>
-    <div class="catbody">${foodSplitHtml(c)}<div class="tbl mcw"><table class="mc">
-      <thead><tr><th style="width:150px">買了嗎</th><th style="width:22%">品名</th><th style="width:7%">數量</th><th style="width:6%">單位</th>${own?'<th style="width:12%">誰的</th>':''}<th class="r" style="width:11%">費用</th><th style="width:13%">購買地點</th><th>備註</th><th></th></tr></thead>
-      <tbody>${its.map(i=>{const k=f=>`data-key="items/${i.id}|${f}"`; return `<tr data-iid="${i.id}" class="${itemCls(i)}">
-        <td class="paycell" data-l="買了嗎">${buyBtn(i)}</td>
-        <td class="w6 nmcell" data-l="品名"><input data-if="n" ${k('n')} value="${esc(i.n)}" placeholder="品名"></td>
-        <td data-l="數量"><input data-if="q" ${k('q')} value="${esc(i.q)}"></td>
-        <td data-l="單位"><input data-if="u" ${k('u')} value="${esc(i.u)}"></td>
-        ${own?`<td class="w3 whocol" data-l="誰的"><select data-if="who" ${k('who')}>${payerOpts(i.who,'（選誰的）')}</select></td>`:''}
-        <td class="w3" data-l="費用"><input data-if="f" ${k('f')} class="num" value="${esc(i.f)}" placeholder="0">${feeHint(i.f)}</td>
-        <td class="w3" data-l="購買地點"><input data-if="s" ${k('s')} value="${esc(i.s)}"></td>
-        <td class="w6" data-l="備註"><input data-if="r" ${k('r')} value="${esc(i.r)}"></td>
-        <td class="xcell">${mv}<button class="x" data-idel title="刪除品項"><i class="i i-x"></i></button></td></tr>`}).join('')}</tbody>
-    </table></div>
-    <button class="noprint" data-iadd style="margin-top:8px"><i class="i i-plus"></i>新增品項</button></div>
-  </div>`}).join('') || `<div class="empty">還沒有餐費。<br>一起買食材、零食 → 按「＋ 共同採購」<br>一起去餐廳吃 → 按「＋ 餐廳／聚餐」</div>`;
+
+// ===== v11: 總表（表格版） =====
+const zz=v=>v?v:'<span class="z">0</span>';
+const mz=v=>Math.round(v)?fmt(v):'<span class="z">0</span>';
+const xtable=(head,rows,foot,cls)=>`<div class="xtw"><table class="xt ${cls||''}"><thead><tr>${head}</tr></thead><tbody>${rows}</tbody>${foot?`<tfoot><tr>${foot}</tr></tfoot>`:''}</table></div>`;
+const xsec=(title,sub,body)=>`<section class="xsec"><div class="xsec-h"><b>${title}</b>${sub?`<span class="lbl">${sub}</span>`:''}</div>${body}</section>`;
+const pplN=m=>num(m.a)+num(m.k)+num(m.b);
+const sepAt=(rows,i)=>i>0&&pplN(rows[i].m)<=1&&pplN(rows[i-1].m)>1?'sep':'';
+const balCell=b=>`<td class="bal ${b>0?'pay':b<0?'get':'zero'}">${b>0?'應付 '+fmt(b):b<0?'應收 '+fmt(-b):'已結清'}</td>`;
+function memberOvl(C){
+  const hc=headCount(); const tot=C.rows.reduce((a,r)=>a+r.lodge+r.food,0); const D=S.done||{}; const X=transfers(C.rows);
+  const xdone=X.filter(x=>D[x.from+'>'+x.to]===x.v).length; const lwT=C.rows.reduce((a,r)=>a+r.lw,0); const me=getMe();
+  let h=`<div class="ostats">${stat('人數總計',hc.t+' 人','s-rose',`${hc.g} 組・大人 ${hc.a}・小孩 ${hc.k}・幼兒 ${hc.b}`)}${stat('計費人數',r2(C.totFW)+' 人','s-plum',`吃飯 ${r2(C.totFW)}・住宿 ${r2(lwT)}`)}${stat('全部花費','$'+fmt(tot),'s-haze',`餐費 $${fmt(C.foodPool)}・住宿 $${fmt(C.lodgeTotal)}`)}${stat('轉帳進度',X.length?xdone+'/'+X.length+' 筆':'—',!X.length?'':xdone===X.length?'s-sage':'s-warn',X.length?(xdone===X.length?'全部完成 <i class="i i-check"></i>':'還有 '+(X.length-xdone)+' 筆沒轉'):'不需要轉帳')}</div>`;
+  if(!C.rows.length) return h+`<div class="oempty">還沒有成員。到「成員」新增大家吧！</div>`;
+  const R=C.rows;
+  h+=xsec('人數與計費人數',`吃飯：小孩 ×${esc(S.kidF)}、幼兒 ×${esc(S.babyF)}　住宿：每人算 1`,xtable(
+    `<th class="xn">成員</th><th>大人</th><th>小孩</th><th>幼兒</th><th class="hf">吃飯計費</th><th class="hl">住宿計費</th>`,
+    R.map((r,i)=>`<tr class="${sepAt(R,i)} ${r.m.id===me?'me':''}" data-mdid="${r.m.id}"><td class="xn">${esc(r.m.n||'(未命名)')}</td><td>${zz(num(r.m.a))}</td><td>${zz(num(r.m.k))}</td><td>${zz(num(r.m.b))}</td><td class="hf"><b>${r2(r.fw)}</b></td><td class="hl"><b>${r2(r.lw)}</b></td></tr>`).join(''),
+    `<td class="xn">合計 ${hc.g} 組</td><td>${hc.a}</td><td>${hc.k}</td><td>${hc.b}</td><td class="hf">${r2(C.totFW)}</td><td class="hl">${r2(lwT)}</td>`));
+  h+=xsec('每人費用','點一列看完整明細',xtable(
+    `<th class="xn">成員</th><th>餐費</th><th>住宿</th><th>應攤合計</th><th>已付</th><th>結餘</th>`,
+    R.map((r,i)=>`<tr class="${sepAt(R,i)} ${r.m.id===me?'me':''}" data-mdid="${r.m.id}"><td class="xn">${esc(r.m.n||'(未命名)')}</td><td>${mz(r.food)}</td><td>${mz(r.lodge)}</td><td><b>${mz(r.food+r.lodge)}</b></td><td>${mz(r.pd)}</td>${balCell(Math.round(r.bal))}</tr>`).join(''),
+    `<td class="xn">合計</td><td>${fmt(R.reduce((a,r)=>a+r.food,0))}</td><td>${fmt(R.reduce((a,r)=>a+r.lodge,0))}</td><td>${fmt(tot)}</td><td>${fmt(R.reduce((a,r)=>a+r.pd,0))}</td><td>${fmt(R.reduce((a,r)=>a+r.bal,0))}</td>`));
+  if(X.length) h+=xsec('轉帳清單','點一下打勾',`<div class="xfer">${X.map(x=>{const k=x.from+'>'+x.to, ok=D[k]===x.v; return `<button type="button" class="xf ${ok?'done':''}" data-xk="${esc(k)}" data-xv="${x.v}"><span class="ck">${ok?'<i class="i i-check"></i>':''}</span>${esc(x.from)} → ${esc(x.to)}　<b>$${fmt(x.v)}</b>${ok?'<small>已轉</small>':''}</button>`}).join('')}</div>`);
+  return h;
 }
+const catShare=(C,c,mid)=>{ const s=c.s||'all'; if(s==='own') return itemsOf(c.id).filter(i=>i.who===mid&&i.p&&S.members.some(m=>m.id===i.p)).reduce((a,i)=>a+(evalFee(i.f).v||0),0); const inf=C.catInfo[c.id]; return inf&&inf.share?(inf.share[mid]||0):0 };
+function foodOvl(C){
+  const cs=cats(); let all=0,done=0,todoN=0; const st=isBought; let est=0;
+  S.items.forEach(i=>{ if(!S.cats.some(c=>c.id===i.c)) return; all++; if(st(i)) done++; else { todoN++; est+=evalFee(i.f).v||0 } });
+  let h=`<div class="ostats">${stat('餐費總額','$'+fmt(C.foodPool),'s-plum')}${stat('已買',done+' 項','s-sage')}${stat('待買',todoN+' 項',todoN?'s-warn':'s-sage',est?'預估 $'+fmt(est):'')}${stat('分組',cs.length+' 組','s-rose',`共 ${all} 項`)}</div>`;
+  if(!cs.length) return h+`<div class="oempty">還沒有餐費資料。到「餐費」按「＋ 記一筆」開始。</div>`;
+  let body='', shown=0;
+  cs.forEach(c=>{ const allIts=itemsOf(c.id); const its=allIts.filter(i=>FOV==='all'||(FOV==='done'?st(i):!st(i))); const dn=allIts.filter(st).length; const s=c.s||'all';
+    if(FOV!=='all'&&!its.length) return;
+    body+=`<tr class="grp"><td colspan="5"><div class="grp-in"><b>${esc(c.name||'未命名')}</b><span class="mode-pill m-${s}">${esc(FMODE_TXT(c))}</span><span class="lbl">${dn}/${allIts.length} 已買</span><span class="sp"></span><b>$${fmt(C.catTot[c.id]||0)}</b></div></td></tr>`;
+    body+=its.map(i=>{ shown++; const ok=st(i), v=evalFee(i.f).v, qty=[i.q,i.u].filter(Boolean).join(' ');
+      return `<tr class="${ok?'ok':'todo'}" data-jump="item" data-id="${i.id}"><td class="xn"><span class="st">${ok?(i.p==='__free'?'<i class="i i-gift"></i>':'<i class="i i-check"></i>'):''}</span>${i.n?esc(i.n):'<span class="z">(未命名)</span>'}</td><td>${esc(qty)}</td><td class="r">${ok?fmt(v):(v?'<span class="est">預估 '+fmt(v)+'</span>':'<span class="z">—</span>')}</td><td>${ok?(i.p==='__free'?'<span class="z">贊助</span>':esc(mName(i.p))):'<span class="tdo">還沒買</span>'}${s==='own'&&i.who?`<small>給 ${esc(mName(i.who))}</small>`:''}</td><td class="l">${[i.s,i.r].filter(Boolean).map(esc).join('・')}</td></tr>` }).join('')||`<tr><td colspan="5" class="z" style="text-align:left">這組還沒有品項</td></tr>`; });
+  h+=xsec(FOV==='todo'?'待買清單':FOV==='done'?'已買清單':'品項清單','點一列可以直接修改',body?xtable(`<th class="xn">品名</th><th>數量</th><th>金額</th><th>誰付的</th><th class="l">地點／備註</th>`,body,FOV==='all'?`<td class="xn">已買合計</td><td></td><td class="r">${fmt(C.foodPool)}</td><td></td><td></td>`:'','xt-items'):'<div class="oempty">沒有符合的品項</div>');
+  const R=C.rows; if(R.length) h+=xsec('每人餐費',`依各組的分法計算・小孩吃飯 ×${esc(S.kidF)}`,xtable(
+    `<th class="xn">成員</th><th class="hf">吃飯計費</th>${cs.map(c=>`<th>${esc(c.name||'未命名')}</th>`).join('')}<th>應攤</th><th>已代墊</th>`,
+    R.map((r,i)=>`<tr class="${sepAt(R,i)}" data-mdid="${r.m.id}"><td class="xn">${esc(r.m.n||'(未命名)')}</td><td class="hf">${r2(r.fw)}</td>${cs.map(c=>`<td>${mz(catShare(C,c,r.m.id))}</td>`).join('')}<td><b>${mz(r.food)}</b></td><td>${mz(r.pdF)}</td></tr>`).join(''),
+    `<td class="xn">合計</td><td class="hf">${r2(C.totFW)}</td>${cs.map(c=>`<td>${fmt(C.catTot[c.id]||0)}</td>`).join('')}<td>${fmt(R.reduce((a,r)=>a+r.food,0))}</td><td>${fmt(R.reduce((a,r)=>a+r.pdF,0))}</td>`));
+  return h;
+}
+function lodgeOvl(C){
+  const ms=members(); const gs=nights(); const ld=C.lodgeTotal-C.lodgePaid; const nm=id=>mName(id)||'?';
+  const occN=new Set(S.rooms.flatMap(r=>r.m||[])).size, ppl=ms.filter(m=>S.rooms.some(r=>(r.m||[]).includes(m.id))).reduce((a,m)=>a+lodgeW(m),0);
+  let h=`<div class="ostats">${stat('總房費','$'+fmt(C.lodgeTotal),'s-haze')}${stat('已付款','$'+fmt(C.lodgePaid),'s-sage')}${!C.lodgeTotal?stat('付款狀態','尚未填房價',''):stat(Math.abs(ld)<0.5?'付款狀態':ld>0?'還沒付':'多付了',Math.abs(ld)<0.5?'已付清 <i class="i i-check"></i>':'$'+fmt(Math.abs(ld)),Math.abs(ld)<0.5?'s-sage':'s-warn')}${stat('房間',S.rooms.length+' 間','s-rose',`${gs.length} 晚・住 ${occN} 組 ${r2(ppl)} 人`)}</div>`;
+  if(!gs.length) return h+`<div class="oempty">還沒有住宿資料。到「住宿」按「＋ 新增一晚」開始。</div>`;
+  let body='';
+  gs.forEach(g=>{ const rs=roomsOf(g.id);
+    body+=`<tr class="grp"><td colspan="4"><div class="grp-in"><b>${esc(g.name||'未命名')}</b><span class="lbl">${rs.length} 間</span><span class="sp"></span><b>$${fmt(C.nightTot[g.id]||0)}</b></div></td></tr>`;
+    body+=rs.map(r=>{ const i=C.roomInfo[r.id]||{share:{},cost:0}; const occ=ms.filter(m=>(r.m||[]).includes(m.id)); const md=occ.length<=1?(occ.length?'整間負擔':''):({head:'照人數分',group:'照家庭分',custom:'自己填金額'})[r.s||'head'];
+      return `<tr data-jump="room" data-id="${r.id}"><td class="xn">${r.n?esc(r.n):'<span class="z">(未命名房間)</span>'}</td><td class="r">${String(r.f||'').trim()?fmt(i.cost):'<span class="tdo">未填</span>'}</td><td class="l wrap">${occ.length?occ.map(m=>`<span class="ocp">${esc(m.n||'')}${i.share&&i.share[m.id]?` <em>${fmt(i.share[m.id])}</em>`:''}</span>`).join(''):'<span class="tdo">還沒選住的人</span>'}</td><td>${md}</td></tr>` }).join('')||`<tr><td colspan="4" class="z" style="text-align:left">這晚還沒有房間</td></tr>`; });
+  h+=xsec('房間','點一列可以直接修改',xtable(`<th class="xn">房間</th><th>房價</th><th class="l">住的人（各負擔）</th><th>分法</th>`,body,`<td class="xn">合計</td><td class="r">${fmt(C.lodgeTotal)}</td><td></td><td></td>`,'xt-rooms'));
+  const R=C.rows; const nShare=(g,mid)=>roomsOf(g.id).reduce((a,r)=>a+((C.roomInfo[r.id]||{}).share||{})[mid]||0,0);
+  const nTot=g=>R.reduce((a,r)=>a+nShare(g,r.m.id),0);
+  if(R.length) h+=xsec('每人住宿','住宿每人都算 1（含小孩）',xtable(
+    `<th class="xn">成員</th><th class="hl">住宿計費</th>${gs.map(g=>`<th>${esc(g.name||'未命名')}</th>`).join('')}<th>應攤</th><th>已付</th>`,
+    R.map((r,i)=>`<tr class="${sepAt(R,i)}" data-mdid="${r.m.id}"><td class="xn">${esc(r.m.n||'(未命名)')}</td><td class="hl">${r2(r.lw)}</td>${gs.map(g=>`<td>${mz(nShare(g,r.m.id))}</td>`).join('')}<td><b>${mz(r.lodge)}</b></td><td>${mz(r.pdL)}</td></tr>`).join(''),
+    `<td class="xn">合計</td><td class="hl">${r2(R.reduce((a,r)=>a+r.lw,0))}</td>${gs.map(g=>`<td>${fmt(nTot(g))}</td>`).join('')}<td>${fmt(R.reduce((a,r)=>a+r.lodge,0))}</td><td>${fmt(C.lodgePaid)}</td>`));
+  if(S.pays.length) h+=xsec('付款紀錄','押金、尾款、全額',xtable(`<th class="xn">類型</th><th>誰付的</th><th>日期</th><th class="l">備註</th><th>金額</th>`,
+    pays().map(x=>{const v=evalFee(x.f); return `<tr data-jump="pay" data-id="${x.id}"><td class="xn">${esc(x.t||'')}</td><td>${x.p?esc(nm(x.p)):'<span class="tdo">未選</span>'}</td><td>${esc(x.d||'')}</td><td class="l">${esc(x.r||'')}</td><td class="r">${v.v?fmt(v.v):'<span class="tdo">未填</span>'}</td></tr>`}).join(''),
+    `<td class="xn">合計</td><td></td><td></td><td></td><td class="r">${fmt(C.lodgePaid)}</td>`));
+  return h;
+}
+
+// ===== v11: 餐費（清單＋編輯視窗） =====
+const FMODE_TXT=c=>{const s=c.s||'all'; if(s==='all') return '全員分攤'; if(s==='own') return '各付各的'; const n=(c.m||[]).filter(id=>S.members.some(m=>m.id===id)); return n.length?n.map(mName).join('、')+' 分':'還沒選誰要分'};
+function frow(i){ const v=evalFee(i.f), ok=isBought(i); const meta=[[i.q,i.u].filter(Boolean).join(' '),i.s,i.r].filter(Boolean).map(esc).join('・');
+  return `<div class="frow ${itemCls(i)}" data-iid="${i.id}" data-iedit role="button" tabindex="0"><span class="fr-ck">${ok?(i.p==='__free'?'<i class="i i-gift"></i>':'<i class="i i-check"></i>'):''}</span><span class="fr-n"><b>${i.n?esc(i.n):'<span class="z">(未命名品項)</span>'}</b>${meta?`<small>${meta}</small>`:''}</span><span class="fr-amt">${!v.ok?'<span class="bad">算式錯</span>':v.v?'$'+fmt(v.v):'<span class="z">$ —</span>'}</span>${buyBtn(i)}</div>` }
+function renderCats(){
+  $('#cats').innerHTML=cats().map(c=>{ const its=itemsOf(c.id), op=isOpen(c.id), s=c.s||'all', warn=s==='some'&&!(c.m||[]).filter(id=>S.members.some(m=>m.id===id)).length;
+    return `<div class="cat fcard ${op?'':'closed'}" data-cid="${c.id}">
+    <div class="fc-h"><span class="tg" data-tg title="收合／展開"><i class="i i-chev-d"></i></span>
+      <button type="button" class="fc-t" data-gset><b>${esc(c.name||'未命名分組')}</b><small class="mode-pill m-${s} ${warn?'warn':''}">${esc(FMODE_TXT(c))}</small></button>
+      <span class="lbl cprog" data-cprog></span><span class="tot" data-ctot></span>
+      <button type="button" class="fc-set noprint" data-gset title="分組設定：名稱、怎麼分"><i class="i i-sliders"></i><span>設定</span></button></div>
+    <div class="catbody"><div class="flist">${its.map(frow).join('')||'<div class="fempty">這組還沒有品項</div>'}</div>
+      <button type="button" class="fadd noprint" data-iadd><i class="i i-plus"></i>在「${esc(c.name||'這組')}」記一筆</button></div></div>` }).join('')
+    || `<div class="fwelcome"><div class="fw-ic"><i class="i i-cart"></i></div><b>還沒有任何餐費</b><div>按上面的「<i class="i i-plus"></i>記一筆」，記下買了什麼、多少錢、誰付的</div><small>只有部分人參加的餐（例如某一餐廳），可以先「新增分組」再記</small></div>`;
+  refreshSheet();
+}
+let FS=null, LASTCAT='';
+function fsEnsure(){ let s=$('#fsheet'); if(!s){ const bg=document.createElement('div'); bg.id='fsBg'; bg.className='fs-bg'; bg.onclick=()=>closeSheet(); document.body.appendChild(bg); s=document.createElement('div'); s.id='fsheet'; s.className='fsheet'; document.body.appendChild(s); bindSheet(s) } return s }
+function fsHide(){ const s=$('#fsheet'); if(s) s.classList.remove('on'); const b=$('#fsBg'); if(b) b.classList.remove('on'); document.body.classList.remove('noscroll') }
+function openSheet(k,id,isNew){ FS={k,id,isNew:!!isNew}; const s=fsEnsure(); s.dataset.k=k; s.innerHTML=k==='item'?itemSheet():groupSheet(); $('#fsBg').classList.add('on'); s.classList.add('on'); document.body.classList.add('noscroll'); if(isNew) setTimeout(()=>{ const f=s.querySelector('[data-autofocus]'); f&&f.focus() },80) }
+function closeSheet(){ if(!FS) return; const was=FS; FS=null; fsHide();
+  if(was.k==='item'){ const it=S.items.find(x=>x.id===was.id); if(it&&was.isNew&&!String(it.n||'').trim()&&!String(it.f||'').trim()&&!it.p){ S.items=S.items.filter(x=>x!==it); remove('items/'+it.id) } }
+  if(was.k==='group'){ const c=S.cats.find(x=>x.id===was.id); if(c&&!String(c.name||'').trim()){ c.name=(c.s||'all')==='all'?'共同採購':c.s==='own'?'各付各的':'聚餐'; put('cats/'+c.id,{name:c.name}) } }
+  renderAll() }
+function refreshSheet(){ if(!FS) return; const s=$('#fsheet'); if(!s) return;
+  if((FS.k==='item'&&!S.items.some(x=>x.id===FS.id))||(FS.k==='group'&&!S.cats.some(x=>x.id===FS.id))){ FS=null; fsHide(); return }
+  const a=document.activeElement; if(a&&s.contains(a)&&(a.tagName==='INPUT'||a.tagName==='TEXTAREA')) return;
+  const b0=s.querySelector('.fs-body'), sc=b0?b0.scrollTop:0, d0=s.querySelector('details.fs-more'), op=d0&&d0.open;
+  s.innerHTML=FS.k==='item'?itemSheet():groupSheet(); const b=s.querySelector('.fs-body'); if(b) b.scrollTop=sc; const d=s.querySelector('details.fs-more'); if(d&&op) d.open=true }
+function chipRow(attr,opts,cur){ return `<div class="fs-chips">${opts.map(([v,t,cls])=>`<button type="button" class="fc2 ${cls||''} ${cur===v?'on':''}" data-${attr}="${esc(v)}">${cur===v?'<i class="i i-check"></i>':''}<span>${t}</span></button>`).join('')}</div>` }
+const calcTxt=r=>!r.ok?'算式看不懂':r.expr?'= '+fmt(r.v):'可以打算式，例如 120*3';
+function itemSheet(){ const i=S.items.find(x=>x.id===FS.id); if(!i) return ''; const c=S.cats.find(x=>x.id===i.c)||{}; const ms=members(); const k=f=>`data-key="items/${i.id}|${f}"`; const r=evalFee(i.f);
+  return `<div class="fs-h"><div class="fs-tt"><b>${FS.isNew?'記一筆':'編輯品項'}</b><small>${esc(c.name||'')}・${esc(FMODE_TXT(c))}</small></div><button type="button" class="bp-x" data-fsx aria-label="關閉"><i class="i i-x"></i></button></div>
+  <div class="fs-body">
+    <label class="fs-l">買了什麼</label>
+    <input class="fs-in big" data-it="n" ${k('n')} value="${esc(i.n)}" placeholder="例：烤肉肉片、海鮮晚餐" data-autofocus enterkeyhint="next" autocomplete="off">
+    <div class="fs-grid"><div class="fs-amt"><label class="fs-l">金額</label><div class="fs-money"><span>$</span><input class="fs-in num" data-it="f" ${k('f')} value="${esc(i.f)}" inputmode="decimal" placeholder="0" enterkeyhint="done" autocomplete="off"></div><div class="calc fs-calc ${r.ok?'':'bad'}" data-calc>${calcTxt(r)}</div></div>
+      <div><label class="fs-l">數量</label><input class="fs-in" data-it="q" ${k('q')} value="${esc(i.q)}" placeholder="例：2" autocomplete="off"></div>
+      <div><label class="fs-l">單位</label><input class="fs-in" data-it="u" ${k('u')} value="${esc(i.u)}" placeholder="例：包" autocomplete="off"></div></div>
+    <label class="fs-l">買了嗎？誰付的錢<span class="lbl">還沒買的不會算進分攤</span></label>
+    ${chipRow('itp',[['','還沒買','c-todo'],...ms.map(m=>[m.id,esc(m.n||'(未命名)')]),['__free','贊助・不計','c-free']],i.p||'')}
+    ${ms.length?'':'<div class="lbl">還沒有成員，先到「成員」新增大家</div>'}
+    ${(c.s==='own')?`<label class="fs-l">這是誰的？<span class="lbl">這組是「各付各的」</span></label>${chipRow('itw',ms.map(m=>[m.id,esc(m.n||'(未命名)')]),i.who||'')}`:''}
+    ${cats().length>1?`<label class="fs-l">放在哪一組</label>${chipRow('itc',cats().map(x=>[x.id,`${esc(x.name||'未命名')}<small>${esc(FMODE_TXT(x))}</small>`,'c-grp']),i.c)}`:''}
+    <details class="fs-more"${i.s||i.r?' open':''}><summary>購買地點、備註<i class="i i-chev-d"></i></summary><div class="fs-grid2"><div><label class="fs-l">購買地點</label><input class="fs-in" data-it="s" ${k('s')} value="${esc(i.s)}" placeholder="例：好市多" autocomplete="off"></div><div><label class="fs-l">備註</label><input class="fs-in" data-it="r" ${k('r')} value="${esc(i.r)}" autocomplete="off"></div></div></details>
+  </div>
+  <div class="fs-f"><button type="button" class="fs-del" data-itdel><i class="i i-x"></i>刪除</button><span class="sp"></span><button type="button" class="fs-next" data-itnext><i class="i i-plus"></i>再記一筆</button><button type="button" class="pri fs-ok" data-fsx>完成</button></div>` }
+function groupSheet(){ const c=S.cats.find(x=>x.id===FS.id); if(!c) return ''; const s=c.s||'all'; const n=itemsOf(c.id).length;
+  const MD=[['all','全員一起分',`所有人都分，依吃飯計費人數（小孩 ×${esc(S.kidF)}）`,'例：一起買的食材、零食、飲料'],['some','只有部分人分','勾選有參加的人，只算他們','例：只有幾家去的餐廳、某一餐'],['own','各付各的','每個品項指定是誰的，誰的誰負擔','例：各自點的東西、代買']];
+  return `<div data-cid="${c.id}"><div class="fs-h"><div class="fs-tt"><b>${FS.isNew?'新增分組':'分組設定'}</b><small>${n} 個品項</small></div><button type="button" class="bp-x" data-fsx aria-label="關閉"><i class="i i-x"></i></button></div>
+  <div class="fs-body">
+    <label class="fs-l">分組名稱</label><input class="fs-in big" data-cf="name" data-key="cats/${c.id}|name" value="${esc(c.name)}" placeholder="例：烤肉採購、第一天晚餐" data-autofocus autocomplete="off">
+    <label class="fs-l">這組的錢怎麼分？</label>
+    <div class="gmodes">${MD.map(([k,t,d,ex])=>`<button type="button" class="gmode ${s===k?'on':''}" data-fmode="${k}" data-key="cats/${c.id}|s"><span class="gm-r">${s===k?'<i class="i i-check"></i>':''}</span><span class="gm-t"><b>${t}</b><small>${d}</small><em>${ex}</em></span></button>`).join('')}</div>
+    ${s==='some'?foodSplitHtml(c,true):''}
+  </div>
+  <div class="fs-f">${cats().length>1?`<button type="button" class="fs-del" data-cdel><i class="i i-x"></i>刪除這組</button>`:`<button type="button" class="fs-del" data-cdel><i class="i i-x"></i>刪除</button>`}${cats().indexOf(c)>0?'<button type="button" class="fs-next" data-up><i class="i i-up"></i>往前移</button>':''}<span class="sp"></span><button type="button" class="pri fs-ok" data-fsx>完成</button></div></div>` }
+function newItem(cid){
+  if(!S.cats.length){ const c={id:nid(),name:'共同採購',s:'all',o:maxO(S.cats)}; S.cats.push(c); put('cats/'+c.id,{},true) }
+  if(!cid||!S.cats.some(c=>c.id===cid)) cid=S.cats.some(c=>c.id===LASTCAT)?LASTCAT:cats()[0].id;
+  LASTCAT=cid; openMap[cid]=true; saveOpen();
+  const it={id:nid(),c:cid,n:'',q:'',u:'',p:'',f:'',s:'',r:'',o:maxO(itemsOf(cid))}; S.items.push(it); put('items/'+it.id,{},true); renderCats(); renderSummary(); openSheet('item',it.id,true) }
+function newGroup(){ const c={id:nid(),name:'',s:'all',o:maxO(S.cats)}; S.cats.push(c); openMap[c.id]=true; saveOpen(); put('cats/'+c.id,{},true); renderAll(); openSheet('group',c.id,true) }
+function bindSheet(s){
+  s.addEventListener('input',e=>{ const f=e.target.dataset.it; if(!f||!FS||FS.k!=='item') return; const it=S.items.find(x=>x.id===FS.id); if(!it) return; it[f]=e.target.value;
+    if(f==='f'){ const h=s.querySelector('[data-calc]'); const r=evalFee(it.f); h.className='calc fs-calc'+(r.ok?'':' bad'); h.textContent=calcTxt(r) }
+    put('items/'+it.id,{[f]:it[f]}); renderCats(); renderSummary() });
+  s.addEventListener('click',e=>{
+    if(e.target.closest('[data-fsx]')){ closeSheet(); return }
+    if(!FS||FS.k!=='item') return; const it=S.items.find(x=>x.id===FS.id); if(!it) return;
+    const p=e.target.closest('[data-itp]'); if(p){ it.p=p.dataset.itp; put('items/'+it.id,{p:it.p}); renderCats(); renderSummary(); return }
+    const w=e.target.closest('[data-itw]'); if(w){ it.who=w.dataset.itw; put('items/'+it.id,{who:it.who}); renderCats(); renderSummary(); return }
+    const c=e.target.closest('[data-itc]'); if(c){ if(c.dataset.itc!==it.c){ it.c=c.dataset.itc; it.o=maxO(itemsOf(it.c)); LASTCAT=it.c; openMap[it.c]=true; saveOpen(); put('items/'+it.id,{c:it.c,o:it.o}); renderCats(); renderSummary() } return }
+    if(e.target.closest('[data-itdel]')){ offerUndo(`品項「${it.n||''}」`,[snap('items',it)]); S.items=S.items.filter(x=>x!==it); remove('items/'+it.id); FS=null; fsHide(); renderAll(); return }
+    if(e.target.closest('[data-itnext]')){ const cid=it.c; closeSheet(); newItem(cid); return }
+  });
+  s.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeSheet(); return } if(e.key==='Enter'&&e.target.tagName==='INPUT'){ e.preventDefault(); if(e.target.dataset.it==='n'){ const f=s.querySelector('[data-it="f"]'); f&&f.focus() } else e.target.blur() } });
+}
+$('#addItem').onclick=()=>newItem();
 
 function compute(){
   const ms=members(); const ids=new Set(ms.map(m=>m.id));
@@ -1525,7 +1739,7 @@ function renderSummary(){
     const tip=todo.length?`<button type="button" class="todobar" data-ovtodo><span class="tb-ic"><i class="i i-cart"></i></span><span class="tb-tx"><span><b>待買 ${todo.length} 項</b>${est?`・預估 $${fmt(est)}`:''}</span><small>買好了：點品項的「還沒買」→ 選誰付的錢（還沒買的不算進分攤）</small></span><span class="tb-go">待買清單<i class="i i-chev-r"></i></span></button>`:'';
     const fb=$('#foodTodo'); if(fb) fb.innerHTML=S.items.length?`<div class="fstat">${done.length?`<span class="st-done"><i class="i i-check"></i>已買 ${done.length} 項・$${fmt(C.foodPool)}</span>`:''}${todo.length?'':'<span class="st-ok"><i class="i i-sparkle"></i>全部買齊了</span>'}</div>${tip}`:'';
     const sb=$('#sumTodo'); if(sb) sb.innerHTML=tip; }
-  document.querySelectorAll('[data-cid]').forEach(el=>{el.querySelector('[data-ctot]').textContent='$'+fmt(C.catTot[el.dataset.cid]||0);
+  document.querySelectorAll('[data-cid]').forEach(el=>{const ct=el.querySelector('[data-ctot]'); if(ct) ct.textContent='$'+fmt(C.catTot[el.dataset.cid]||0);
     const i=C.catInfo[el.dataset.cid]; if(!i||i.s==='all'||i.s==='own') return;
     el.querySelectorAll('[data-famt]').forEach(s=>{s.textContent='$'+fmt(i.share[s.dataset.famt]||0)});
     const sum=el.querySelector('[data-fsum]'); if(!sum) return;
@@ -1610,15 +1824,14 @@ function renderOverview(C,X,todo){
   const me=getMe(), D=S.done||{};
   $('#ovStat').textContent=S.members.length?`${S.members.length} 組・共 $${fmt(C.lodgeTotal+C.foodPool)}`:'';
   $('#ovTodo').innerHTML=todo?`<i class="i i-warn"></i>有 ${todo} 項待處理（例如住宿還沒付清、房間沒選人）<button type="button" data-gotab="sum">查看</button>`:'';
-  if(!C.rows.length){ g.innerHTML='<div class="empty" style="grid-column:1/-1">還沒有成員。到「成員」新增大家吧！</div>'; return }
-  g.innerHTML=C.rows.map(r=>{const m=r.m, b=Math.round(r.bal), nm=m.n||'(未命名)';
-    const xs=X.filter(x=>x.from===nm||x.to===nm); const done=xs.filter(x=>D[x.from+'>'+x.to]===x.v).length;
-    const xb=!xs.length?(b===0?'<span class="ovc-x ok">已結清</span>':''):done===xs.length?'<span class="ovc-x ok"><i class="i i-check"></i> 轉帳完成</span>':`<span class="ovc-x wait">${b>0?'待轉帳':'待收款'} ${done}/${xs.length}</span>`;
-    return `<button type="button" class="ovc ${m.id===me?'me':''}" data-mdid="${m.id}">${m.id===me?'<span class="ovc-me">你</span>':''}
-      <div class="ovc-h"><span class="av" style="background:${colorOf(nm)}">${esc(nm.slice(0,1))}</span><div><div class="ovc-n">${esc(nm)}</div><div class="ovc-ppl">${pplText(m)}</div></div></div>
-      <div class="ovc-room ${r.rooms.length?'':'none'}">${r.rooms.length?'<i class="i i-bed"></i>'+r.rooms.map(x=>esc(x.n.split('・').pop())).join('、'):'還沒排房間'}</div>
-      <div class="ovc-nums"><div><span>應攤</span> <b>${fmt(r.lodge+r.food)}</b></div><div><span>已付</span> <b>${fmt(r.pd)}</b></div></div>
-      <div class="ovc-bal"><span class="v ${b>0?'pay':b<0?'get':'zero'}">${b>0?'應付 $'+fmt(b):b<0?'應收 $'+fmt(-b):'已結清'}</span>${xb}</div></button>`}).join('');
+  g.style.display='block';
+  if(!C.rows.length){ g.innerHTML='<div class="empty">還沒有成員。到「成員」新增大家吧！</div>'; return }
+  const R=C.rows, tot=R.reduce((a,r)=>a+r.lodge+r.food,0), hc=headCount();
+  g.innerHTML=xtable(`<th class="xn">成員</th><th>人數</th><th>餐費</th><th>住宿</th><th>應攤</th><th>已付</th><th>結餘</th><th>轉帳</th>`,
+    R.map((r,i)=>{const m=r.m, b=Math.round(r.bal), nm=m.n||'(未命名)'; const xs=X.filter(x=>x.from===nm||x.to===nm); const dn=xs.filter(x=>D[x.from+'>'+x.to]===x.v).length;
+      const xb=!xs.length?'<span class="z">—</span>':dn===xs.length?'<span class="xok"><i class="i i-check"></i>完成</span>':`<span class="xw">${b>0?'待轉':'待收'} ${dn}/${xs.length}</span>`;
+      return `<tr class="${sepAt(R,i)} ${m.id===me?'me':''}" data-mdid="${m.id}"><td class="xn">${esc(nm)}${m.id===me?'<span class="you">你</span>':''}</td><td>${pplText(m)}</td><td>${mz(r.food)}</td><td>${mz(r.lodge)}</td><td><b>${mz(r.food+r.lodge)}</b></td><td>${mz(r.pd)}</td>${balCell(b)}<td>${xb}</td></tr>`}).join(''),
+    `<td class="xn">合計 ${hc.g} 組</td><td>${hc.t} 人</td><td>${fmt(R.reduce((a,r)=>a+r.food,0))}</td><td>${fmt(R.reduce((a,r)=>a+r.lodge,0))}</td><td>${fmt(tot)}</td><td>${fmt(R.reduce((a,r)=>a+r.pd,0))}</td><td></td><td></td>`,'xt-ov');
 }
 function openMember(id){
   const {C,X}=renderSummary(); const r=C.rows.find(x=>x.m.id===id); if(!r) return; const m=r.m, nm=m.n||'(未命名)', b=Math.round(r.bal), D=S.done||{};
@@ -1648,7 +1861,7 @@ function confirmInline(btn,msg){ if(btn.dataset.armed){return true} const old=bt
 $('#title').addEventListener('input',e=>{S.title=e.target.value; if(MODE!=='shared'){touchLocal();return} const ev=EVENTS.find(x=>x.id===EID); if(ev){ev.name=S.title; put('events/'+EID,{name:S.title}); renderEvBtn()} });
 $('#basisBox').addEventListener('toggle',renderBasisSum);
 ['kidF','babyF'].forEach(k=>$('#'+k).addEventListener('input',e=>{S[k]=e.target.value; renderBasisSum(); renderSummary(); put('meta/main',{[k]:S[k]}); if(k==='kidL'||k==='babyL') renderNightsKeep()}));
-function renderNightsKeep(){ const a=document.activeElement; document.querySelectorAll('[data-cid]').forEach(el=>{const c=S.cats.find(x=>x.id===el.dataset.cid); const fsp=el.querySelector('.fsplit'); if(c&&fsp&&!fsp.contains(a)) fsp.outerHTML=foodSplitHtml(c)}); document.querySelectorAll('[data-rid]').forEach(el=>{const r=S.rooms.find(x=>x.id===el.dataset.rid); if(!r) return; el.querySelector('.chips').innerHTML=chipsHtml(r); const sp=el.querySelector('.split'); if(sp&&!sp.contains(a)) sp.outerHTML=splitHtml(r)}); renderSummary(); paintPeers(); }
+function renderNightsKeep(){ const a=document.activeElement; document.querySelectorAll('[data-cid]').forEach(el=>{const c=S.cats.find(x=>x.id===el.dataset.cid); const fsp=el.querySelector('.fsplit'); if(c&&fsp&&!fsp.contains(a)) fsp.outerHTML=foodSplitHtml(c,!!fsp.closest('#fsheet'))}); document.querySelectorAll('[data-rid]').forEach(el=>{const r=S.rooms.find(x=>x.id===el.dataset.rid); if(!r) return; el.querySelector('.chips').innerHTML=chipsHtml(r); const sp=el.querySelector('.split'); if(sp&&!sp.contains(a)) sp.outerHTML=splitHtml(r)}); renderSummary(); paintPeers(); }
 
 // ---------- events: members ----------
 $('#memBody').addEventListener('input',e=>{
@@ -1717,7 +1930,7 @@ $('#addNight').onclick=()=>{const g={id:nid(),name:'第 '+(S.nights.length+1)+' 
   const r={id:nid(),g:g.id,n:'',f:'',p:'',m:[],s:'head',x:{},xa:{},r:'',o:0}; S.rooms.push(r); put('rooms/'+r.id,{},true); openMap[g.id]=true; renderAll(); const el=document.querySelector(`[data-key="nights/${g.id}|name"]`); el&&el.select();};
 
 // ---------- events: food ----------
-$('#cats').addEventListener('input',e=>{
+document.addEventListener('input',e=>{ if(!e.target.closest('#cats,#fsheet')) return;
   const cel=e.target.closest('[data-cid]'); if(!cel) return; const c=S.cats.find(x=>x.id===cel.dataset.cid); if(!c) return;
   if(e.target.dataset.cf){c.name=e.target.value; put('cats/'+c.id,{name:c.name}); return}
   if(e.target.dataset.fx){ c.xa={...(c.xa||{}),[e.target.dataset.fx]:e.target.value}; renderSummary(); put('cats/'+c.id,{xa:c.xa}); return }
@@ -1727,11 +1940,13 @@ $('#cats').addEventListener('input',e=>{
   if(f==='f'){ const h=tr.querySelector('.calc'); const r=evalFee(it.f); h.className='calc'+(r.ok?'':' bad'); h.textContent=!r.ok?'算式看不懂':r.expr?'= '+fmt(r.v):''; }
   renderSummary(); put('items/'+it.id,{[f]:it[f]});
 });
-$('#cats').addEventListener('change',e=>{ if(e.target.dataset.if==='c'&&e.target.value){ const tr=e.target.closest('tr'); const it=S.items.find(i=>i.id===tr.dataset.iid); if(!it) return; const to=e.target.value; it.c=to; it.o=maxO(itemsOf(to)); openMap[to]=true; saveOpen(); put('items/'+it.id,{c:it.c,o:it.o}); renderAll(); const cn=(S.cats.find(x=>x.id===to)||{}).name||''; toast(`已移到「${cn}」`); return }
+document.addEventListener('change',e=>{ if(!e.target.closest('#cats,#fsheet')) return; if(e.target.dataset.if==='c'&&e.target.value){ const tr=e.target.closest('tr'); const it=S.items.find(i=>i.id===tr.dataset.iid); if(!it) return; const to=e.target.value; it.c=to; it.o=maxO(itemsOf(to)); openMap[to]=true; saveOpen(); put('items/'+it.id,{c:it.c,o:it.o}); renderAll(); const cn=(S.cats.find(x=>x.id===to)||{}).name||''; toast(`已移到「${cn}」`); return }
   if(e.target.dataset.if==='who'){ const tr=e.target.closest('tr'); const it=S.items.find(i=>i.id===tr.dataset.iid); if(!it) return; it.who=e.target.value; renderSummary(); put('items/'+it.id,{who:it.who}); return }
   if(e.target.dataset.if==='p'){ const tr=e.target.closest('tr'); const it=S.items.find(i=>i.id===tr.dataset.iid); if(!it) return; it.p=e.target.value; tr.className=itemCls(it); renderSummary(); put('items/'+it.id,{p:it.p}); }});
-$('#cats').addEventListener('click',e=>{
+document.addEventListener('click',e=>{ if(!e.target.closest('#cats,#fsheet')||e.target.closest('[data-buy]')) return;
   const cel=e.target.closest('[data-cid]'); if(!cel) return; const c=S.cats.find(x=>x.id===cel.dataset.cid); if(!c) return;
+  if(e.target.closest('[data-gset]')){ openSheet('group',c.id); return }
+  const ir=e.target.closest('[data-iedit]'); if(ir){ openSheet('item',ir.dataset.iid); return }
   const fm=e.target.closest('[data-fmode]'); if(fm){ c.s=fm.dataset.fmode; put('cats/'+c.id,{s:c.s}); renderAll(); return }
   const fs=e.target.closest('[data-fsub]'); if(fs){ c.sm=fs.dataset.fsub; put('cats/'+c.id,{sm:c.sm}); renderAll(); return }
   const fc=e.target.closest('[data-fmid]'); if(fc){ const set=new Set(c.m||[]); const id=fc.dataset.fmid; set.has(id)?set.delete(id):set.add(id); c.m=members().map(x=>x.id).filter(x=>set.has(x)); put('cats/'+c.id,{m:c.m}); renderAll(); myFocus(`cats/${c.id}|m`); return }
@@ -1740,12 +1955,11 @@ $('#cats').addEventListener('click',e=>{
   if(e.target.closest('[data-cdel]')){ const its=itemsOf(c.id); if(its.length && !confirmInline(e.target.closest('button'),`分類內有 ${its.length} 個品項，再按一次確認刪除`)) return;
     offerUndo(`分類「${c.name||''}」和 ${its.length} 個品項`,[snap('cats',c),...its.map(i=>snap('items',i))]);
     S.cats=S.cats.filter(x=>x!==c); remove('cats/'+c.id); its.forEach(i=>remove('items/'+i.id)); S.items=S.items.filter(i=>i.c!==c.id); renderAll(); return}
-  if(e.target.closest('[data-iadd]')){ openMap[c.id]=true; const it={id:nid(),c:c.id,n:'',q:'',u:'',p:'',f:'',s:'',r:'',o:maxO(itemsOf(c.id))}; S.items.push(it); put('items/'+it.id,{},true); renderAll();
-    const el=document.querySelector(`[data-key="items/${it.id}|n"]`); el&&el.focus(); return}
+  if(e.target.closest('[data-iadd]')){ newItem(c.id); return}
   if(e.target.closest('[data-idel]')){ const tr=e.target.closest('tr'); {const it=S.items.find(x=>x.id===tr.dataset.iid); if(it) offerUndo(`品項「${it.n||''}」`,[snap('items',it)])} S.items=S.items.filter(x=>x.id!==tr.dataset.iid); remove('items/'+tr.dataset.iid); renderAll(); }
 });
 $('#addMeal').onclick=()=>{const c={id:nid(),name:'餐廳',s:'some',sm:'head',m:[],o:maxO(S.cats)}; S.cats.push(c); openMap[c.id]=true; put('cats/'+c.id,{},true); renderAll(); const el=document.querySelector(`[data-key="cats/${c.id}|name"]`); el&&el.select(); toast('已新增，記得勾選有去的人');};
-$('#addCat').onclick=()=>{const c={id:nid(),name:'共同採購',s:'all',o:maxO(S.cats)}; S.cats.push(c); put('cats/'+c.id,{},true); renderAll(); const el=document.querySelector(`[data-key="cats/${c.id}|name"]`); el&&el.select();};
+$('#addCat').onclick=()=>newGroup();
 $('#tgAll').onclick=()=>{const anyOpen=S.cats.some(c=>isOpen(c.id)); S.cats.forEach(c=>openMap[c.id]=!anyOpen); saveOpen(); renderCats(); renderSummary(); paintPeers();};
 
 // ---------- replace everything ----------
@@ -1872,7 +2086,7 @@ function paintPeers(){
     box.classList.add('other'); box.style.setProperty('--pc',colorOf(p.name));
     if(!box.querySelector(':scope > .tag')){const t=document.createElement('span');t.className='tag';t.textContent=p.name+' 正在改';box.appendChild(t)}
   });
-  const now=Date.now(); document.querySelectorAll('tr[data-iid],tr[data-id],tr[data-pid],.room[data-rid]').forEach(r=>{const id=r.dataset.iid||r.dataset.id||r.dataset.pid||r.dataset.rid; r.classList.toggle('flash',!!(FLASH[id]&&now-FLASH[id]<3000))});
+  const now=Date.now(); document.querySelectorAll('.frow[data-iid],tr[data-id],tr[data-pid],.room[data-rid]').forEach(r=>{const id=r.dataset.iid||r.dataset.id||r.dataset.pid||r.dataset.rid; r.classList.toggle('flash',!!(FLASH[id]&&now-FLASH[id]<3000))});
 }
 let hiShown=false;
 function maybeHi(){ if(MODE!=='shared'||!EID||NICK||hiShown) return; hiShown=true;
@@ -2004,7 +2218,7 @@ async function startShared(){
 window.__test={compute,transfers,convert,get S(){return S},get EID(){return EID},get EVENTS(){return EVENTS}};
 
 // ---------- PWA ----------
-const APP_VER='v10.8・2026.11.20';
+const APP_VER='v11.0・2026.11.21';
 try{ $('#verTxt').textContent='分帳小幫手 '+APP_VER }catch(e){}
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; $('#insGo').style.display='' });
